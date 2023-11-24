@@ -1,0 +1,39 @@
+SuperUser: Utsav
+email: ""
+pass: Utsav
+
+Add-ons:
+- Login with email also.
+- Google calender integration in events section 
+- Adding enrollment number in the usersprofile model
+- A good login system
+- Class Schedule model: Fields -> day of the week, start time, end time, class name, location, user (ForeignKey to User Profile)
+- Grade: Fields -> assignment (ForeignKey to Assignment), grade value, user (ForeignKey to User Profile)
+- Days Calculator
+
+
+
+
+
+=> Remaining things in Tasks section:
+- Delete tasks button.
+- Edit tasks button in a popup box.
+- Checkbox to task
+
+=> Remaning things in Assignment section:
+- Update assignment
+- Delete assignment
+- Exoanding the Assignment for more info
+
+=> Remaning things in Notes section:
+- files are not opening.
+
+
+
+-> On the signup page, only username, enroll, email and pass.
+Other information: 
+    - firstname, lastname, bio, profile_pic, birthdate, etc
+
+
+=> Profile
+- Profile pic is not displying
