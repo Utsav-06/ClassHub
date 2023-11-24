@@ -17,17 +17,9 @@ Add-ons:
 => Remaning things in Assignment section:
 - Update assignment
 - Delete assignment
-- Exoanding the Assignment for more info
+- Expanding the Assignment for more info
 
 => Remaning things in Notes section:
 - files are not opening.
 
 
-
--> On the signup page, only username, enroll, email and pass.
-Other information: 
-    - firstname, lastname, bio, profile_pic, birthdate, etc
-
-
-=> Profile
-- Profile pic is not displying
