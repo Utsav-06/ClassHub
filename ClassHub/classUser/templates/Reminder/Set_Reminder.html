@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Set Reminder</title>
+  </head>
+  <body>
+    <!-- Your HTML content -->
+
+    <form id="reminderForm">
+      <label for="date">Date:</label>
+      <input type="date" id="date" name="date" required />
+
+      <label for="time">Time:</label>
+      <input type="time" id="time" name="time" required />
+
+      <button type="button" onclick="setReminder()">Set Reminder</button>
+    </form>
+
+    <script>
+      function setReminder() {
+        const date = document.getElementById('date').value
+        const time = document.getElementById('time').value
+      
+        // Make an AJAX request to the backend to set the reminder
+        fetch('/set-reminder/', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': getCookie('csrftoken') // Ensure to include CSRF token
+          },
+          body: JSON.stringify({ date, time })
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            if (data.status === 'success') {
+              alert('Reminder set successfully!')
+            } else {
+              alert('Failed to set reminder.')
+            }
+          })
+          .catch((error) => {
+            console.error('Error:', error)
+            alert('An error occurred.')
+          })
+      }
+      
+      // Function to get CSRF token from cookies
+      function getCookie(name) {
+        const value = `; ${document.cookie}`
+        const parts = value.split(`; ${name}=`)
+        if (parts.length === 2) return parts.pop().split(';').shift()
+      }
+    </script>
+  </body>
+</html>

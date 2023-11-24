@@ -1,0 +1,96 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    {% load static %}
+    {% csrf_token %}
+    {% block title %}
+      <title>ClassHub</title>
+    {% endblock %}
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.16/tailwind.min.css" rel="stylesheet" />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+        text-align: center;
+      }
+      
+      .dashboard-section {
+        margin: 30px;
+        padding: 20px;
+        border: 2px solid #ccc;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        display: inline-block;
+        width: calc(33.33% - 20px);
+        vertical-align: top;
+      }
+      .popup {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: #fff;
+        border: 2px solid #ccc;
+        padding: 20px;
+        max-width: 400px;
+        width: 100%;
+        text-align: center;
+      }
+      
+      .popup-content {
+        position: relative;
+      }
+      
+      .close-btn {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+
+  <body>
+    <nav class="px-6 py-6 flex justify-between items-center border-b border-gray-300">
+      <a href="/Main" class="text-3xl font-semibold">ClassHub</a>
+
+      <div class="space-x-6">
+        <a href="/Dashboard" class="text-2xl font-semibold hover:text-gray-500">Dashboard</a>
+        <a href="/Tools" class="text-2xl font-semibold hover:text-gray-500">Tools</a>
+        <a href="/Profile" class="text-2xl font-semibold hover:text-gray-500">Profile</a>
+        {% comment %} <a href="/About" class="text-2xl font-semibold hover:text-gray-500">About</a>
+        <a href="/Contact" class="text-2xl font-semibold hover:text-gray-500">Contact</a> {% endcomment %}
+      </div>
+      <div>
+        <a href="{% url 'logout' %}" class="text-2xl font-semibold hover:text-gray-500">Logout</a>
+      </div>
+    </nav>
+
+    <div class="space-x-40 flex justify-center mt-10">
+      <div class="dashboard-section">
+        <h2 class="text-xl font-semibold mb-4">Tasks</h2>
+        {% comment %} {% block Tasks %}
+
+        {% endblock %} {% endcomment %}
+
+        <a href="{% url 'add_task' %}">Add Task</a><br />
+        <a href="{% url 'list_task' %}">List Task</a>
+      </div>
+
+      <div class="dashboard-section">
+        <h2 class="text-xl font-semibold mb-4">Assignments</h2>
+        <a href="{% url 'add_task' %}">Add Assignment</a><br />
+        <a href="{% url 'list_task' %}">List Assignment</a>
+      </div>
+
+      <div class="dashboard-section">
+        <h2 class="text-xl font-semibold mb-4">Events</h2>
+        <a href="{% url 'add_task' %}">Add Events</a><br />
+        <a href="{% url 'list_task' %}">List Events</a>
+      </div>
+    </div>
+  </body>
+</html>

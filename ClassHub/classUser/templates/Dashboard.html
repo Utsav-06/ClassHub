@@ -1,0 +1,42 @@
+{% extends 'Main.html' %}
+{% block title %}
+  <title>Tools</title>
+{% endblock %}
+
+{% block Tasks %}
+  <button onclick="openPopup()">Add Task</button>
+
+  {% comment %}Existing Task List{% endcomment %}
+  {% if tasks %}
+    <ul>
+      {% for task in tasks %}
+        <li>
+          <input type="checkbox" name="task" value="{{ task.title }}" />
+          {{ task.title }}
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No tasks found.</p>
+  {% endif %}
+
+  {% comment %}Pop-Up for adding task{% endcomment %}
+  <div id="taskPopup" class="popup">
+    <div class="popup-content">
+      <h2>Add Task</h2>
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button onclick="ClosePopup()">Add Task</button>
+    </div>
+  </div>
+
+  <script>
+    function openPopup() {
+      document.getElementById('taskPopup').style.display = 'flex'
+    }
+    
+    function closePopup() {
+      document.getElementById('taskPopup').style.display = 'none'
+    }
+  </script>
+{% endblock %}

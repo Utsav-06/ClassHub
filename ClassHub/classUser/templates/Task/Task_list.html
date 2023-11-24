@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h4>Task List</h4>
+    {% for Tasks in task_list %}
+      -
+      <a href="{% url 'TaskDetail' Tasks.Task_id %}" style="color: black; text-decoration: none;">{{ Tasks.title }}</a>
+      <a class="btn btn-primary" style="color: black;" href="{% url 'edit_task' Tasks.Task_id %}" role="button">Edit Task</a>
+      <a class="btn btn-primary" style="color: black;" href="{% url 'delete_task' Tasks.Task_id %}" role="button">Delete Task</a>
+
+      <br />
+    {% endfor %}
+
+    <br />
+    <a class="btn btn-primary" href="{% url 'main' %}" role="button">Home</a>
+  </body>
+</html>

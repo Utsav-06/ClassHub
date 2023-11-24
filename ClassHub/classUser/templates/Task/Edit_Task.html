@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Profile</title>
+  </head>
+  <body>
+    <center>
+      <form method="post">
+        {% csrf_token %}
+
+        <div class="mb-3">
+          <label for="title" class="form-label">Title:</label>
+          <input type="text" class="form-control" id="title" name="title" value="{{ task_info.title }}" />
+        </div>
+
+        <div class="mb-3">
+          <label for="desc" class="form-label">Description:</label>
+          <textarea class="form-control" id="desc" name="desc">{{ task_info.desc }}</textarea>
+        </div>
+
+        <div class="mb-3">
+          <label for="due_date" class="form-label">Due Date:</label>
+          <input type="date" class="form-control" id="due_date" name="due_date" value="{{ task_info.due_date }}" />
+        </div>
+
+        <div class="mb-3">
+          <label for="priority" class="form-label">Priority:</label>
+          <input type="text" class="form-control" id="priority" name="priority" value="{{ task_info.due_date }}" />
+        </div>
+        <a class="btn btn-primary" style="text-decoration: none; color: black;" href="{% url 'list_task' %}" role="button">Back</a>
+
+        <button type="submit" class="btn btn-primary">Save changes</button>
+      </form>
+    </center>
+  </body>
+</html>
