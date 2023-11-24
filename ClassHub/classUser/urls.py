@@ -1,0 +1,39 @@
+from django.contrib.auth.views import LogoutView
+from django.conf.urls.static import static
+from django.conf import settings
+from django.urls import path
+from .views import *
+
+urlpatterns = [
+    path("", welcome, name="welcome"),
+    path("Login/", login, name="login"),
+    path("Sign_up/", signup, name="signup"),
+    path("logout/", LogoutView.as_view(), name="logout"),
+    path("Main/", main, name="main"),
+    path("Add_Task/", add_task, name="add_task"),
+    path("Task_List/", list_task, name="list_task"),
+    path("Task/<int:pk>", Tasks_detail, name="TaskDetail"),
+    path("Edit_Task/<int:pk>", edit_task, name="edit_task"),
+    path("Profile/", User_Profile, name="userprofile"),
+    path("Edit_Profile/", Edit_Profile, name="editprofile"),
+    path("delete_task/<int:pk>/", delete_task, name="delete_task"),
+    # path("Dashboard/", dashboard, name="dashboard"),
+    # path("login/", CustomLoginView.as_view(), name="login"),
+    # path("signup/", signup, name="signup"),
+    # path("<int:year>/<str:month>", event, name="event"),
+    # path("Assignment/", add_assignment, name="Assignment"),
+    # path("update/<int:assignment_id>/", update_assignment, name="update_assignment"),
+    # path("delete/<int:assignment_id>/", delete_assignment, name="delete_assignment"),
+    # path("Assignment_list/", list_assignment, name="Assignment_list"),
+    # path("Add_Note/", add_note, name="add_note"),
+    # path("Note_List/", note_list, name="list_notes"),
+]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+# Path Converters:
+#   - int: numbers
+#   -  str: strings
+#   - path: whole urls /
+#   - slud: hyphens-underscore-stuff
+#   - UUID: Universally Unique Identifier
