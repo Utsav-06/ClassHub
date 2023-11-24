@@ -76,7 +76,7 @@
         {% if profile_info.profile_pic %}
           <img src="{{ profile_info.profile_pic.url }}" alt="..." />
         {% else %}
-          <img src="Default.jpg" alt="No profile pic" />
+          <img src="{% static 'Default.jpg' %}" alt="No profile pic" />
         {% endif %}
       </div>
       <div class="profile-info">
