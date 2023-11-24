@@ -110,13 +110,13 @@ def Edit_Profile(request):
     profile_info = get_object_or_404(UserProfile, user=request.user)
 
     if request.method == "POST":
-        username = request.POST.get("username")  # User model
-        first_name = request.POST.get("first_name")  # UserProfile model
-        last_name = request.POST.get("last_name")  # UserProfile model
-        Enrollment_No = request.POST.get("Enrollment_No")  # UserProfile model
-        bio = request.POST.get("bio")  # UserProfile model
-        profile_pic = request.FILES.get("profile_pic")  # UserProfile model
-        birth_date = request.POST.get("birth_date")  # UserProfile model
+        username = request.POST.get("username")
+        first_name = request.POST.get("first_name")
+        last_name = request.POST.get("last_name")
+        Enrollment_No = request.POST.get("Enrollment_No")
+        bio = request.POST.get("bio")
+        profile_pic = request.FILES.get("profile_pic")
+        birth_date = request.POST.get("birth_date")
 
         if username and username != request.user.username:
             request.user.username = username
@@ -205,23 +205,18 @@ def edit_task(request, pk):
         priority = request.POST.get("priority")
 
         if title:
-            print(title)
             task_info.title = title
 
         if desc:
-            print(desc)
             task_info.desc = desc
 
         if due_date:
-            print(due_date)
             task_info.due_date = due_date
 
         if priority:
-            print(priority)
             task_info.priority = priority
 
         task_info.save()
-        print(Task)
         return redirect("list_task")
 
     return render(request, "Task/Edit_Task.html", context={"task_info": task_info})
@@ -241,39 +236,48 @@ def delete_task(request, pk):
 # -----------------------------------------------------------------------------------------------------------#
 # Assignment Model
 
-# @login_required(login_url='/Login')
-# def add_assignment(request):
-#     submitted = False
-#     if request.method == "POST":
-#         form = AssignmentForm(request.POST)
-#         if form.is_valid():
-#             form.save()
-#             return HttpResponseRedirect("/Assignment")
-#     else:
-#         form = AssignmentForm()
-#         if "submitted" in request.GET:
-#             submitted = True
 
-#     return render(request, "Assignment.html", {"form": form})
+@login_required(login_url="/Login")
+def Add_assignment(request):
+    assignment = Assignment()
+    assignment.user = request.user
+    if request.method == "POST":
+        subject = request.POST.get("subject")
+        title = request.POST.get("title")
+        desc = request.POST.get("desc")
+        due_date = request.POST.get("due_date")
+        Assignment_files = request.FILES["Assignment_files"]
 
-# @login_required(login_url='/Login')
+        assignment.subject = subject
+        assignment.title = title
+
+        if desc:
+            assignment.desc = desc
+
+        if due_date:
+            assignment.due_date = due_date
+
+        if "Assignment_files" in request.FILES:
+            assignment.Assignment_files = Assignment_files
+
+        assignment.save()
+
+    return render(request, "Assignment/Add_assignment.html")
+
+
+# @login_required(login_url="/Login")
 # def list_assignment(request):
 #     Assignments = Assignment.objects.all()
 #     return render(request, "Assignment_list.html", context={"Assignments": Assignments})
 
 
+# @login_required(login_url="/Login")
 # def update_assignment(request, assignment_id):
 #     assignment = get_object_or_404(Assignment, id=assignment_id)
-#     if request.method == "POST":
-#         form = AssignmentForm(request.POST, instance=assignment)
-#         if form.is_valid():
-#             form.save()
-#             return redirect("assignment_list")
-#     else:
-#         form = AssignmentForm(instance=assignment)
-#     return render(request, "update_assignment.html", {"form": form})
+#     # if request.method == "POST":
 
 
+# @login_required(login_url="/Login")
 # def delete_assignment(request, assignment_id):
 #     assignment = get_object_or_404(Assignment, id=assignment_id)
 #     assignment.delete()

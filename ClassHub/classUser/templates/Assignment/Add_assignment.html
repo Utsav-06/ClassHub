@@ -1,0 +1,43 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign Up</title>
+  </head>
+  <body>
+    <h2>Add Assignments</h2>
+
+    <form method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+
+      <div class="mb-3">
+        <label for="subject" class="form-label">Subject:</label>
+        <input type="text" class="form-control" id="subject" name="subject" required />
+      </div>
+
+      <div class="mb-3">
+        <label for="title" class="form-label">Title:</label>
+        <input type="text" class="form-control" id="title" name="title" required />
+      </div>
+
+      <div class="mb-3">
+        <label for="desc" class="form-label">Description:</label>
+        <textarea name="desc" id="desc" cols="30" rows="10"></textarea>
+      </div>
+
+      <div class="mb-3">
+        <label for="due_date" class="form-label">Due Date:</label>
+        <input type="date" class="form-control" id="due_date" name="due_date" required />
+      </div>
+
+      <div class="mb-3">
+        <label for="Assignment_files" class="form-label">Attach File:</label>
+        <input type="file" class="form-control" id="Assignment_files" name="Assignment_files" accept="application/pdf" />
+      </div>
+
+      <button type="submit">Add Task</button><br />
+      <br />
+      <a class="btn btn-primary" href="{% url 'main' %}" role="button">Home</a>
+    </form>
+  </body>
+</html>

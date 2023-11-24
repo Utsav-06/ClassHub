@@ -37,7 +37,7 @@ class Task(models.Model):
 
 
 class Assignment(models.Model):
-    user = models.ForeignKey(UserProfile, on_delete=models.CASCADE, default="")
+    user = models.ForeignKey(User, on_delete=models.CASCADE, default="")
     STATUS_CHOICES = [
         ("pending", "Pending"),
         ("submitted", "Submitted"),
@@ -57,7 +57,7 @@ class Assignment(models.Model):
 
 
 class Note(models.Model):
-    user = models.ForeignKey(UserProfile, on_delete=models.CASCADE, default="")
+    user = models.ForeignKey(User, on_delete=models.CASCADE, default="")
     Note_id = models.AutoField(primary_key=True, auto_created=True)
     title = models.CharField(max_length=255)
     content = models.TextField(blank=True)
