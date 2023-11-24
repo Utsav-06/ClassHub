@@ -8,8 +8,8 @@
   <body>
     <h4>Task List</h4>
     {% for Tasks in task_list %}
-      -
-      <a href="{% url 'TaskDetail' Tasks.Task_id %}" style="color: black; text-decoration: none;">{{ Tasks.title }}</a>
+      <input type="checkbox" id="{{ Tasks.title }}" name="{{ Tasks.title }}" />
+      <label for="{{ Tasks.title }}"><a href="{% url 'TaskDetail' Tasks.Task_id %}" style="color: black; text-decoration: none;">{{ Tasks.title }}</a></label>
       <a class="btn btn-primary" style="color: black;" href="{% url 'edit_task' Tasks.Task_id %}" role="button">Edit Task</a>
       <a class="btn btn-primary" style="color: black;" href="{% url 'delete_task' Tasks.Task_id %}" role="button">Delete Task</a>
 
