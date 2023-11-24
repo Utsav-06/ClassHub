@@ -17,19 +17,18 @@ urlpatterns = [
     path("Edit_Task/<int:pk>", edit_task, name="edit_task"),
     path("Profile/", User_Profile, name="userprofile"),
     path("Edit_Profile/", Edit_Profile, name="editprofile"),
-    path("delete_task/<int:pk>/", delete_task, name="delete_ task"),
+    path("Task_delete/<int:pk>/", delete_task, name="delete_task"),
     path("Add_Assignment/", Add_assignment, name="Add_Assignment"),
-    # path("Assignment_list/", list_assignment, name="Assignment_list"),
+    path("Assignment_list/", list_assignment, name="Assignment_list"),
     # path("Assignment/", add_assignment, name="Assignment"),
     # path("update/<int:assignment_id>/", update_assignment, name="update_assignment"),
     # path("delete/<int:assignment_id>/", delete_assignment, name="delete_assignment"),
     # path("Add_Note/", add_note, name="add_note"),
     # path("Note_List/", note_list, name="list_notes"),
     # path("<int:year>/<str:month>", event, name="event"),
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
-if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
 # Path Converters:
 #   - int: numbers
 #   -  str: strings

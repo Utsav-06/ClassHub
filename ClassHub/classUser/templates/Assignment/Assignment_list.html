@@ -3,13 +3,15 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Assignments List</title>
   </head>
   <body>
-    <h4>Assignment List</h4>
-    {% for Assignment in Assignments %}
-      {{ Assignment }}
-      <br />
-    {% endfor %}
+    <h2>List of Assignments</h2>
+    <ul>
+      {% for Assignment in Assignments %}
+      
+      {% endfor %}
+    </ul>
   </body>
 </html>
+{% comment %} <a href="{{ Assignment.Assignment_files.url }}" target="_blank">Open PDF</a> {% endcomment %}

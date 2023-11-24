@@ -224,13 +224,13 @@ def edit_task(request, pk):
 
 @login_required(login_url="/Login")
 def delete_task(request, pk):
-    task = get_object_or_404(Task, pk=pk)
+    task_info = Task.objects.get(Task_id=pk)
 
     if request.method == "POST":
-        task.delete()
+        task_info.delete()
         return redirect("list_task")
 
-    return render(request, "Task/delete_task.html", {"task": task})
+    return render(request, "Task/delete_task.html", {"task": task_info})
 
 
 # -----------------------------------------------------------------------------------------------------------#
@@ -265,10 +265,12 @@ def Add_assignment(request):
     return render(request, "Assignment/Add_assignment.html")
 
 
-# @login_required(login_url="/Login")
-# def list_assignment(request):
-#     Assignments = Assignment.objects.all()
-#     return render(request, "Assignment_list.html", context={"Assignments": Assignments})
+@login_required(login_url="/Login")
+def list_assignment(request):
+    Assignments = Assignment.objects.all()
+    return render(
+        request, "Assignment/Assignment_list.html", context={"Assignments": Assignments}
+    )
 
 
 # @login_required(login_url="/Login")
