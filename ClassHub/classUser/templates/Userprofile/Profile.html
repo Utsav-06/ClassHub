@@ -73,7 +73,11 @@
     </nav>
     <div class="profile-container">
       <div class="profile-pic">
-        <img src="{{ profile_info.profile_pic.url }}" alt="..." />
+        {% if profile_info.profile_pic %}
+          <img src="{{ profile_info.profile_pic.url }}" alt="..." />
+        {% else %}
+          <img src="Default.jpg" alt="No profile pic" />
+        {% endif %}
       </div>
       <div class="profile-info">
         <h1>{{ profile_info.username }}</h1>

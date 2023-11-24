@@ -37,6 +37,7 @@
         <input type="date" class="form-control" id="birth_date" name="birth_date" value="{{ profile_info.birth_date }}" />
       </div>
       <button type="submit">Save</button>
+      <a href="{% url 'userprofile' %}"><button type="button">Cancel</button></a>
     </form>
   </body>
 </html>
