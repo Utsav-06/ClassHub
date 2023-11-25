@@ -1,0 +1,13 @@
+Making Changes in,
+- Welcomw page 
+
+- Login page (C)
+    . ClassHub logo not appearing (UC)
+
+- Signup page (C)
+
+- Dashboard ()
+
+- Task page
+
+- Assignment page

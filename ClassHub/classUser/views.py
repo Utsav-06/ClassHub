@@ -12,9 +12,12 @@ from .forms import *
 import os
 
 
-def dashboard(request):
-    template = loader.get_template("Dashboard.html")
-    return HttpResponse(template.render())
+# def dashboard(request):
+#     profile_info = get_object_or_404(UserProfile, user=request.user)
+
+#     return render(
+#         request, "Dashboard.html", context={"profile_pic": profile_info.profile_pic}
+#     )
 
 
 def welcome(request):
@@ -97,12 +100,17 @@ def signup(request):
 
 
 def main(request):
+    profile_info = get_object_or_404(UserProfile, user=request.user)
+
     if request.method == "POST":
         auth_logout(request)
         return redirect("welcome")
 
-    template = loader.get_template("User-Login-Logout/Main.html")
-    return HttpResponse(template.render())
+    return render(
+        request,
+        "User-Login-Logout/Main.html",
+        context={"profile_pic": profile_info.profile_pic},
+    )
 
 
 @login_required(login_url="/Login")
@@ -153,7 +161,6 @@ def Edit_Profile(request):
 @login_required(login_url="/Login")
 def User_Profile(request):
     profile_info = get_object_or_404(UserProfile, user=request.user)
-    print(profile_info.profile_pic)
     return render(
         request, "Userprofile/Profile.html", context={"profile_info": profile_info}
     )
