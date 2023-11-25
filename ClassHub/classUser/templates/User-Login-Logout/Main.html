@@ -61,8 +61,8 @@
         <a href="/Dashboard" class="text-2xl font-semibold hover:text-gray-500">Dashboard</a>
         <a href="/Tools" class="text-2xl font-semibold hover:text-gray-500">Tools</a>
         <a href="/Profile" class="text-2xl font-semibold hover:text-gray-500">Profile</a>
-        {% comment %} <a href="/About" class="text-2xl font-semibold hover:text-gray-500">About</a>
-        <a href="/Contact" class="text-2xl font-semibold hover:text-gray-500">Contact</a> {% endcomment %}
+        <a href="/About" class="text-2xl font-semibold hover:text-gray-500">About</a>
+        <a href="/Contact" class="text-2xl font-semibold hover:text-gray-500">Contact</a>
       </div>
       <div>
         <a href="{% url 'logout' %}" class="text-2xl font-semibold hover:text-gray-500">Logout</a>
@@ -72,9 +72,9 @@
     <div class="space-x-40 flex justify-center mt-10">
       <div class="dashboard-section">
         <h2 class="text-xl font-semibold mb-4">Tasks</h2>
-        {% comment %} {% block Tasks %}
+        {% block Tasks %}
 
-        {% endblock %} {% endcomment %}
+        {% endblock %}
 
         <a href="{% url 'add_task' %}">Add Task</a><br />
         <a href="{% url 'list_task' %}">List Task</a>

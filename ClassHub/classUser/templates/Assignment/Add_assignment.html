@@ -32,7 +32,12 @@
 
       <div class="mb-3">
         <label for="Assignment_files" class="form-label">Attach File:</label>
-        <input type="file" class="form-control" id="Assignment_files" name="Assignment_files" accept="application/pdf" />
+        <input type="file" class="form-control" id="Assignment_files" name="Assignment_files" accept="application/*" />
+      </div>
+
+      <div class="mb-3">
+        <label for="status" class="form-label">Status:</label>
+        <input type="text" class="form-control" id="status" name="status" required />
       </div>
 
       <button type="submit">Add Task</button><br />

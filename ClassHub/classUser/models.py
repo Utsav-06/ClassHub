@@ -45,7 +45,7 @@ class Assignment(models.Model):
     Assignment_id = models.AutoField(primary_key=True, auto_created=True)
     subject = models.CharField(max_length=50)
     title = models.CharField(max_length=255)
-    description = models.TextField(blank=True)
+    description = models.CharField(max_length=500, blank=True)
     due_date = models.DateField(blank=True)
     Assignment_files = models.FileField(
         upload_to="Uploaded_files/Assignment_pdfs/", blank=True

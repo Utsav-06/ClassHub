@@ -4,3 +4,4 @@ ClassHub/classUser/migrations
 ClassHub/ClassHub/db.sqlite3
 ClassHub/Uploaded_files
 ClassHub/profile_pics
+node_modules/

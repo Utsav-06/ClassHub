@@ -247,6 +247,7 @@ def Add_assignment(request):
         desc = request.POST.get("desc")
         due_date = request.POST.get("due_date")
         Assignment_files = request.FILES["Assignment_files"]
+        status = request.POST.get("status")
 
         assignment.subject = subject
         assignment.title = title
@@ -260,6 +261,9 @@ def Add_assignment(request):
         if "Assignment_files" in request.FILES:
             assignment.Assignment_files = Assignment_files
 
+        if status:
+            assignment.status = status
+
         assignment.save()
 
     return render(request, "Assignment/Add_assignment.html")
@@ -268,15 +272,50 @@ def Add_assignment(request):
 @login_required(login_url="/Login")
 def list_assignment(request):
     Assignments = Assignment.objects.all()
+
     return render(
-        request, "Assignment/Assignment_list.html", context={"Assignments": Assignments}
+        request,
+        "Assignment/Assignment_list.html",
+        context={"Assignments": Assignments},
     )
 
 
-# @login_required(login_url="/Login")
-# def update_assignment(request, assignment_id):
-#     assignment = get_object_or_404(Assignment, id=assignment_id)
-#     # if request.method == "POST":
+@login_required(login_url="/Login")
+def edit_assignment(request, pk):
+    Assi_info = Assignment.objects.get(Assignment_id=pk)
+
+    if request.method == "POST":
+        subject = request.POST.get("subject")
+        title = request.POST.get("title")
+        desc = request.POST.get("desc")
+        due_date = request.POST.get("due_date")
+        Assignment_files = request.FILES["Assignment_files"]
+        status = request.POST.get("status")
+
+        if subject:
+            Assi_info.subject = subject
+
+        if title:
+            Assi_info.title = title
+
+        if desc:
+            Assi_info.desc = desc
+
+        if due_date:
+            Assi_info.due_date = due_date
+
+        if Assignment_files:
+            Assi_info.Assignment_files = Assignment_files
+
+        if status:
+            Assi_info.status = status
+
+        Assi_info.save()
+        return redirect("Assignment_list")
+
+    return render(
+        request, "Assignment/Edit_Assignment.html", context={"Assi_info": Assi_info}
+    )
 
 
 # @login_required(login_url="/Login")

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Profile</title>
+  </head>
+  <body>
+    <form method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      <div class="mb-3">
+        <label for="subject" class="form-label">Subject:</label>
+        <input type="text" class="form-control" id="subject" name="subject" value="{{ Assi_info.subject }}" required />
+      </div>
+      <div class="mb-3">
+        <label for="title" class="form-label">Title</label>
+        <input type="text" class="form-control" id="title" name="title" value="{{ Assi_info.title }}" required />
+      </div>
+      <div class="mb-3">
+        <label for="desc" class="form-label">Description</label>
+        <input type="text" class="form-control" id="desc" name="desc" value="{{ Assi_info.desc }}" required />
+      </div>
+      <div class="mb-3">
+        <label for="Enrollment_No" class="form-label">Due Date</label>
+        <input type="date" class="form-control" id="Enrollment_No" name="Enrollment_No" value="{{ Assi_info.due_date }}" required />
+      </div>
+      <div class="mb-3">
+        <label for="Assignment_files" class="form-label">Attach File</label>
+        <input type="file" class="form-control" id="Assignment_files" name="Assignment_files" accept="application/*" />
+      </div>
+      <div class="mb-3">
+        <label for="status" class="form-label">Status:</label>
+        <input type="text" class="form-control" id="status" name="status" value="{{ Assi_info.status }}" required />
+      </div>
+      <button type="submit">Save</button>
+      <a href="{% url 'Assignment_list' %}"><button type="button">Cancel</button></a>
+    </form>
+  </body>
+</html>
