@@ -80,7 +80,7 @@ def signup(request):
     if request.method == "POST":
         username = request.POST["username"]
         email = request.POST["email"]
-        enrollment_no = request.POST["enroll"]
+        enrollment_no = request.POST["enrollmentNo"]
         password = request.POST["password"]
 
         user = User.objects.create_user(username=username, email=email)
@@ -356,92 +356,76 @@ def delete_assignment(request, pk):
 
 @login_required(login_url="/Login")
 def add_note(request):
-    note_info = Note()
+    note_info = Note(user=request.user)
     note_info.user = request.user
     if request.method == "POST":
-        subject = request.POST.get("subject")
         title = request.POST.get("title")
-        desc = request.POST.get("desc")
-        due_date = request.POST.get("due_date")
-        Assignment_files = request.FILES["Assignment_files"]
-        status = request.POST.get("status")
+        content = request.POST.get("content")
+        category = request.POST.get("category")
+        Assignment_files = request.POST.get("status")
 
-        assignment.subject = subject
-        assignment.title = title
+        if title:
+            note_info.title = title
 
-        if desc:
-            assignment.desc = desc
+        if content:
+            note_info.content = content
 
-        if due_date:
-            assignment.due_date = due_date
+        if category:
+            note_info.category = category
 
         if "Assignment_files" in request.FILES:
-            assignment.Assignment_files = Assignment_files
+            note_info.Assignment_files = Assignment_files
 
-        if status:
-            assignment.status = status
+        note_info.save()
+        return render(request, "Note/Add_Notes.html")
 
-        assignment.save()
-
-    return render(request, "Assignment/Add_assignment.html")
-
-    return render(request, "Note/Add_Notes.html", {"form": form})
+    return render(request, "Note/Add_Notes.html", {"note_info": note_info})
 
 
 @login_required(login_url="/Login")
 def note_list(request):
-    Notes = Note.objects.all()
+    Notes = Note.objects.filter(user=request.user)
     return render(request, "Note/Notes_List.html", context={"Notes": Notes})
 
 
 @login_required(login_url="/Login")
-def edit_assignment(request, pk):
-    Assi_info = Assignment.objects.get(Assignment_id=pk)
+def edit_Note(request, pk):
+    note_info = Note.objects.get(Note_id=pk)
 
     if request.method == "POST":
-        subject = request.POST.get("subject")
         title = request.POST.get("title")
-        desc = request.POST.get("desc")
-        due_date = request.POST.get("due_date")
-        Assignment_files = request.FILES["Assignment_files"]
-        status = request.POST.get("status")
-
-        if subject:
-            Assi_info.subject = subject
+        content = request.POST.get("content")
+        category = request.POST.get("category")
+        Assignment_files = request.POST.get("status")
 
         if title:
-            Assi_info.title = title
+            note_info.title = title
 
-        if desc:
-            Assi_info.desc = desc
+        if content:
+            note_info.desc = content
 
-        if due_date:
-            Assi_info.due_date = due_date
+        if category:
+            note_info.due_date = category
 
         if Assignment_files:
-            Assi_info.Assignment_files = Assignment_files
+            note_info.Assignment_files = Assignment_files
 
-        if status:
-            Assi_info.status = status
+        note_info.save()
+        return redirect("list_notes")
 
-        Assi_info.save()
-        return redirect("Assignment_list")
-
-    return render(
-        request, "Assignment/Edit_Assignment.html", context={"Assi_info": Assi_info}
-    )
+    return render(request, "Note/Edit_Notes.html", context={"note_info": note_info})
 
 
 @login_required(login_url="/Login")
-def delete_assignment(request, pk):
-    assignment_info = get_object_or_404(Assignment, Assignment_id=pk)
+def delete_Note(request, pk):
+    note_info = get_object_or_404(Note, Note_id=pk)
     if request.method == "POST":
-        assignment_info.delete()
-        return redirect("Assignment_list")
+        note_info.delete()
+        return redirect("list_notes")
     return render(
         request,
-        "Assignment/Delete_Assignment.html",
-        {"assignment_info": assignment_info},
+        "Note/Delete_Notes.html",
+        {"note_info": note_info},
     )
 
 

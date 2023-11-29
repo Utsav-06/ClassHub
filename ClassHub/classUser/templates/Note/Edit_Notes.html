@@ -1,12 +1,11 @@
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sign Up</title>
+    <title>User Profile</title>
   </head>
   <body>
-    <h2>Add Notes</h2>
-
     <form method="post" enctype="multipart/form-data">
       {% csrf_token %}
 
@@ -17,13 +16,20 @@
           class="form-control"
           id="title"
           name="title"
+          value="{{note_info.title}}"
           required
         />
       </div>
 
       <div class="mb-3">
         <label for="content" class="form-label">Content:</label>
-        <textarea name="content" id="content" cols="30" rows="10"></textarea>
+        <textarea
+          name="content"
+          id="content"
+          cols="30"
+          rows="10"
+          placeholder="{{note_info.title}}"
+        ></textarea>
       </div>
 
       <div class="mb-3">
@@ -33,6 +39,7 @@
           class="form-control"
           id="category"
           name="category"
+          value="{{note_info.title}}"
           required
         />
       </div>
@@ -50,7 +57,9 @@
 
       <button type="submit">Add Notes</button><br />
       <br />
-      <a class="btn btn-primary" href="{% url 'list_notes' %}" role="button">Notes list</a>
+      <a class="btn btn-primary" href="{% url 'list_notes' %}" role="button"
+        >Notes list</a
+      >
       <a class="btn btn-primary" href="{% url 'main' %}" role="button">Home</a>
     </form>
   </body>

@@ -32,8 +32,10 @@ urlpatterns = [
     path("Assignment_delete/<int:pk>/", delete_assignment, name="delete_assignment"),
     # ---------------------------------------------------------------------
     # Note
-    # path("Add_Note/", add_note, name="add_note"),
-    # path("Note_List/", note_list, name="list_notes"),
+    path("Add_Note/", add_note, name="add_note"),
+    path("Note_List/", note_list, name="list_notes"),
+    path("Edit_Note/<int:pk>", edit_Note, name="edit_Note"),
+    path("Note_delete/<int:pk>/", delete_Note, name="delete_Note"),
     # ---------------------------------------------------------------------
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

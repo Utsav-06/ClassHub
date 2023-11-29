@@ -3,17 +3,37 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Notes List</title>
   </head>
   <body>
-    {% block content %}
-      <h2>List of Notes</h2>
-      {% for note in Notes %}
-        <div>
-          <h3>{{ note.title }}</h3>
-          <a href="{{ note.file.url }}" target="_blank">Open Note</a>
-        </div>
+    <h2>List of Notes</h2>
+    <ul>
+      {% for Note in Notes %}
+      <h3>{{ Note.subject }}</h3>
+      <p>- {{ Note.title }}</p>
+      <a
+        style="text-decoration: none; color: black"
+        href="{% if Note.Assignment_files %}{{ Note.Assignment_files.url }}{% endif %}"
+        target="_blank"
+        >Open file</a
+      >
+      <p>Due Date: {{ Note.due_date }}</p>
+      <a
+        class="btn btn-primary"
+        style="color: black"
+        href="{% url 'edit_Note' Note.Note_id %}"
+        role="button"
+        >Edit </a
+      ><br />
+      <a
+        class="btn btn-primary"
+        style="color: black"
+        href="{% url 'delete_Note' Note.Note_id %}"
+        role="button"
+        >Delete</a
+      >
       {% endfor %}
-    {% endblock %}
+    </ul>
+    <a class="btn btn-primary" href="{% url 'main' %}" role="button">Home</a>
   </body>
 </html>

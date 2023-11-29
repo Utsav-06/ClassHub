@@ -21,7 +21,8 @@
       <label for="priority">Priority:</label>
       <input type="text" id="priority" name="priority" required />
 
-      <button type="submit">Add Task</button><br />
+      <button type="submit">Save and Add New Task</button><br />
+      <a class="btn btn-primary" href="{% url 'list_task' %}" role="button">Add Task</a>
       <br />
       <a class="btn btn-primary" href="{% url 'main' %}" role="button">Home</a>
     </form>
