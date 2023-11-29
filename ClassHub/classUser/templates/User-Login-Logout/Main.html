@@ -144,11 +144,11 @@
               userMenu.classList.toggle("hidden");
             });
         </script>
-        <a class="btn btn-primary mx-10" href="{% url 'add_task' %}" role="button">task</a>
-        <a class="btn btn-primary mx-10" href="{% url 'Add_Assignment' %}" role="button">Assignment</a>
-        <a class="btn btn-primary mx-10" href="{% url 'add_note' %}" role="button">Note</a>
+        <a class="btn btn-primary mx-10" href="{% url 'list_task' %}" role="button">task</a>
+        <a class="btn btn-primary mx-10" href="{% url 'list_assignment' %}" role="button">Assignment</a>
+        <a class="btn btn-primary mx-10" href="{% url 'list_notes' %}" role="button">Note</a>
         <a class="btn btn-primary mx-10" href="{% url 'main' %}" role="button">Reminder</a>
-        <a class="btn btn-primary mx-10" href="{% url 'main' %}" role="button">Expense</a>
+        <a class="btn btn-primary mx-10" href="{% url 'list_expense' %}" role="button">Expense</a>
 
   </body>
 </html>

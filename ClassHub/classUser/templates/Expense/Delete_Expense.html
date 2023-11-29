@@ -1,8 +1,18 @@
-<h2>Confirm Deletion</h2>
-<p>Are you sure you want to delete "{{ task.title }}"?</p>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h2>Confirm Deletion</h2>
+    <p>Are you sure you want to delete "{{ task.title }}"?</p>
 
-<form method="post" action="">
-  {% csrf_token %}
-  <input type="submit" value="Delete" />
-  <a href="{% url 'list_task' %}"><button type="button">Cancel</button></a>
-</form>
+    <form method="post" action="">
+      {% csrf_token %}
+      <input type="submit" value="Delete" />
+      <a href="{% url 'list_task' %}"><button type="button">Cancel</button></a>
+    </form>
+  </body>
+</html>
