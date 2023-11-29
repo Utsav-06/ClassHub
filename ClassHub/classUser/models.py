@@ -88,7 +88,7 @@ class Expense(models.Model):
     amount = models.IntegerField()
     date = models.DateField(default=date.today)
     Location = models.CharField(max_length=100, blank=True)
-    total = models.IntegerField()
+    total = models.IntegerField(default=0)
 
     def __str__(self):
         return f"{self.title}"
