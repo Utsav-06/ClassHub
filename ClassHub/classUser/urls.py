@@ -45,7 +45,7 @@ urlpatterns = [
     # ---------------------------------------------------------------------
     # Expense
     path("Add_Expense", Add_Expense, name="add_expense"),
-    path("List_Expense/", List_Expense, name="expense_list"),
+    path("List_Expense/", List_Expense, name="list_expense"),
     path("Delete_Expense/<int:pk>", Delete_Expense, name="delete_expense"),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
