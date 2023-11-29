@@ -21,21 +21,21 @@ urlpatterns = [
     # Task
     path("Add_Task/", Add_Task, name="add_task"),
     path("List_Tasks/", List_Task, name="list_task"),
-    path("Task/<int:pk>", Tasks_Detail, name="TaskDetail"),
+    path("Task/<int:pk>", Tasks_Detail, name="task_detail"),
     path("Edit_Task/<int:pk>", Edit_Task, name="edit_task"),
     path("Delete_Task/<int:pk>/", Delete_Task, name="delete_task"),
     # ---------------------------------------------------------------------
     # Assignment
-    path("Add_Assignment/", Add_Assignment, name="Add_Assignment"),
-    path("List_Assignments/", List_Assignment, name="Assignment_list"),
+    path("Add_Assignment/", Add_Assignment, name="add_assignment"),
+    path("List_Assignments/", List_Assignment, name="list_assignment"),
     path("Edit_Assignment/<int:pk>", Edit_Assignment, name="edit_assignment"),
     path("Delete_Assignment/<int:pk>/", Delete_Assignment, name="delete_assignment"),
     # ---------------------------------------------------------------------
     # Note
-    path("Add_Note/", Add_Note, name="add_Note"),
-    path("List_Notes/", Note_list, name="list_Notes"),
-    path("Edit_Note/<int:pk>", Edit_Note, name="edit_Note"),
-    path("Delete_Note/<int:pk>/", Delete_Note, name="delete_Note"),
+    path("Add_Note/", Add_Note, name="add_note"),
+    path("List_Notes/", List_Note, name="list_notes"),
+    path("Edit_Note/<int:pk>", Edit_Note, name="edit_note"),
+    path("Delete_Note/<int:pk>/", Delete_Note, name="delete_note"),
     # ---------------------------------------------------------------------
     # Reminder
     # path("Set_Reminder/", add_note, name="add_note"),
@@ -45,7 +45,7 @@ urlpatterns = [
     # ---------------------------------------------------------------------
     # Expense
     path("Add_Expense", Add_Expense, name="add_expense"),
-    path("List_Expense/", Expense_list, name="expense_list"),
+    path("List_Expense/", List_Expense, name="expense_list"),
     path("Delete_Expense/<int:pk>", Delete_Expense, name="delete_expense"),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
