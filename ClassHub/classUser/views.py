@@ -7,6 +7,7 @@ from django.contrib.auth.models import User
 from django.http import HttpResponse
 from django.template import loader
 from django.conf import settings
+from decimal import Decimal 
 from .models import *
 from .forms import *
 import os
@@ -383,7 +384,7 @@ def Add_Note(request):
 
 
 @login_required(login_url="/Login")
-def Note_list(request):
+def List_Note(request):
     Notes = Note.objects.filter(user=request.user)
     return render(request, "Note/Notes_List.html", context={"Notes": Notes})
 
@@ -449,3 +450,59 @@ def Delete_Note(request, pk):
 #     return render(request, "Reminder/Set_Reminder.html")
 
 
+# -----------------------------------------------------------------------------------------------------------#
+# Expense Model
+
+
+@login_required(login_url="/Login")
+def Add_Expense(request):
+    expense = Expense()
+    expense.user = request.user
+    last_total = expense.total
+
+    if request.method == "POST":
+        title = request.POST.get("title")
+        amount = request.POST.get("desc")
+        date = request.POST.get("due_date")
+        Location = request.POST.get("priority")
+
+        last_total += amount
+
+        if title:
+            expense.title = title
+
+        if amount:
+            expense.amount = amount
+
+        if date:
+            expense.date = date
+
+        if Location:
+            expense.Location = Location
+
+        expense.total = last_total
+        expense.save()
+        return redirect("expense_list")
+
+    return render(request, "Expense/Add_Expense.html")
+
+
+@login_required(login_url="/Login")
+def List_Expense(request):
+    expense_list = Expense.objects.filter(user=request.user)
+    return render(
+        request, "Expense/Expense_List.html", context={"expense_list": expense_list}
+    )
+
+
+@login_required(login_url="/Login")
+def Delete_Expense(request, pk):
+    expense_list = Expense.objects.get(Task_id=pk)
+
+    if request.method == "POST":
+        expense_list.delete()
+        return redirect("expense_list")
+
+    return render(
+        request, "Expense/Delete_Expense.html", {"expense_list": expense_list}
+    )
