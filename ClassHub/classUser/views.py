@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 from django.http import HttpResponse
 from django.template import loader
 from django.conf import settings
-from decimal import Decimal 
+from decimal import Decimal
 from .models import *
 from .forms import *
 import os
@@ -462,11 +462,11 @@ def Add_Expense(request):
 
     if request.method == "POST":
         title = request.POST.get("title")
-        amount = request.POST.get("desc")
-        date = request.POST.get("due_date")
+        amount_str = request.POST.get("desc")
         Location = request.POST.get("priority")
 
-        last_total += amount
+        amount = Decimal(amount_str) if amount_str else Decimal("0.0")
+        last_total = Expense.objects.filter(user=request.user).latest('date').total
 
         if title:
             expense.title = title
@@ -474,13 +474,10 @@ def Add_Expense(request):
         if amount:
             expense.amount = amount
 
-        if date:
-            expense.date = date
-
         if Location:
             expense.Location = Location
 
-        expense.total = last_total
+        expense.total = last_total + amount
         expense.save()
         return redirect("expense_list")
 
