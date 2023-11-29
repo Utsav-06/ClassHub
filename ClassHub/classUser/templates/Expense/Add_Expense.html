@@ -1,0 +1,32 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add Expense</title>
+  </head>
+  <body>
+    <h2>Expense</h2>
+
+    <form method="post">
+      {% csrf_token %}
+      <label for="title">Title:</label>
+      <input type="text" id="title" name="title" required />
+
+      <label for="amount">Amount:</label>
+      <input type="number" id="amount" name="amount" required />
+
+      <label for="date">Date:</label>
+      <input type="date" id="date" name="date" required />
+
+      <label for="Location">Location:</label>
+      <input type="text" id="Location" name="Location" required />
+
+      <button type="submit">Save and Add New Task</button><br />
+      <a class="btn btn-primary" href="{% url 'expense_list' %}" role="button"
+        >Add Expense</a
+      >
+      <br />
+      <a class="btn btn-primary" href="{% url 'main' %}" role="button">Home</a>
+    </form>
+  </body>
+</html>
