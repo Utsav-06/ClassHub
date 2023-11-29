@@ -14,29 +14,39 @@ urlpatterns = [
     path("Main/", main, name="main"),
     # path("Dashboard/", dashboard, name="dashboard"),
     # ---------------------------------------------------------------------
-    # Task
-    path("Add_Task/", add_task, name="add_task"),
-    path("Task_List/", list_task, name="list_task"),
-    path("Task/<int:pk>", Tasks_detail, name="TaskDetail"),
-    path("Edit_Task/<int:pk>", edit_task, name="edit_task"),
-    path("Task_delete/<int:pk>/", delete_task, name="delete_task"),
-    # ---------------------------------------------------------------------
     # Profile
     path("Profile/", User_Profile, name="userprofile"),
     path("Edit_Profile/", Edit_Profile, name="editprofile"),
     # ---------------------------------------------------------------------
+    # Task
+    path("Add_Task/", Add_Task, name="add_task"),
+    path("List_Tasks/", List_Task, name="list_task"),
+    path("Task/<int:pk>", Tasks_Detail, name="TaskDetail"),
+    path("Edit_Task/<int:pk>", Edit_Task, name="edit_task"),
+    path("Delete_Task/<int:pk>/", Delete_Task, name="delete_task"),
+    # ---------------------------------------------------------------------
     # Assignment
-    path("Add_Assignment/", Add_assignment, name="Add_Assignment"),
-    path("Assignment_list/", list_assignment, name="Assignment_list"),
-    path("Edit_Assignment/<int:pk>", edit_assignment, name="edit_assignment"),
-    path("Assignment_delete/<int:pk>/", delete_assignment, name="delete_assignment"),
+    path("Add_Assignment/", Add_Assignment, name="Add_Assignment"),
+    path("List_Assignments/", List_Assignment, name="Assignment_list"),
+    path("Edit_Assignment/<int:pk>", Edit_Assignment, name="edit_assignment"),
+    path("Delete_Assignment/<int:pk>/", Delete_Assignment, name="delete_assignment"),
     # ---------------------------------------------------------------------
     # Note
-    path("Add_Note/", add_note, name="add_note"),
-    path("Note_List/", note_list, name="list_notes"),
-    path("Edit_Note/<int:pk>", edit_Note, name="edit_Note"),
-    path("Note_delete/<int:pk>/", delete_Note, name="delete_Note"),
+    path("Add_Note/", Add_Note, name="add_Note"),
+    path("List_Notes/", Note_list, name="list_Notes"),
+    path("Edit_Note/<int:pk>", Edit_Note, name="edit_Note"),
+    path("Delete_Note/<int:pk>/", Delete_Note, name="delete_Note"),
     # ---------------------------------------------------------------------
+    # Reminder
+    # path("Set_Reminder/", add_note, name="add_note"),
+    # path("List_Reminder/", note_list, name="list_notes"),
+    # path("Edit_Reminder/<int:pk>", edit_Note, name="edit_Note"),
+    # path("Delete_Reminder/<int:pk>/", delete_Note, name="delete_Note"),
+    # ---------------------------------------------------------------------
+    # Expense
+    path("Add_Expense", Add_Expense, name="add_expense"),
+    path("List_Expense/", Expense_list, name="expense_list"),
+    path("Delete_Expense/<int:pk>", Delete_Expense, name="delete_expense"),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 

@@ -183,7 +183,7 @@ def Delete_Profile(request):
 
 
 @login_required(login_url="/login")
-def add_task(request):
+def Add_Task(request):
     if request.method == "POST":
         title = request.POST.get("title")
         desc = request.POST.get("desc")
@@ -202,19 +202,19 @@ def add_task(request):
 
 
 @login_required(login_url="/Login")
-def list_task(request):
+def List_Task(request):
     task_list = Task.objects.filter(user=request.user)
     return render(request, "Task/Task_list.html", context={"task_list": task_list})
 
 
 @login_required(login_url="/Login")
-def Tasks_detail(request, pk):
+def Tasks_Detail(request, pk):
     task_list = Task.objects.get(Task_id=pk)
     return render(request, "Task/Task.html", {"task_list": task_list})
 
 
 @login_required(login_url="/Login")
-def edit_task(request, pk):
+def Edit_Task(request, pk):
     task_info = Task.objects.get(Task_id=pk)
 
     if request.method == "POST":
@@ -242,7 +242,7 @@ def edit_task(request, pk):
 
 
 @login_required(login_url="/Login")
-def delete_task(request, pk):
+def Delete_Task(request, pk):
     task_info = Task.objects.get(Task_id=pk)
 
     if request.method == "POST":
@@ -257,7 +257,7 @@ def delete_task(request, pk):
 
 
 @login_required(login_url="/Login")
-def Add_assignment(request):
+def Add_Assignment(request):
     assignment = Assignment()
     assignment.user = request.user
     if request.method == "POST":
@@ -289,7 +289,7 @@ def Add_assignment(request):
 
 
 @login_required(login_url="/Login")
-def list_assignment(request):
+def List_Assignment(request):
     Assignments = Assignment.objects.all()
 
     return render(
@@ -300,7 +300,7 @@ def list_assignment(request):
 
 
 @login_required(login_url="/Login")
-def edit_assignment(request, pk):
+def Edit_Assignment(request, pk):
     Assi_info = Assignment.objects.get(Assignment_id=pk)
 
     if request.method == "POST":
@@ -338,7 +338,7 @@ def edit_assignment(request, pk):
 
 
 @login_required(login_url="/Login")
-def delete_assignment(request, pk):
+def Delete_Assignment(request, pk):
     assignment_info = get_object_or_404(Assignment, Assignment_id=pk)
     if request.method == "POST":
         assignment_info.delete()
@@ -355,7 +355,7 @@ def delete_assignment(request, pk):
 
 
 @login_required(login_url="/Login")
-def add_note(request):
+def Add_Note(request):
     note_info = Note(user=request.user)
     note_info.user = request.user
     if request.method == "POST":
@@ -383,13 +383,13 @@ def add_note(request):
 
 
 @login_required(login_url="/Login")
-def note_list(request):
+def Note_list(request):
     Notes = Note.objects.filter(user=request.user)
     return render(request, "Note/Notes_List.html", context={"Notes": Notes})
 
 
 @login_required(login_url="/Login")
-def edit_Note(request, pk):
+def Edit_Note(request, pk):
     note_info = Note.objects.get(Note_id=pk)
 
     if request.method == "POST":
@@ -417,7 +417,7 @@ def edit_Note(request, pk):
 
 
 @login_required(login_url="/Login")
-def delete_Note(request, pk):
+def Delete_Note(request, pk):
     note_info = get_object_or_404(Note, Note_id=pk)
     if request.method == "POST":
         note_info.delete()
@@ -447,3 +447,5 @@ def delete_Note(request, pk):
 #         return JsonResponse({"status": "success"})
 
 #     return render(request, "Reminder/Set_Reminder.html")
+
+
