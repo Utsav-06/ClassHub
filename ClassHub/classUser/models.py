@@ -2,8 +2,7 @@ from django.db.models.signals import post_save
 from django.contrib.auth.models import User
 from django.conf import settings
 from django.db import models
-from .manager import *
-import datetime
+from datetime import date
 
 
 class UserProfile(models.Model):
@@ -62,8 +61,34 @@ class Note(models.Model):
     title = models.CharField(max_length=255)
     content = models.TextField(blank=True)
     category = models.CharField(max_length=50)
-    date_added = models.DateTimeField(default=datetime.datetime.now())
+    date_added = models.DateField(auto_now_add=True)
     Assignment_files = models.FileField(upload_to="Uploaded_files/Notes/", blank=True)
+
+    def __str__(self):
+        return f"{self.title}"
+
+
+class Reminder(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, default="")
+    title = models.CharField(max_length=255)
+    desc = models.TextField(blank=True)
+    R_date = models.DateField(blank=False)
+    R_time = models.TimeField(blank=False)
+    Location = models.CharField(max_length=100, blank=True)
+    is_meeting = models.BooleanField(default=False)
+    meeting_with = models.CharField(max_length=100, blank=True)
+
+    def __str__(self):
+        return f"{self.title}"
+
+
+class Expense(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, default="")
+    title = models.CharField(max_length=255)
+    amount = models.IntegerField()
+    date = models.DateField(default=date.today)
+    Location = models.CharField(max_length=100, blank=True)
+    total = models.IntegerField()
 
     def __str__(self):
         return f"{self.title}"

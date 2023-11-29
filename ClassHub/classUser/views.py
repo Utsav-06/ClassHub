@@ -166,6 +166,18 @@ def User_Profile(request):
     )
 
 
+@login_required(login_url="/Login")
+def Delete_Profile(request):
+    profile_info = get_object_or_404(UserProfile, user=request.user)
+    task_info = Task.objects.get(user=request.user)
+    assignment_info = Assignment.objects.get(user=request.user)
+    note_info = Note.objects.get(user=request.user)
+    reminder_info = Reminder.objects.get(user=request.user)
+    expense_info = Expense.objects.get(user=request.user)
+
+    profile_info.delete()
+
+
 # -----------------------------------------------------------------------------------------------------------#
 # Task Model
 
@@ -325,34 +337,112 @@ def edit_assignment(request, pk):
     )
 
 
-# @login_required(login_url="/Login")
-# def delete_assignment(request, assignment_id):
-#     assignment = get_object_or_404(Assignment, id=assignment_id)
-#     assignment.delete()
-#     return redirect("assignment_list")
+@login_required(login_url="/Login")
+def delete_assignment(request, pk):
+    assignment_info = get_object_or_404(Assignment, Assignment_id=pk)
+    if request.method == "POST":
+        assignment_info.delete()
+        return redirect("Assignment_list")
+    return render(
+        request,
+        "Assignment/Delete_Assignment.html",
+        {"assignment_info": assignment_info},
+    )
 
 
 # -----------------------------------------------------------------------------------------------------------#
 # Note Model
 
-# def add_note(request):
-#     submitted = False
-#     if request.method == "POST":
-#         form = NoteForm(request.POST)
-#         if form.is_valid():
-#             form.save()
-#             return HttpResponseRedirect("/Add_Note")
-#     else:
-#         form = NoteForm()
-#         if "submitted" in request.GET:
-#             submitted = True
 
-#     return render(request, "Note/Add_Notes.html", {"form": form})
+@login_required(login_url="/Login")
+def add_note(request):
+    note_info = Note()
+    note_info.user = request.user
+    if request.method == "POST":
+        subject = request.POST.get("subject")
+        title = request.POST.get("title")
+        desc = request.POST.get("desc")
+        due_date = request.POST.get("due_date")
+        Assignment_files = request.FILES["Assignment_files"]
+        status = request.POST.get("status")
+
+        assignment.subject = subject
+        assignment.title = title
+
+        if desc:
+            assignment.desc = desc
+
+        if due_date:
+            assignment.due_date = due_date
+
+        if "Assignment_files" in request.FILES:
+            assignment.Assignment_files = Assignment_files
+
+        if status:
+            assignment.status = status
+
+        assignment.save()
+
+    return render(request, "Assignment/Add_assignment.html")
+
+    return render(request, "Note/Add_Notes.html", {"form": form})
 
 
-# def note_list(request):
-#     Notes = Note.objects.all()
-#     return render(request, "Note/Notes_List.html", context={"Notes": Notes})
+@login_required(login_url="/Login")
+def note_list(request):
+    Notes = Note.objects.all()
+    return render(request, "Note/Notes_List.html", context={"Notes": Notes})
+
+
+@login_required(login_url="/Login")
+def edit_assignment(request, pk):
+    Assi_info = Assignment.objects.get(Assignment_id=pk)
+
+    if request.method == "POST":
+        subject = request.POST.get("subject")
+        title = request.POST.get("title")
+        desc = request.POST.get("desc")
+        due_date = request.POST.get("due_date")
+        Assignment_files = request.FILES["Assignment_files"]
+        status = request.POST.get("status")
+
+        if subject:
+            Assi_info.subject = subject
+
+        if title:
+            Assi_info.title = title
+
+        if desc:
+            Assi_info.desc = desc
+
+        if due_date:
+            Assi_info.due_date = due_date
+
+        if Assignment_files:
+            Assi_info.Assignment_files = Assignment_files
+
+        if status:
+            Assi_info.status = status
+
+        Assi_info.save()
+        return redirect("Assignment_list")
+
+    return render(
+        request, "Assignment/Edit_Assignment.html", context={"Assi_info": Assi_info}
+    )
+
+
+@login_required(login_url="/Login")
+def delete_assignment(request, pk):
+    assignment_info = get_object_or_404(Assignment, Assignment_id=pk)
+    if request.method == "POST":
+        assignment_info.delete()
+        return redirect("Assignment_list")
+    return render(
+        request,
+        "Assignment/Delete_Assignment.html",
+        {"assignment_info": assignment_info},
+    )
 
 
 # -----------------------------------------------------------------------------------------------------------#

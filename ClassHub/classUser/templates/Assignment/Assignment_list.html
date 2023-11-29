@@ -9,11 +9,29 @@
     <h2>List of Assignments</h2>
     <ul>
       {% for Assignment in Assignments %}
-        <h3>{{ Assignment.subject }}</h3>
-        <p>- {{ Assignment.title }}</p>
-        <a style="text-decoration: none; color: black;" href="{{ Assignment.Assignment_files.url }}" target="_blank">Open file</a>
-        <p>Due Date: {{ Assignment.due_date }}</p>
-        <a class="btn btn-primary" style="color: black;" href="{% url 'edit_assignment' Assignment.Assignment_id %}" role="button">Edit Assignment</a>
+      <h3>{{ Assignment.subject }}</h3>
+      <p>- {{ Assignment.title }}</p>
+      <a
+        style="text-decoration: none; color: black"
+        href="{{ Assignment.Assignment_files.url }}"
+        target="_blank"
+        >Open file</a
+      >
+      <p>Due Date: {{ Assignment.due_date }}</p>
+      <a
+        class="btn btn-primary"
+        style="color: black"
+        href="{% url 'edit_assignment' Assignment.Assignment_id %}"
+        role="button"
+        >Edit
+      </a><br>
+      <a
+        class="btn btn-primary"
+        style="color: black"
+        href="{% url 'delete_assignment' Assignment.Assignment_id %}"
+        role="button"
+        >Delete</a
+      >
       {% endfor %}
     </ul>
     <a class="btn btn-primary" href="{% url 'main' %}" role="button">Home</a>
