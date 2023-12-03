@@ -16,7 +16,7 @@ ClassHub is a comprehensive web application designed to streamline educational a
 
 ## Technologies Used
 
-- **Django**: Backend development using the Django framework to create robust and scalable APIs.
+- **Django**
 
 ## Setup Instructions
 
