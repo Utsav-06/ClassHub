@@ -8,7 +8,11 @@ ClassHub is a comprehensive web application designed to streamline educational a
 
 - **Assignment Tracker**: Keep track of assignments, deadlines, and submissions in one centralized location.
 
-- **Event Management**: Stay informed about upcoming events, classes, or important dates.
+- **Reminders**: Stay informed about upcoming events, classes, or important dates.
+
+- **Expense Management**: Keep track of your daily expenses in an organized way.
+
+- **Notes Managements**: Store all your notes and pdf's at one place.
 
 ## Technologies Used
 
@@ -29,3 +33,5 @@ If you'd like to contribute to ClassHub, please follow these guidelines:
 - Make your changes and commit: `git commit -m 'Add some feature'`.
 - Push to the branch: `git push origin feature/your-feature`.
 - Submit a pull request.
+
+
