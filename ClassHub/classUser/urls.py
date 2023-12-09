@@ -21,7 +21,6 @@ urlpatterns = [
     # Task
     path("Add_Task/", Add_Task, name="add_task"),
     path("List_Tasks/", List_Task, name="list_task"),
-    path("Task/<int:pk>", Tasks_Detail, name="task_detail"),
     path("Edit_Task/<int:pk>", Edit_Task, name="edit_task"),
     path("Delete_Task/<int:pk>/", Delete_Task, name="delete_task"),
     # ---------------------------------------------------------------------
@@ -31,14 +30,14 @@ urlpatterns = [
     path("Edit_Assignment/<int:pk>", Edit_Assignment, name="edit_assignment"),
     path("Delete_Assignment/<int:pk>/", Delete_Assignment, name="delete_assignment"),
     # ---------------------------------------------------------------------
-    # Note
-    path("Add_Note/", Add_Note, name="add_note"),
-    path("List_Notes/", List_Note, name="list_notes"),
-    path("Edit_Note/<int:pk>", Edit_Note, name="edit_note"),
-    path("Delete_Note/<int:pk>/", Delete_Note, name="delete_note"),
+    # Material
+    path("Add_Material/", Add_Material, name="add_material"),
+    path("List_Materials/", List_Material, name="list_materials"),
+    path("Edit_Material/<int:pk>", Edit_Material, name="edit_material"),
+    path("Delete_Material/<int:pk>/", Delete_Material, name="delete_material"),
     # ---------------------------------------------------------------------
     # Reminder
-    # path("Set_Reminder/", add_note, name="add_note"),
+    # path("Set_Reminder/", add_Material, name="add_note"),
     # path("List_Reminder/", note_list, name="list_notes"),
     # path("Edit_Reminder/<int:pk>", edit_Note, name="edit_Note"),
     # path("Delete_Reminder/<int:pk>/", delete_Note, name="delete_Note"),
