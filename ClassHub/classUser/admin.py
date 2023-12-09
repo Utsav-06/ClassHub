@@ -5,6 +5,6 @@ from .models import *
 admin.site.register(Task)
 admin.site.register(UserProfile)
 admin.site.register(Assignment)
-admin.site.register(Note)
+admin.site.register(Material)
 admin.site.register(Expense)
 admin.site.register(Reminder)
