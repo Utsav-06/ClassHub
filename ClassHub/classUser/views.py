@@ -15,45 +15,11 @@ from .forms import *
 import os
 
 
-# def dashboard(request):
-#     profile_info = get_object_or_404(UserProfile, user=request.user)
-
-#     return render(
-#         request, "Dashboard.html", context={"profile_pic": profile_info.profile_pic}
-#     )
-
-
 def welcome(request):
     template = loader.get_template("User-Login-Logout/Welcome.html")
     return HttpResponse(template.render())
 
 
-# def event(request, year, month):
-#     name = "Utsav"
-
-#     # Converting month from name to number
-#     month = month.title()
-#     month_number = list(calendar.month_name).index(month)
-#     month_number = int(month_number)
-
-#     # Calender
-#     cal = HTMLCalendar().formatmonth(year, month_number)
-#     now = datetime.now()
-#     current_year = now.year
-#     current_time = now.strftime("%I:%M %p")
-#     return render(
-#         request,
-#         "Event.html",
-#         {
-#             "name": name,
-#             "year": year,
-#             "month": month,
-#             "month_number": month_number,
-#             "cal": cal,
-#             "current_year": current_year,
-#             "current_time": current_time,
-#         },
-#     )
 
 
 # -----------------------------------------------------------------------------------------------------------#
