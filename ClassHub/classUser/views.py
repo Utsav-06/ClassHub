@@ -5,7 +5,9 @@ from django.contrib.auth.decorators import login_required
 from django.utils.crypto import get_random_string
 from django.contrib.auth.models import User
 from django.http import HttpResponse
+from collections import defaultdict
 from django.template import loader
+from django.db.models import Sum
 from django.conf import settings
 from decimal import Decimal
 from .models import *
@@ -169,14 +171,20 @@ def User_Profile(request):
 
 @login_required(login_url="/Login")
 def Delete_Profile(request):
-    profile_info = get_object_or_404(UserProfile, user=request.user)
-    task_info = Task.objects.get(user=request.user)
-    assignment_info = Assignment.objects.get(user=request.user)
-    note_info = Note.objects.get(user=request.user)
-    reminder_info = Reminder.objects.get(user=request.user)
-    expense_info = Expense.objects.get(user=request.user)
+    if request.method == "POST":
+        profile_info = get_object_or_404(UserProfile, user=request.user)
+        task_info = Task.objects.get(user=request.user)
+        assignment_info = Assignment.objects.get(user=request.user)
+        material_info = Material.objects.get(user=request.user)
+        reminder_info = Reminder.objects.get(user=request.user)
+        expense_info = Expense.objects.get(user=request.user)
 
-    profile_info.delete()
+        profile_info.delete()
+        task_info.delete()
+        assignment_info.delete()
+        material_info.delete()
+        reminder_info.delete()
+        expense_info.delete()
 
 
 # -----------------------------------------------------------------------------------------------------------#
@@ -185,20 +193,26 @@ def Delete_Profile(request):
 
 @login_required(login_url="/login")
 def Add_Task(request):
+    task_info = Task()
+    task_info.user = request.user
+
     if request.method == "POST":
         title = request.POST.get("title")
         desc = request.POST.get("desc")
-        due_date = request.POST.get("due_date")
         priority = request.POST.get("priority")
 
-        task = Task(
-            title=title,
-            desc=desc,
-            due_date=due_date,
-            priority=priority,
-            user=request.user,
-        )
-        task.save()
+        if title:
+            task_info.title = title
+
+        if desc:
+            task_info.desc = desc
+
+        if priority:
+            task_info.priority = True
+
+        task_info.save()
+        return redirect("list_task")
+
     return render(request, "Task/Add_task.html")
 
 
@@ -209,20 +223,14 @@ def List_Task(request):
 
 
 @login_required(login_url="/Login")
-def Tasks_Detail(request, pk):
-    task_list = Task.objects.get(Task_id=pk)
-    return render(request, "Task/Task.html", {"task_list": task_list})
-
-
-@login_required(login_url="/Login")
 def Edit_Task(request, pk):
     task_info = Task.objects.get(Task_id=pk)
 
     if request.method == "POST":
-        title = request.POST.get("title")
-        desc = request.POST.get("desc")
-        due_date = request.POST.get("due_date")
-        priority = request.POST.get("priority")
+        title = request.POST.get("title", "")
+        desc = request.POST.get("desc", "")
+        due_date = request.POST.get("due_date", "")
+        priority = request.POST.get("priority", "")
 
         if title:
             task_info.title = title
@@ -259,58 +267,15 @@ def Delete_Task(request, pk):
 
 @login_required(login_url="/Login")
 def Add_Assignment(request):
-    assignment = Assignment()
-    assignment.user = request.user
+    Assi_info = Assignment()
+    Assi_info.user = request.user
     if request.method == "POST":
-        subject = request.POST.get("subject")
-        title = request.POST.get("title")
-        desc = request.POST.get("desc")
-        due_date = request.POST.get("due_date")
-        Assignment_files = request.FILES["Assignment_files"]
-        status = request.POST.get("status")
-
-        assignment.subject = subject
-        assignment.title = title
-
-        if desc:
-            assignment.desc = desc
-
-        if due_date:
-            assignment.due_date = due_date
-
-        if "Assignment_files" in request.FILES:
-            assignment.Assignment_files = Assignment_files
-
-        if status:
-            assignment.status = status
-
-        assignment.save()
-
-    return render(request, "Assignment/Add_assignment.html")
-
-
-@login_required(login_url="/Login")
-def List_Assignment(request):
-    Assignments = Assignment.objects.all()
-
-    return render(
-        request,
-        "Assignment/Assignment_list.html",
-        context={"Assignments": Assignments},
-    )
-
-
-@login_required(login_url="/Login")
-def Edit_Assignment(request, pk):
-    Assi_info = Assignment.objects.get(Assignment_id=pk)
-
-    if request.method == "POST":
-        subject = request.POST.get("subject")
-        title = request.POST.get("title")
-        desc = request.POST.get("desc")
-        due_date = request.POST.get("due_date")
-        Assignment_files = request.FILES["Assignment_files"]
-        status = request.POST.get("status")
+        subject = request.POST.get("subject", "")
+        title = request.POST.get("title", "")
+        desc = request.POST.get("desc", "")
+        due_date = request.POST.get("due_date", "")
+        Assignment_files = request.FILES.get("Assignment_files", None)
+        status = request.POST.get("status", "")
 
         if subject:
             Assi_info.subject = subject
@@ -331,7 +296,54 @@ def Edit_Assignment(request, pk):
             Assi_info.status = status
 
         Assi_info.save()
-        return redirect("Assignment_list")
+        return redirect("list_assignment")
+
+    return render(request, "Assignment/Add_assignment.html")
+
+
+@login_required(login_url="/Login")
+def List_Assignment(request):
+    Assignments = Assignment.objects.all()
+
+    return render(
+        request,
+        "Assignment/Assignment_list.html",
+        context={"Assignments": Assignments},
+    )
+
+
+@login_required(login_url="/Login")
+def Edit_Assignment(request, pk):
+    Assi_info = Assignment.objects.get(Assignment_id=pk)
+
+    if request.method == "POST":
+        subject = request.POST.get("subject", "")
+        title = request.POST.get("title", "")
+        desc = request.POST.get("desc", "")
+        due_date = request.POST.get("due_date", "")
+        Assignment_files = request.FILES.get("Assignment_files", None)
+        status = request.POST.get("status", "")
+
+        if subject:
+            Assi_info.subject = subject
+
+        if title:
+            Assi_info.title = title
+
+        if desc:
+            Assi_info.description = desc
+
+        if due_date:
+            Assi_info.due_date = due_date
+
+        if Assignment_files:
+            Assi_info.Assignment_files = Assignment_files
+
+        if status:
+            Assi_info.status = status
+
+        Assi_info.save()
+        return redirect("list_assignment")
 
     return render(
         request, "Assignment/Edit_Assignment.html", context={"Assi_info": Assi_info}
@@ -343,7 +355,7 @@ def Delete_Assignment(request, pk):
     assignment_info = get_object_or_404(Assignment, Assignment_id=pk)
     if request.method == "POST":
         assignment_info.delete()
-        return redirect("Assignment_list")
+        return redirect("list_assignment")
     return render(
         request,
         "Assignment/Delete_Assignment.html",
@@ -352,46 +364,63 @@ def Delete_Assignment(request, pk):
 
 
 # -----------------------------------------------------------------------------------------------------------#
-# Note Model
+# Material Model
 
 
 @login_required(login_url="/Login")
-def Add_Note(request):
-    note_info = Note(user=request.user)
-    note_info.user = request.user
+def Add_Material(request):
+    material_info = Material(user=request.user)
+    material_info.user = request.user
     if request.method == "POST":
-        title = request.POST.get("title")
-        content = request.POST.get("content")
-        category = request.POST.get("category")
-        Assignment_files = request.POST.get("status")
+        subject = request.POST.get("subject", "")
+        title = request.POST.get("title", "")
+        content = request.POST.get("content", "")
+        category = request.POST.get("category", "")
+        Assignment_files = request.FILES.get("Assignment_files", None)
+
+        if subject:
+            material_info.subject = subject
 
         if title:
-            note_info.title = title
+            material_info.title = title
 
         if content:
-            note_info.content = content
+            material_info.content = content
 
         if category:
-            note_info.category = category
+            material_info.category = category
 
         if "Assignment_files" in request.FILES:
-            note_info.Assignment_files = Assignment_files
+            material_info.Assignment_files = Assignment_files
 
-        note_info.save()
-        return render(request, "Note/Add_Notes.html")
+        material_info.save()
+        return redirect("list_materials")
 
-    return render(request, "Note/Add_Notes.html", {"note_info": note_info})
-
-
-@login_required(login_url="/Login")
-def List_Note(request):
-    Notes = Note.objects.filter(user=request.user)
-    return render(request, "Note/Notes_List.html", context={"Notes": Notes})
+    return render(
+        request, "Material/Add_Materials.html", {"material_info": material_info}
+    )
 
 
 @login_required(login_url="/Login")
-def Edit_Note(request, pk):
-    note_info = Note.objects.get(Note_id=pk)
+def List_Material(request):
+    material_info = Material.objects.filter(user=request.user)
+
+    materials_by_subject = defaultdict(list)
+    for material in material_info:
+        materials_by_subject[material.subject].append(material)
+
+    materials_by_subject = dict(materials_by_subject)
+
+    return render(
+        request,
+        "Material/Material_List.html",
+        context={"materials_by_subject": materials_by_subject},
+    )
+
+
+@login_required(login_url="/Login")
+def Edit_Material(request, pk):
+    material_info = Material.objects.get(Material_id=pk)
 
     if request.method == "POST":
         title = request.POST.get("title")
@@ -400,33 +429,35 @@ def Edit_Note(request, pk):
         Assignment_files = request.POST.get("status")
 
         if title:
-            note_info.title = title
+            material_info.title = title
 
         if content:
-            note_info.desc = content
+            material_info.desc = content
 
         if category:
-            note_info.due_date = category
+            material_info.due_date = category
 
         if Assignment_files:
-            note_info.Assignment_files = Assignment_files
+            material_info.Assignment_files = Assignment_files
 
-        note_info.save()
-        return redirect("list_notes")
+        material_info.save()
+        return redirect("list_materials")
 
-    return render(request, "Note/Edit_Notes.html", context={"note_info": note_info})
+    return render(
+        request, "Material/Material_List.html", context={"material_info": material_info}
+    )
 
 
 @login_required(login_url="/Login")
-def Delete_Note(request, pk):
-    note_info = get_object_or_404(Note, Note_id=pk)
+def Delete_Material(request, pk):
+    material_info = get_object_or_404(Material, Material_id=pk)
     if request.method == "POST":
-        note_info.delete()
-        return redirect("list_notes")
+        material_info.delete()
+        return redirect("list_materials")
     return render(
         request,
-        "Note/Delete_Notes.html",
-        {"note_info": note_info},
+        "Material/Delete_Notes.html",
+        {"material_info": material_info},
     )
 
 
@@ -452,21 +483,18 @@ def Delete_Note(request, pk):
 
 # -----------------------------------------------------------------------------------------------------------#
 # Expense Model
+totalExpense = 0
 
 
 @login_required(login_url="/Login")
 def Add_Expense(request):
     expense = Expense()
     expense.user = request.user
-    last_total = expense.total
 
     if request.method == "POST":
         title = request.POST.get("title")
-        amount_str = request.POST.get("desc")
-        Location = request.POST.get("priority")
-
-        amount = Decimal(amount_str) if amount_str else Decimal("0.0")
-        last_total = Expense.objects.filter(user=request.user).latest('date').total
+        amount = request.POST.get("amount")
+        Location = request.POST.get("Location")
 
         if title:
             expense.title = title
@@ -477,9 +505,8 @@ def Add_Expense(request):
         if Location:
             expense.Location = Location
 
-        expense.total = last_total + amount
         expense.save()
-        return redirect("expense_list")
+        return redirect("list_expense")
 
     return render(request, "Expense/Add_Expense.html")
 
@@ -487,19 +514,21 @@ def Add_Expense(request):
 @login_required(login_url="/Login")
 def List_Expense(request):
     expense_list = Expense.objects.filter(user=request.user)
+
+    total = sum(expense.amount for expense in expense_list)
     return render(
-        request, "Expense/Expense_List.html", context={"expense_list": expense_list}
+        request,
+        "Expense/Expense_List.html",
+        {"expense_list": expense_list, "total": total},
     )
 
 
 @login_required(login_url="/Login")
 def Delete_Expense(request, pk):
-    expense_list = Expense.objects.get(Task_id=pk)
+    expense = get_object_or_404(Expense, id=pk, user=request.user)
 
     if request.method == "POST":
-        expense_list.delete()
-        return redirect("expense_list")
+        expense.delete()
+        return redirect("list_expense")
 
-    return render(
-        request, "Expense/Delete_Expense.html", {"expense_list": expense_list}
-    )
+    return render(request, "Expense/Delete_Expense.html", {"expense": expense})
