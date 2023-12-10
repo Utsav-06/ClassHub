@@ -12,14 +12,10 @@ from django.conf import settings
 from decimal import Decimal
 from .models import *
 from .forms import *
-import os
-
 
 def welcome(request):
     template = loader.get_template("User-Login-Logout/Welcome.html")
     return HttpResponse(template.render())
-
-
 
 
 # -----------------------------------------------------------------------------------------------------------#
@@ -449,8 +445,6 @@ def Delete_Material(request, pk):
 
 # -----------------------------------------------------------------------------------------------------------#
 # Expense Model
-totalExpense = 0
-
 
 @login_required(login_url="/Login")
 def Add_Expense(request):
