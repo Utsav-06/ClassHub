@@ -5,6 +5,7 @@ from django.conf import settings
 from django.db import models
 from datetime import date
 
+
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     username = models.CharField(unique=True, max_length=50)
@@ -68,6 +69,7 @@ class Material(models.Model):
 
 class Reminder(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, default="")
+    Reminder_id = models.AutoField(primary_key=True, auto_created=True)
     title = models.CharField(max_length=255)
     desc = models.TextField(blank=True)
     R_date = models.DateField(blank=False)

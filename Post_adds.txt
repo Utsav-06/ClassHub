@@ -1,6 +1,6 @@
 SuperUser: Utsav
 email: ""
-pass: Utsav
+pass: y
 
 Add-ons:
 - Login with email also.
@@ -14,12 +14,5 @@ Add-ons:
 => Remaining things in Tasks section: (After 1st pahase of project completed)
 - Edit tasks button in a popup box.
 
-=> Remaning things in Assignment section:
-- Update assignment
-- Delete assignment
-- Expanding the Assignment for more info
-
-=> Remaning things in Notes section:
-- files are not opening.
 
 
