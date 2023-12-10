@@ -1,57 +1,134 @@
-<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Set Reminder</title>
+    <title>Assignment - Add</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://getbootstrap.com/docs/5.3/assets/css/docs.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
   </head>
   <body>
-    <!-- Your HTML content -->
+    <div
+      style="
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        height: 100vh;
+      "
+    >
+      <div style="text-align: center; margin-top: 25px; width: 70vh">
+        <h3>Add Assignment</h3>
+        <a
+          class="btn btn-primary"
+          style="position: absolute; left: 10; top: 10; margin: 5px"
+          href="{% url 'list_assignment' %}"
+          role="button"
+          ><</a
+        >
 
-    <form id="reminderForm">
-      <label for="date">Date:</label>
-      <input type="date" id="date" name="date" required />
+        <form method="post" enctype="multipart/form-data">
+          {% csrf_token %}
+          <div style="margin-top: 6px" class="form-floating mb-3">
+            <input
+              type="text"
+              class="form-control"
+              id="desc "
+              name="desc "
+              placeholder="Title"
+            />
+            <label for="desc ">Title</label>
+          </div>
 
-      <label for="time">Time:</label>
-      <input type="time" id="time" name="time" required />
+          <div style="margin-top: 6px" class="form-floating">
+            <textarea
+              class="form-control"
+              placeholder="Description"
+              id="desc"
+              name="desc"
+              style="margin-top: 5px; margin-bottom: 10px; height: 100px"
+            ></textarea>
+            <label for="desc">Description</label>
+          </div>
 
-      <button type="button" onclick="setReminder()">Set Reminder</button>
-    </form>
+          <div style="margin-top: 3px" class="form-floating mb-3">
+            <input
+              type="date"
+              class="form-control"
+              id="R_date"
+              name="R_date"
+              placeholder="Date"
+            />
+            <label for="R_date">Date</label>
+          </div>
 
-    <script>
-      function setReminder() {
-        const date = document.getElementById('date').value
-        const time = document.getElementById('time').value
-      
-        // Make an AJAX request to the backend to set the reminder
-        fetch('/set-reminder/', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'X-CSRFToken': getCookie('csrftoken') // Ensure to include CSRF token
-          },
-          body: JSON.stringify({ date, time })
-        })
-          .then((response) => response.json())
-          .then((data) => {
-            if (data.status === 'success') {
-              alert('Reminder set successfully!')
-            } else {
-              alert('Failed to set reminder.')
-            }
-          })
-          .catch((error) => {
-            console.error('Error:', error)
-            alert('An error occurred.')
-          })
-      }
-      
-      // Function to get CSRF token from cookies
-      function getCookie(name) {
-        const value = `; ${document.cookie}`
-        const parts = value.split(`; ${name}=`)
-        if (parts.length === 2) return parts.pop().split(';').shift()
-      }
-    </script>
+          <div style="margin-top: 3px" class="form-floating mb-3">
+            <input
+              type="time"
+              class="form-control"
+              id="R_time "
+              name="R_time "
+              placeholder="Time"
+            />
+            <label for="R_time ">Time</label>
+          </div>
+
+          <div style="margin-top: 5px" class="form-floating mb-3">
+            <input
+              type="text"
+              class="form-control"
+              id="Location"
+              name="Location"
+              placeholder="Location"
+            />
+            <label for="Location">Location</label>
+          </div>
+
+          <div
+            class="form-check"
+            style="margin-top: 10px; display: flex; align-items: center"
+          >
+            <input
+              class="form-check-input"
+              type="checkbox"
+              name="is_meeting "
+              value="True"
+              id="is_meeting "
+              style="margin-right: 10px; margin-bottom: 10px"
+            />
+            <label
+              class="form-check-label"
+              for="is_meeting "
+              style="margin-left: 5px; margin-bottom: 10"
+            >
+              Meeting ?
+            </label>
+          </div>
+
+          <div style="margin-top: 6px" class="form-floating mb-3">
+            <input
+              type="text"
+              class="form-control"
+              id="meeting_with"
+              name="meeting_with"
+              placeholder="Meeting Person"
+            />
+            <label for="meeting_with">Meeting Person</label>
+          </div>
+
+          <button style="align-self: end" type="submit" class="btn btn-primary">
+            Set Reminder
+          </button>
+        </form>
+      </div>
+    </div>
   </body>
 </html>
