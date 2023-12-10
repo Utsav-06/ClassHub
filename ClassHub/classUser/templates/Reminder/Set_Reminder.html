@@ -2,7 +2,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Assignment - Add</title>
+    <title>Reminder - Set</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link
@@ -26,11 +26,11 @@
       "
     >
       <div style="text-align: center; margin-top: 25px; width: 70vh">
-        <h3>Add Assignment</h3>
+        <h3>Set Reminder</h3>
         <a
           class="btn btn-primary"
           style="position: absolute; left: 10; top: 10; margin: 5px"
-          href="{% url 'list_assignment' %}"
+          href="{% url 'list_reminder' %}"
           role="button"
           ><</a
         >
@@ -41,11 +41,11 @@
             <input
               type="text"
               class="form-control"
-              id="desc "
-              name="desc "
+              id="title"
+              name="title"
               placeholder="Title"
             />
-            <label for="desc ">Title</label>
+            <label for="title ">Title</label>
           </div>
 
           <div style="margin-top: 6px" class="form-floating">
@@ -100,8 +100,8 @@
               class="form-check-input"
               type="checkbox"
               name="is_meeting "
-              value="True"
               id="is_meeting "
+              value="True"
               style="margin-right: 10px; margin-bottom: 10px"
             />
             <label

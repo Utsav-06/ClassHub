@@ -422,35 +422,44 @@ def Delete_Material(request, pk):
 # Reminder Model
 
 
-def set_reminder(request):
+@login_required(login_url="/Login")
+def Set_Reminder(request):
     Rem_info = Reminder()
     Rem_info.user = request.user
     if request.method == "POST":
-        subject = request.POST.get("subject", "")
         title = request.POST.get("title", "")
-        content = request.POST.get("content", "")
-        category = request.POST.get("category", "")
-        Assignment_files = request.FILES.get("Assignment_files", None)
-
-        if subject:
-            material_info.subject = subject
+        desc = request.POST.get("desc", "")
+        R_date = request.POST.get("R_date", "")
+        R_time = request.POST.get("R_time", "")
+        Location = request.POST.get("Location", "")
+        is_meeting = request.POST.get("is_meeting", "")
+        meeting_with = request.POST.get("meeting_with", "")
 
         if title:
-            material_info.title = title
+            Rem_info.title = title
 
-        if content:
-            material_info.content = content
+        if desc:
+            Rem_info.desc = desc
 
-        if category:
-            material_info.category = category
+        if R_date:
+            Rem_info.R_date = R_date
 
-        if "Assignment_files" in request.FILES:
-            material_info.Assignment_files = Assignment_files
+        if R_time:
+            Rem_info.R_time = R_time
 
-        material_info.save()
-        return redirect("list_materials")
+        if Location:
+            Rem_info.Location = Location
 
-    return render(request, "create_reminder.html", {"form": form})
+        if is_meeting:
+            Rem_info.is_meeting = is_meeting
+
+        if meeting_with:
+            Rem_info.meeting_with = meeting_with
+
+        Rem_info.save()
+        return redirect("list_reminder")
+
+    return render(request, "Reminder/Set_Reminder.html")
 
 
 # -----------------------------------------------------------------------------------------------------------#
