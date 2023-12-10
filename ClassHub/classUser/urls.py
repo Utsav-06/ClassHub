@@ -37,10 +37,10 @@ urlpatterns = [
     path("Delete_Material/<int:pk>/", Delete_Material, name="delete_material"),
     # ---------------------------------------------------------------------
     # Reminder
-    # path("Set_Reminder/", add_Material, name="add_note"),
-    # path("List_Reminder/", note_list, name="list_notes"),
-    # path("Edit_Reminder/<int:pk>", edit_Note, name="edit_Note"),
-    # path("Delete_Reminder/<int:pk>/", delete_Note, name="delete_Note"),
+    path("Set_Reminder/", Set_Reminder, name="set_reminder"),
+    path("List_Reminder/", List_Reminder, name="list_reminder"),
+    path("Edit_Reminder/<int:pk>", Edit_Reminder, name="edit_reminder"),
+    path("Delete_Reminder/<int:pk>/", Delete_Reminder, name="delete_reminder"),
     # ---------------------------------------------------------------------
     # Expense
     path("Add_Expense", Add_Expense, name="add_expense"),
