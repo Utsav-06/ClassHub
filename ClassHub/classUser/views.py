@@ -1,4 +1,3 @@
-from pyexpat.errors import messages
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
 from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib.auth.decorators import login_required
@@ -7,6 +6,7 @@ from django.http import HttpResponse
 from collections import defaultdict
 from django.template import loader
 from .models import *
+
 
 def welcome(request):
     template = loader.get_template("User-Login-Logout/Welcome.html")
@@ -421,21 +421,36 @@ def Delete_Material(request, pk):
 # -----------------------------------------------------------------------------------------------------------#
 # Reminder Model
 
-# def set_reminder(request):
-#     if request.method == "POST":
-#         # Get the user input (date and time)
-#         date_str = request.POST.get("date")
-#         time_str = request.POST.get("time")
 
-#         Reminder_datetime = Reminder.objects.create(
-#             Rem_date=date_str,
-#             Rem_time=time_str,
-#         )
+def set_reminder(request):
+    Rem_info = Reminder()
+    Rem_info.user = request.user
+    if request.method == "POST":
+        subject = request.POST.get("subject", "")
+        title = request.POST.get("title", "")
+        content = request.POST.get("content", "")
+        category = request.POST.get("category", "")
+        Assignment_files = request.FILES.get("Assignment_files", None)
 
-#         # Success Response
-#         return JsonResponse({"status": "success"})
+        if subject:
+            material_info.subject = subject
 
-#     return render(request, "Reminder/Set_Reminder.html")
+        if title:
+            material_info.title = title
+
+        if content:
+            material_info.content = content
+
+        if category:
+            material_info.category = category
+
+        if "Assignment_files" in request.FILES:
+            material_info.Assignment_files = Assignment_files
+
+        material_info.save()
+        return redirect("list_materials")
+
+    return render(request, "create_reminder.html", {"form": form})
 
 
 # -----------------------------------------------------------------------------------------------------------#
