@@ -432,8 +432,6 @@ def Set_Reminder(request):
         R_date = request.POST.get("R_date", "")
         R_time = request.POST.get("R_time", "")
         Location = request.POST.get("Location", "")
-        is_meeting = request.POST.get("is_meeting", "")
-        meeting_with = request.POST.get("meeting_with", "")
 
         if title:
             Rem_info.title = title
@@ -449,12 +447,6 @@ def Set_Reminder(request):
 
         if Location:
             Rem_info.Location = Location
-
-        if is_meeting:
-            Rem_info.is_meeting = is_meeting
-
-        if meeting_with:
-            Rem_info.meeting_with = meeting_with
 
         Rem_info.save()
         return redirect("list_reminder")
@@ -478,8 +470,6 @@ def Edit_Reminder(request, pk):
         R_date = request.POST.get("R_date", "")
         R_time = request.POST.get("R_time", "")
         Location = request.POST.get("Location", "")
-        is_meeting = request.POST.get("is_meeting", "")
-        meeting_with = request.POST.get("meeting_with", "")
 
         if title:
             Rem_info.title = title
@@ -495,12 +485,6 @@ def Edit_Reminder(request, pk):
 
         if Location:
             Rem_info.Location = Location
-
-        if is_meeting:
-            Rem_info.is_meeting = is_meeting
-
-        if meeting_with:
-            Rem_info.meeting_with = meeting_with
 
         Rem_info.save()
         return redirect("list_reminder")

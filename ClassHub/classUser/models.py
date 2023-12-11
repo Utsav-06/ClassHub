@@ -75,8 +75,6 @@ class Reminder(models.Model):
     R_date = models.DateField(blank=False)
     R_time = models.TimeField(blank=False)
     Location = models.CharField(max_length=100, blank=True)
-    is_meeting = models.BooleanField(default=False)
-    meeting_with = models.CharField(max_length=100, blank=True)
 
     def __str__(self):
         return f"{self.title}"
