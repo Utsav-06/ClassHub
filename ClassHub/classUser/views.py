@@ -457,7 +457,7 @@ def Set_Reminder(request):
 @login_required(login_url="/Login")
 def List_Reminder(request):
     reminders = Reminder.objects.all()
-    return render(request, "Reminder/Reminder_lists.html", {"reminders": reminders})
+    return render(request, "Reminder/Reminder_List.html", {"reminders": reminders})
 
 
 @login_required(login_url="/Login")
@@ -490,7 +490,7 @@ def Edit_Reminder(request, pk):
         return redirect("list_reminder")
 
     return render(
-        request, "Reminder/Reminder_lists.html", context={"Rem_info": Rem_info}
+        request, "Reminder/Edit_Reminder.html", context={"Rem_info": Rem_info}
     )
 
 
@@ -502,7 +502,7 @@ def Delete_Reminder(request, pk):
         return redirect("list_reminder")
     return render(
         request,
-        "Reminder/Delete_reminder.html",
+        "Reminder/Delete_Reminder.html",
         {"Rem_info": Rem_info},
     )
 

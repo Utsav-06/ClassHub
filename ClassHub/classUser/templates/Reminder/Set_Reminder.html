@@ -37,13 +37,14 @@
 
         <form method="post" enctype="multipart/form-data">
           {% csrf_token %}
-          <div style="margin-top: 6px" class="form-floating mb-3">
+          <div style="margin-top: 40px" class="form-floating mb-3">
             <input
               type="text"
               class="form-control"
               id="title"
               name="title"
               placeholder="Title"
+              required
             />
             <label for="title ">Title</label>
           </div>
@@ -93,7 +94,7 @@
           </div>
 
           <button style="align-self: end" type="submit" class="btn btn-primary">
-            Set Reminder
+            Set
           </button>
         </form>
       </div>
