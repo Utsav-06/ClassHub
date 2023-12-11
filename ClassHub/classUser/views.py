@@ -462,6 +462,67 @@ def Set_Reminder(request):
     return render(request, "Reminder/Set_Reminder.html")
 
 
+@login_required(login_url="/Login")
+def List_Reminder(request):
+    reminders = Reminder.objects.all()
+    return render(request, "Reminder/Reminder_lists.html", {"reminders": reminders})
+
+
+@login_required(login_url="/Login")
+def Edit_Reminder(request, pk):
+    Rem_info = Reminder.objects.get(Reminder_id=pk)
+
+    if request.method == "POST":
+        title = request.POST.get("title", "")
+        desc = request.POST.get("desc", "")
+        R_date = request.POST.get("R_date", "")
+        R_time = request.POST.get("R_time", "")
+        Location = request.POST.get("Location", "")
+        is_meeting = request.POST.get("is_meeting", "")
+        meeting_with = request.POST.get("meeting_with", "")
+
+        if title:
+            Rem_info.title = title
+
+        if desc:
+            Rem_info.desc = desc
+
+        if R_date:
+            Rem_info.R_date = R_date
+
+        if R_time:
+            Rem_info.R_time = R_time
+
+        if Location:
+            Rem_info.Location = Location
+
+        if is_meeting:
+            Rem_info.is_meeting = is_meeting
+
+        if meeting_with:
+            Rem_info.meeting_with = meeting_with
+
+        Rem_info.save()
+        return redirect("list_reminder")
+
+    return render(
+        request, "Reminder/Reminder_lists.html", context={"Rem_info": Rem_info}
+    )
+
+
+@login_required(login_url="/Login")
+def Delete_Reminder(request, pk):
+    Rem_info = get_object_or_404(Reminder, Reminder_id=pk)
+    if request.method == "POST":
+        Rem_info.delete()
+        return redirect("list_reminder")
+    return render(
+        request,
+        "Reminder/Delete_reminder.html",
+        {"Rem_info": Rem_info},
+    )
+
+
 # -----------------------------------------------------------------------------------------------------------#
 # Expense Model
 
