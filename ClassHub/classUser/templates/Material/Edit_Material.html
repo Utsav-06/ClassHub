@@ -2,7 +2,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Assignment - Edit</title>
+    <title>Material - Edit</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link
@@ -26,11 +26,11 @@
       "
     >
       <div style="text-align: center; margin-top: 25px; width: 70vh">
-        <h3>Edit Assignment</h3>
+        <h3>Edit Material</h3>
         <a
           class="btn btn-primary"
           style="position: absolute; left: 10; top: 10; margin: 5px"
-          href="{% url 'list_assignment' %}"
+          href="{% url 'list_materials' %}"
           role="button"
           ><</a
         >
@@ -41,69 +41,53 @@
             <input
               type="text"
               class="form-control"
-              value="{{ Assi_info.subject }}"
               id="subject"
               name="subject"
               placeholder="Subject"
+              value="{{material_info.subject}}"
+              readonly
             />
             <label for="subject">Subject</label>
           </div>
-          <div style="margin-top: 40px" class="form-floating mb-3">
+
+          <div style="margin-top: 6px" class="form-floating mb-3">
             <input
               type="text"
               class="form-control"
-              value="{{ Assi_info.title }}"
               id="title"
               name="title"
               placeholder="Title"
+              value="{{material_info.title}}"
             />
             <label for="title">Title</label>
           </div>
-          <div class="form-floating">
-            <textarea class="form-control"
-            placeholder="Description"
-            id="description"
-            name="description"
-            style="margin-top: 5px; margin-bottom: 10px; height: 100px">{{ Assi_info.description }}
-            </textarea>
-            <label for="description">Description</label>
+
+          <div style="margin-top: 6px" class="form-floating">
+            <textarea
+              class="form-control"
+              placeholder="Content"
+              id="content"
+              name="content"
+              style="margin-top: 5px; margin-bottom: 10px; height: 100px"
+            >{{material_info.content}}</textarea>
+            <label for="content">Content</label>
           </div>
+
           <div style="margin-top: 6px" class="input-group mb-3">
-            <label class="input-group-text" for="status">Status</label>
-            <select class="form-select" id="status">
-              {% if Assi_info.status == "pending" %}
-              <option selected>Pending</option>
-              <option value="submitted">Submitted</option>
-              {% else %}
-              <option selected>Submitted</option>
-              <option value="pending">Pending</option>
-              {% endif %}
-            </select>
+            <label class="input-group-text" for="Assignment_files"
+              >Material Files:</label
+            >
+            <input
+              type="file"
+              class="form-control"
+              id="Assignment_files"
+              name="Assignment_files"
+              accept="application/pdf"
+            />
           </div>
-            <div style="margin-top: 40px" class="form-floating mb-3">
-              <input
-                type="date"
-                class="form-control"
-                value="{{ Assi_info.due_date }}"
-                id="due_date"
-                name="due_date"
-                placeholder="Due Date"
-              />
-              <div style="margin-top: 6px" class="input-group mb-3">
-                <label class="input-group-text" for="Assignment_files"
-                  >Assignment Files:</label
-                >
-                <input
-                  type="file"
-                  class="form-control"
-                  id="Assignment_files"
-                  name="Assignment_files"
-                  accept="application/pdf"
-                />
-              </div>
-    
+
           <button style="align-self: end" type="submit" class="btn btn-primary">
-            Save
+            Add Material
           </button>
         </form>
       </div>

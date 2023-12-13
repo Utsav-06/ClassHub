@@ -401,7 +401,7 @@ def Edit_Material(request, pk):
         return redirect("list_materials")
 
     return render(
-        request, "Material/Material_List.html", context={"material_info": material_info}
+        request, "Material/Edit_Material.html", context={"material_info": material_info}
     )
 
 
