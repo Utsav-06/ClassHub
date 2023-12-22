@@ -13,6 +13,48 @@ def welcome(request):
     return HttpResponse(template.render())
 
 
+def main(request):
+    user = request.user
+
+    if request.method == "POST":
+        auth_logout(request)
+        return redirect("welcome")
+
+    user_info = get_object_or_404(UserProfile, user=request.user)
+    recent_tasks = Task.objects.filter(user=user).order_by("-due_date")
+    pending_assignments = Assignment.objects.filter(user=user, status="pending")
+    recent_materials = Material.objects.filter(user=user).order_by("-date_added")
+    upcoming_reminder = Reminder.objects.filter(
+        user=user,
+    ).order_by(
+        "R_date", "R_time"
+    )
+    expenses = Expense.objects.filter(user=user).order_by("-date")
+
+    total_tasks = Task.objects.filter(user=user).count()
+    total_assignments = Assignment.objects.filter(user=user).count()
+    total_materials = Material.objects.filter(user=user).count()
+    total_reminders = Reminder.objects.filter(user=user).count()
+    total_expenses = Expense.objects.filter(user=user).count()
+
+    context = {
+        "user": user,
+        "user_info": user_info,
+        "total_tasks": total_tasks,
+        "total_assignments": total_assignments,
+        "total_materials": total_materials,
+        "total_reminders": total_reminders,
+        "total_expenses": total_expenses,
+        "recent_tasks": recent_tasks,
+        "pending_assignments": pending_assignments,
+        "recent_materials": recent_materials,
+        "upcoming_reminder": upcoming_reminder,
+        "expenses": expenses,
+    }
+
+    return render(request, "User-Login-Logout/Main.html", context)
+
+
 # -----------------------------------------------------------------------------------------------------------#
 # User Login, Signup, Logout & Profile:
 def login(request):
@@ -57,20 +99,6 @@ def signup(request):
         return redirect("main")
 
     return render(request, "User-Login-Logout/Sign_up.html")
-
-
-def main(request):
-    profile_info = get_object_or_404(UserProfile, user=request.user)
-
-    if request.method == "POST":
-        auth_logout(request)
-        return redirect("welcome")
-
-    return render(
-        request,
-        "User-Login-Logout/Main.html",
-        context={"profile_pic": profile_info.profile_pic},
-    )
 
 
 @login_required(login_url="/Login")

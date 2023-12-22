@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Tasks</title>
+    <title>Assignments</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link
@@ -90,8 +90,7 @@
               {{ Assignment.due_date }}
             </td>
             <td style="padding: 10px; text-align: center">
-              {% if Assignment.status == 'pending'%} Pending {% else %} Submited
-              {% endif%}
+              {{ Assignment.status|capfirst }}
             </td>
             <td style="padding: 10px; text-align: center">
               {% if Assignment.Assignment_files %}<a

@@ -34,10 +34,6 @@ class Task(models.Model):
 
 class Assignment(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, default="")
-    STATUS_CHOICES = [
-        ("pending", "Pending"),
-        ("submitted", "Submitted"),
-    ]
     Assignment_id = models.AutoField(primary_key=True, auto_created=True)
     subject = models.CharField(max_length=255, blank=True)
     title = models.CharField(max_length=255)
@@ -46,7 +42,7 @@ class Assignment(models.Model):
     Assignment_files = models.FileField(
         upload_to="Uploaded_files/Assignment_pdfs/", blank=True
     )
-    status = models.CharField(max_length=255, choices=STATUS_CHOICES, default="Pending")
+    status = models.CharField(max_length=255)
 
     def __str__(self):
         return f"{self.title}"

@@ -1,11 +1,17 @@
-<!DOCTYPE html>
+{% comment %} <!DOCTYPE html>
 <html lang="en" class="h-full bg-gray-100">
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
-    <title>Bootstrap Example</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://getbootstrap.com/docs/5.3/assets/css/docs.css"
+      rel="stylesheet"
+    />
+    <title>ClassHub</title>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <link
       href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css"
@@ -72,11 +78,19 @@
                       >
                         <span class="absolute -inset-1.5"></span>
                         <span class="sr-only">Open user menu</span>
+                        {% if user_info.profile_pic %}
                         <img
                           class="h-8 w-8 rounded-full"
-                          src="{% if profile_pic %}{{profile_pic.url}}{% endif %}"
+                          src="user_info.profile_pic.url"
                           alt="0"
                         />
+                        {% else %}
+                        <img
+                          class="h-8 w-8 rounded-full"
+                          src="profile_pics/Default_profile.jpg"
+                          alt="0"
+                        />
+                        {% endif %}
                       </button>
                     </div>
                     <div
@@ -101,54 +115,55 @@
                         role="menuitem"
                         tabindex="-1"
                         id="user-menu-item-2"
+                        IN
+                        Skip
+                        navigation
+                        Search
+                        Avatar
+                        image
+                        Stop
+                        Vivek
+                        Bindra
+                        #StopVivekBindra
+                        |
+                        By
+                        Sandeep
+                        Maheshwari
                         >Sign out</a
                       >
                     </div>
                   </div>
                 </div>
               </div>
-              <div class="-mr-2 flex md:hidden">
-                <button
-                  type="button"
-                  class="relative inline-flex items-center justify-center rounded-md bg-gray-800 p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
-                  aria-controls="mobile-menu"
-                  aria-expanded="false"
-                >
-                  <span class="absolute -inset-0.5"></span>
-                  <span class="sr-only">Open main menu</span>
-                  <svg
-                    class="block h-6 w-6"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke-width="1.5"
-                    stroke="currentColor"
-                    aria-hidden="true"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
-                    />
-                  </svg>
-                  <svg
-                    class="hidden h-6 w-6"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke-width="1.5"
-                    stroke="currentColor"
-                    aria-hidden="true"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      d="M6 18L18 6M6 6l12 12"
-                    />
-                  </svg>
-                </button>
-              </div>
             </div>
+          </div>
+        </nav>
+
+        <div class="container">
+          <h1>Welcome, Utsav</h1>
+
+          <div>
+            <h2>Summary</h2>
+          </div>
+
+          <div>
+            <h2>Materials</h2>
+          </div>
+
+          <div>
+            <h2>Expense</h2>
+          </div>
+
+          <div>
+            <h2>Pending Assignments</h2>
+          </div>
+
+          <div>
+            <h2>Upcoming Reminders</h2>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
 
     <script>
       document
@@ -158,6 +173,294 @@
           const userMenu = document.getElementById("user-menu");
           userMenu.classList.toggle("hidden");
         });
-      </script>
+    </script>
   </body>
+</html>
+{% endcomment %} {% comment %}
+_-------------------------------------------_----------------------------------------------------------_---------------------------------------------------
+{% endcomment %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ClassHub</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css"
+    />
+    <link
+      href="https://getbootstrap.com/docs/5.3/assets/css/docs.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  </head>
+  <style>
+    .main-body {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      grid-template-rows: repeat(4, 1fr) repeat(2, 0.5fr) repeat(2, 1fr);
+      grid-column-gap: 3px;
+      grid-row-gap: 3px;
+    }
+
+    .navigatin {
+      grid-area: 1 / 1 / 2 / 7;
+      position: relative;
+      text-align: center;
+      border-bottom: 2px solid transparent;
+      border-image: linear-gradient(
+        0.25turn,
+        rgba(255, 255, 255, 0),
+        rgba(192, 192, 192),
+        rgba(255, 255, 255, 0)
+      );
+      border-image-slice: 1;
+      width: 100%;
+      height: 70px;
+      display: flex;
+    }
+
+    .navigatin h1 {
+      font-size: 32px;
+      font-family: sans-serif;
+      cursor: pointer;
+      position: absolute;
+      left: 15px;
+      top: 15px;
+    }
+
+    .avatar {
+      position: absolute;
+      top: 10px;
+      right: 20px;
+      border-radius: 50%;
+      width: 45px;
+      height: 45px;
+    }
+
+    .naming {
+      grid-area: 2 / 2 / 3 / 6;
+      position: relative;
+      border: 1px solid black;
+      border-radius: 5px;
+      height: 50px;
+      margin-left: 10px;
+      padding: 12px;
+    }
+
+    .tasks {
+      grid-area: 3 / 1 / 9 / 3;
+      position: relative;
+      border: 1px solid black;
+      border-radius: 5px;
+      margin: 1px 10px;
+      height: 505px;
+      text-align: center;
+      font-size: medium;
+    }
+
+    .arrow-to-page {
+      position: absolute;
+      top: 0px;
+      right: 10px;
+      cursor: pointer;
+    }
+
+    .pending-assignment {
+      grid-area: 3 / 3 / 6 / 5;
+      border: 1px solid black;
+      border-radius: 5px;
+      margin: 1px 10px;
+      height: 250px;
+      overflow-y: auto;
+    }
+
+    .upcoming-reminder {
+      grid-area: 6 / 3 / 9 / 5;
+      border: 1px solid black;
+      border-radius: 5px;
+      margin: 1px 10px;
+      height: 250px;
+      overflow-y: auto;
+    }
+
+    .recent-material {
+      grid-area: 3 / 5 / 6 / 7;
+      border: 1px solid black;
+      border-radius: 5px;
+      margin: 1px 10px;
+      height: 250px;
+      overflow-y: auto;
+    }
+
+    .expense-overview {
+      grid-area: 6 / 5 / 9 / 7;
+      border: 1px solid black;
+      border-radius: 5px;
+      margin: 1px 10px;
+      height: 250px;
+      overflow-y: auto;
+    }
+
+    .scrollable-list {
+      max-height: 250px;
+      overflow-y: auto;
+      position: relative;
+    }
+
+    .scrollable-list::-webkit-scrollbar {
+      width: none;
+    }
+
+    .scrollable-list::-webkit-scrollbar-thumb {
+      background-color: #000;
+      border-radius: 5px;
+    }
+
+    .info {
+      margin-top: 10px;
+    }
+
+    .item {
+      padding: 10px;
+      margin: 10px 0;
+      background-color: #f8f9fa;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      background-color: #007bff;
+      border-radius: 50%;
+      margin-right: 10px;
+    }
+
+    .text {
+      font-size: 16px;
+      color: #495057;
+    }
+  </style>
+
+  <body>
+    <div class="main-body">
+      <div class="app-name">
+
+      </div>
+      <div class="profile-button">
+        
+      </div>
+      <div class="navigatin">
+        <h1 onclick="redirectToMain()">ClassHub</h1>
+        <img class="avatar" src="{{user_info.profile_pic.url}}" alt="Profile" />
+      </div>
+      <div
+        style="
+          font-family: sans-serif;
+          font-size: 22px;
+          aligi
+        "
+        class="naming"
+      >
+        Hello, {{user_info.username}}
+      </div>
+      <div class="tasks">
+        <div>Tasks</div>
+        <div style="" class="arrow-to-page">
+          <i class="bi bi-arrow-right"></i>
+        </div>
+        <div class="info">
+          {% for task in recent_tasks %}
+          <div class="item">
+            <div class="dot"></div>
+            <div class="text">{{ task.title }}</div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+      <div class="pending-assignment scrollable-list">
+        <div style="text-align: center; font-size: medium">
+          Pending Assignments
+        </div>
+        <div style="" class="arrow-to-page">
+          <i class="bi bi-arrow-right"></i>
+        </div>
+        <div class="Assignment">
+          <div class="info">
+            {% for Assignment in pending_assignments %}
+            <div class="item">
+              <div class="dot"></div>
+              <div class="text">{{ Assignment.title }}</div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+      <div class="recent-material scrollable-list">
+        <div style="text-align: center; font-size: medium">
+          Recent Materials
+        </div>
+        <div style="" class="arrow-to-page">
+          <i class="bi bi-arrow-right"></i>
+        </div>
+        <div class="Material">
+          <div class="info">
+            {% for Material in recent_materials %}
+            <div class="item">
+              <div class="dot"></div>
+              <div class="text">{{ Material.title }}</div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+      <div class="upcoming-reminder scrollable-list">
+        <div style="text-align: center; font-size: medium">Reminders</div>
+        <div style="" class="arrow-to-page">
+          <i class="bi bi-arrow-right"></i>
+        </div>
+        <div class="Reminder">
+          <div class="info">
+            {% for Reminder in upcoming_reminder %}
+            <div class="item">
+              <div class="dot"></div>
+              <div class="text">{{ Reminder.title }}</div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+      <div class="expense-overview scrollable-list">
+        <div style="text-align: center; font-size: medium">Expenses</div>
+        <div style="" class="arrow-to-page">
+          <i class="bi bi-arrow-right"></i>
+        </div>
+        <div class="Expense">
+          <div class="info">
+            {% for Expense in expenses %}
+            <div class="item">
+              <div class="dot"></div>
+              <div class="text">{{ Expense.title }}</div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script>
+    function redirectToMain() {
+      window.location.href = "{% url 'main' %}";
+    }
+  </script>
 </html>
