@@ -237,6 +237,23 @@ _-------------------------------------------_-----------------------------------
       top: 15px;
     }
 
+    .titles {
+      font-family: sans-serif;
+      font-size: larger;
+      margin-top: 5px;
+      text-decoration: black;
+      text-align: center;
+      height: 35px;
+      border-bottom: 2px solid transparent;
+      border-image: linear-gradient(
+        0.25turn,
+        rgba(255, 255, 255, 0),
+        rgba(192, 192, 192),
+        rgba(255, 255, 255, 0)
+      );
+      border-image-slice: 1;
+    }
+
     .avatar {
       position: absolute;
       top: 10px;
@@ -249,8 +266,6 @@ _-------------------------------------------_-----------------------------------
     .naming {
       grid-area: 2 / 2 / 3 / 6;
       position: relative;
-      border: 1px solid black;
-      border-radius: 5px;
       height: 50px;
       margin-left: 10px;
       padding: 12px;
@@ -269,9 +284,10 @@ _-------------------------------------------_-----------------------------------
 
     .arrow-to-page {
       position: absolute;
-      top: 0px;
-      right: 10px;
+      top: 3px;
+      right: 20px;
       cursor: pointer;
+      font-size: 20px;
     }
 
     .pending-assignment {
@@ -354,12 +370,8 @@ _-------------------------------------------_-----------------------------------
 
   <body>
     <div class="main-body">
-      <div class="app-name">
-
-      </div>
-      <div class="profile-button">
-        
-      </div>
+      <div class="app-name"></div>
+      <div class="profile-button"></div>
       <div class="navigatin">
         <h1 onclick="redirectToMain()">ClassHub</h1>
         <img class="avatar" src="{{user_info.profile_pic.url}}" alt="Profile" />
@@ -375,9 +387,13 @@ _-------------------------------------------_-----------------------------------
         Hello, {{user_info.username}}
       </div>
       <div class="tasks">
-        <div>Tasks</div>
-        <div style="" class="arrow-to-page">
-          <i class="bi bi-arrow-right"></i>
+        <div class="titles">Tasks</div>
+        <div class="arrow-to-page">
+          <i
+            id="task-arrow"
+            onclick="redirectToPage(id)"
+            class="bi bi-arrow-right"
+          ></i>
         </div>
         <div class="info">
           {% for task in recent_tasks %}
@@ -389,11 +405,13 @@ _-------------------------------------------_-----------------------------------
         </div>
       </div>
       <div class="pending-assignment scrollable-list">
-        <div style="text-align: center; font-size: medium">
-          Pending Assignments
-        </div>
-        <div style="" class="arrow-to-page">
-          <i class="bi bi-arrow-right"></i>
+        <div class="titles">Pending Assignments</div>
+        <div class="arrow-to-page">
+          <i
+            id="assignment-arrow"
+            onclick="redirectToPage(id)"
+            class="bi bi-arrow-right"
+          ></i>
         </div>
         <div class="Assignment">
           <div class="info">
@@ -407,11 +425,13 @@ _-------------------------------------------_-----------------------------------
         </div>
       </div>
       <div class="recent-material scrollable-list">
-        <div style="text-align: center; font-size: medium">
-          Recent Materials
-        </div>
-        <div style="" class="arrow-to-page">
-          <i class="bi bi-arrow-right"></i>
+        <div class="titles">Recent Materials</div>
+        <div class="arrow-to-page">
+          <i
+            id="material-arrow"
+            onclick="redirectToPage(id)"
+            class="bi bi-arrow-right"
+          ></i>
         </div>
         <div class="Material">
           <div class="info">
@@ -425,9 +445,13 @@ _-------------------------------------------_-----------------------------------
         </div>
       </div>
       <div class="upcoming-reminder scrollable-list">
-        <div style="text-align: center; font-size: medium">Reminders</div>
-        <div style="" class="arrow-to-page">
-          <i class="bi bi-arrow-right"></i>
+        <div class="titles">Reminders</div>
+        <div class="arrow-to-page">
+          <i
+            id="reminder-arrow"
+            onclick="redirectToPage(id)"
+            class="bi bi-arrow-right"
+          ></i>
         </div>
         <div class="Reminder">
           <div class="info">
@@ -441,9 +465,13 @@ _-------------------------------------------_-----------------------------------
         </div>
       </div>
       <div class="expense-overview scrollable-list">
-        <div style="text-align: center; font-size: medium">Expenses</div>
-        <div style="" class="arrow-to-page">
-          <i class="bi bi-arrow-right"></i>
+        <div class="titles">Expenses</div>
+        <div class="arrow-to-page">
+          <i
+            id="expense-arrow"
+            onclick="redirectToPage(id)"
+            class="bi bi-arrow-right"
+          ></i>
         </div>
         <div class="Expense">
           <div class="info">
@@ -459,6 +487,26 @@ _-------------------------------------------_-----------------------------------
     </div>
   </body>
   <script>
+    function redirectToPage(arrowId) {
+      switch (arrowId) {
+        case "task-arrow":
+          window.location.href = "{% url 'list_task' %}";
+          break;
+        case "assignment-arrow":
+          window.location.href = "{% url 'list_assignment' %}";
+          break;
+        case "material-arrow":
+          window.location.href = "{% url 'list_materials' %}";
+          break;
+        case "reminder-arrow":
+          window.location.href = "{% url 'list_reminder' %}";
+          break;
+        case "expense-arrow":
+          window.location.href = "{% url 'list_expense' %}";
+          break;
+      }
+    }
+
     function redirectToMain() {
       window.location.href = "{% url 'main' %}";
     }
