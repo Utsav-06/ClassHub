@@ -211,8 +211,34 @@ _-------------------------------------------_-----------------------------------
       grid-row-gap: 3px;
     }
 
+    .app-name {
+      grid-area: 1 / 1 / 2 / 2;
+    }
+
+    .app-name h1 {
+      font-size: 32px;
+      font-family: sans-serif;
+      cursor: pointer;
+      position: absolute;
+      left: 15px;
+      top: 15px;
+    }
+
+    .profile-button {
+      grid-area: 1 / 6 / 2 / 7;
+    }
+
+    .avatar {
+      position: absolute;
+      top: 10px;
+      right: 20px;
+      border-radius: 50%;
+      width: 45px;
+      height: 45px;
+    }
+
     .navigatin {
-      grid-area: 1 / 1 / 2 / 7;
+      grid-area: 1 / 2 / 2 / 6;
       position: relative;
       text-align: center;
       border-bottom: 2px solid transparent;
@@ -226,15 +252,6 @@ _-------------------------------------------_-----------------------------------
       width: 100%;
       height: 70px;
       display: flex;
-    }
-
-    .navigatin h1 {
-      font-size: 32px;
-      font-family: sans-serif;
-      cursor: pointer;
-      position: absolute;
-      left: 15px;
-      top: 15px;
     }
 
     .titles {
@@ -252,15 +269,6 @@ _-------------------------------------------_-----------------------------------
         rgba(255, 255, 255, 0)
       );
       border-image-slice: 1;
-    }
-
-    .avatar {
-      position: absolute;
-      top: 10px;
-      right: 20px;
-      border-radius: 50%;
-      width: 45px;
-      height: 45px;
     }
 
     .naming {
@@ -370,12 +378,13 @@ _-------------------------------------------_-----------------------------------
 
   <body>
     <div class="main-body">
-      <div class="app-name"></div>
-      <div class="profile-button"></div>
-      <div class="navigatin">
-        <h1 onclick="redirectToMain()">ClassHub</h1>
+      <div class="app-name">
+        <h1 id="main-page" onclick="redirectToPage(id)">ClassHub</h1>
+      </div>
+      <div class="profile-button">
         <img class="avatar" src="{{user_info.profile_pic.url}}" alt="Profile" />
       </div>
+      <div class="navigatin"></div>
       <div
         style="
           font-family: sans-serif;
@@ -504,11 +513,10 @@ _-------------------------------------------_-----------------------------------
         case "expense-arrow":
           window.location.href = "{% url 'list_expense' %}";
           break;
+        case "main-page":
+          window.location.href = "{% url 'main' %}";
+          break;
       }
-    }
-
-    function redirectToMain() {
-      window.location.href = "{% url 'main' %}";
     }
   </script>
 </html>
