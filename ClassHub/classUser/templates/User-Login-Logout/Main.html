@@ -1,185 +1,3 @@
-{% comment %} <!DOCTYPE html>
-<html lang="en" class="h-full bg-gray-100">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
-    <link
-      href="https://getbootstrap.com/docs/5.3/assets/css/docs.css"
-      rel="stylesheet"
-    />
-    <title>ClassHub</title>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <link
-      href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css"
-      rel="stylesheet"
-    />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ClassHub</title>
-  </head>
-  <body class="h-full">
-    {% csrf_token %}
-    <div class="header">
-      <div class="min-h-full">
-        <nav class="bg-gray-800">
-          <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div class="flex h-16 items-center justify-between">
-              <div class="flex items-center">
-                <div class="flex-shrink-0">
-                  <a
-                    href="{% url 'main' %}"
-                    class="text-white text-2xl font-bold p-2"
-                    >ClassHub</a
-                  >
-                </div>
-                <div class="hidden md:block">
-                  <div class="ml-10 flex items-baseline space-x-4">
-                    <a
-                      href="{% url 'list_task' %}"
-                      class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium"
-                      >Task</a
-                    >
-                    <a
-                      href="{% url 'list_assignment' %}"
-                      class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium"
-                      >Assignment</a
-                    >
-                    <a
-                      href="{% url 'list_materials' %}"
-                      class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium"
-                      >Materials</a
-                    >
-                    <a
-                      href="{% url 'list_reminder' %}"
-                      class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium"
-                      >Reminder</a
-                    >
-                    <a
-                      href="{% url 'list_expense' %}"
-                      class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium"
-                      >Expense</a
-                    >
-                  </div>
-                </div>
-              </div>
-              <div class="hidden md:block">
-                <div class="ml-4 flex items-center md:ml-6">
-                  <div class="relative ml-3">
-                    <div>
-                      <button
-                        type="button"
-                        class="relative flex max-w-xs items-center rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
-                        id="user-menu-button"
-                        aria-expanded="false"
-                        aria-haspopup="true"
-                      >
-                        <span class="absolute -inset-1.5"></span>
-                        <span class="sr-only">Open user menu</span>
-                        {% if user_info.profile_pic %}
-                        <img
-                          class="h-8 w-8 rounded-full"
-                          src="user_info.profile_pic.url"
-                          alt="0"
-                        />
-                        {% else %}
-                        <img
-                          class="h-8 w-8 rounded-full"
-                          src="profile_pics/Default_profile.jpg"
-                          alt="0"
-                        />
-                        {% endif %}
-                      </button>
-                    </div>
-                    <div
-                      class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none hidden"
-                      id="user-menu"
-                      role="menu"
-                      aria-orientation="vertical"
-                      aria-labelledby="user-menu-button"
-                      tabindex="-1"
-                    >
-                      <a
-                        href="{% url 'userprofile' %}"
-                        class="block px-4 py-2 text-sm text-gray-700"
-                        role="menuitem"
-                        tabindex="-1"
-                        id="user-menu-item-0"
-                        >Your Profile</a
-                      >
-                      <a
-                        href="{% url 'logout' %}"
-                        class="block px-4 py-2 text-sm text-gray-700"
-                        role="menuitem"
-                        tabindex="-1"
-                        id="user-menu-item-2"
-                        IN
-                        Skip
-                        navigation
-                        Search
-                        Avatar
-                        image
-                        Stop
-                        Vivek
-                        Bindra
-                        #StopVivekBindra
-                        |
-                        By
-                        Sandeep
-                        Maheshwari
-                        >Sign out</a
-                      >
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </nav>
-
-        <div class="container">
-          <h1>Welcome, Utsav</h1>
-
-          <div>
-            <h2>Summary</h2>
-          </div>
-
-          <div>
-            <h2>Materials</h2>
-          </div>
-
-          <div>
-            <h2>Expense</h2>
-          </div>
-
-          <div>
-            <h2>Pending Assignments</h2>
-          </div>
-
-          <div>
-            <h2>Upcoming Reminders</h2>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <script>
-      document
-        .getElementById("user-menu-button")
-        .addEventListener("click", function () {
-          console.log("Button Clicked!");
-          const userMenu = document.getElementById("user-menu");
-          userMenu.classList.toggle("hidden");
-        });
-    </script>
-  </body>
-</html>
-{% endcomment %} {% comment %}
-_-------------------------------------------_----------------------------------------------------------_---------------------------------------------------
-{% endcomment %}
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -203,25 +21,42 @@ _-------------------------------------------_-----------------------------------
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
   </head>
   <style>
+    body,
+    html {
+      height: 100%;
+      margin: 0;
+    }
     .main-body {
       display: grid;
       grid-template-columns: repeat(6, 1fr);
       grid-template-rows: repeat(4, 1fr) repeat(2, 0.5fr) repeat(2, 1fr);
       grid-column-gap: 3px;
       grid-row-gap: 3px;
+      background: url("/User-Login-Logout/bg.jpg") center center/cover no-repeat;
+      background-color: rgba(255, 255, 255, 0.8);
     }
 
-    .app-name {
-      grid-area: 1 / 1 / 2 / 2;
+    .navigatin {
+      grid-area: 1 / 2 / 2 / 6;
+      position: relative;
+      border-bottom: 2px solid transparent;
+      border-image: linear-gradient(
+        0.25turn,
+        rgba(0, 0, 0, 0),
+        rgba(0, 0, 0, 1),
+        rgba(0, 0, 0, 0)
+      );
+      border-image-slice: 1;
+      width: 100%;
+      height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
-    .app-name h1 {
+    .navigatin h1 {
       font-size: 32px;
-      font-family: sans-serif;
       cursor: pointer;
-      position: absolute;
-      left: 15px;
-      top: 15px;
     }
 
     .profile-button {
@@ -235,23 +70,6 @@ _-------------------------------------------_-----------------------------------
       border-radius: 50%;
       width: 45px;
       height: 45px;
-    }
-
-    .navigatin {
-      grid-area: 1 / 2 / 2 / 6;
-      position: relative;
-      text-align: center;
-      border-bottom: 2px solid transparent;
-      border-image: linear-gradient(
-        0.25turn,
-        rgba(255, 255, 255, 0),
-        rgba(192, 192, 192),
-        rgba(255, 255, 255, 0)
-      );
-      border-image-slice: 1;
-      width: 100%;
-      height: 70px;
-      display: flex;
     }
 
     .titles {
@@ -272,10 +90,9 @@ _-------------------------------------------_-----------------------------------
     }
 
     .naming {
-      grid-area: 2 / 2 / 3 / 6;
+      grid-area: 2 / 1 / 3 / 7;
       position: relative;
-      height: 50px;
-      margin-left: 10px;
+      margin-left: 80px;
       padding: 12px;
     }
 
@@ -354,37 +171,37 @@ _-------------------------------------------_-----------------------------------
     }
 
     .item {
-      padding: 10px;
-      margin: 10px 0;
-      background-color: #f8f9fa;
+      padding: 7px;
+      margin: 7px;
       border-radius: 8px;
       display: flex;
       align-items: center;
     }
 
     .dot {
-      width: 10px;
-      height: 10px;
-      background-color: #007bff;
+      width: 7px;
+      height: 7px;
+      background-color: #01074f;
       border-radius: 50%;
-      margin-right: 10px;
+      margin-right: 15px;
     }
 
     .text {
       font-size: 16px;
       color: #495057;
+      cursor: pointer;
     }
   </style>
 
   <body>
     <div class="main-body">
-      <div class="app-name">
-        <h1 id="main-page" onclick="redirectToPage(id)">ClassHub</h1>
-      </div>
+      <div class="app-name"></div>
       <div class="profile-button">
         <img class="avatar" src="{{user_info.profile_pic.url}}" alt="Profile" />
       </div>
-      <div class="navigatin"></div>
+      <div class="navigatin">
+        <h1 id="main-page" onclick="redirectToPage(id)">ClassHub</h1>
+      </div>
       <div
         style="
           font-family: sans-serif;
@@ -406,9 +223,41 @@ _-------------------------------------------_-----------------------------------
         </div>
         <div class="info">
           {% for task in recent_tasks %}
-          <div class="item">
+          <div
+            class="item"
+            data-bs-toggle="modal"
+            data-bs-target="#taskModal{{ task.id }}"
+          >
             <div class="dot"></div>
             <div class="text">{{ task.title }}</div>
+          </div>
+
+          <div
+            class="modal fade"
+            id="taskModal{{ task.id }}"
+            tabindex="-1"
+            aria-labelledby="taskModalLabel"
+            aria-hidden="true"
+          >
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="taskModalLabel">
+                    {{ task.title }}
+                  </h5>
+                  <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                  ></button>
+                </div>
+                <div class="modal-body">
+                  <p>{{ task.description }}</p>
+                  <p>Date: {{ task.date }}</p>
+                </div>
+              </div>
+            </div>
           </div>
           {% endfor %}
         </div>
@@ -425,9 +274,41 @@ _-------------------------------------------_-----------------------------------
         <div class="Assignment">
           <div class="info">
             {% for Assignment in pending_assignments %}
-            <div class="item">
+            <div
+              class="item"
+              data-bs-toggle="modal"
+              data-bs-target="#assignmentModal{{ Assignment.Assignment_id }}"
+            >
               <div class="dot"></div>
               <div class="text">{{ Assignment.title }}</div>
+            </div>
+
+            <div
+              class="modal fade"
+              id="assignmentModal{{ Assignment.Assignment_id }}"
+              tabindex="-1"
+              aria-labelledby="assignmentModalLabel"
+              aria-hidden="true"
+            >
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="assignmentModalLabel">
+                      {{ Assignment.title }}
+                    </h5>
+                    <button
+                      type="button"
+                      class="btn-close"
+                      data-bs-dismiss="modal"
+                      aria-label="Close"
+                    ></button>
+                  </div>
+                  <div class="modal-body">
+                    <p>{{ Assignment.description }}</p>
+                    <p>Date: {{ Assignment.date }}</p>
+                  </div>
+                </div>
+              </div>
             </div>
             {% endfor %}
           </div>
@@ -445,9 +326,41 @@ _-------------------------------------------_-----------------------------------
         <div class="Material">
           <div class="info">
             {% for Material in recent_materials %}
-            <div class="item">
+            <div
+              class="item"
+              data-bs-toggle="modal"
+              data-bs-target="#materialModal{{ Material.Material_id }}"
+            >
               <div class="dot"></div>
               <div class="text">{{ Material.title }}</div>
+            </div>
+
+            <div
+              class="modal fade"
+              id="materialModal{{ Material.Material_id }}"
+              tabindex="-1"
+              aria-labelledby="materialModalLabel"
+              aria-hidden="true"
+            >
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="materialModalLabel">
+                      {{ Material.title }}
+                    </h5>
+                    <button
+                      type="button"
+                      class="btn-close"
+                      data-bs-dismiss="modal"
+                      aria-label="Close"
+                    ></button>
+                  </div>
+                  <div class="modal-body">
+                    <p>{{ Material.description }}</p>
+                    <p>Date: {{ Material.date }}</p>
+                  </div>
+                </div>
+              </div>
             </div>
             {% endfor %}
           </div>
@@ -465,10 +378,43 @@ _-------------------------------------------_-----------------------------------
         <div class="Reminder">
           <div class="info">
             {% for Reminder in upcoming_reminder %}
-            <div class="item">
+            <div
+              class="item"
+              data-bs-toggle="modal"
+              data-bs-target="#reminderModal{{ Reminder.Reminder_id }}"
+            >
               <div class="dot"></div>
               <div class="text">{{ Reminder.title }}</div>
             </div>
+
+            <div
+              class="modal fade"
+              id="reminderModal{{ Reminder.Reminder_id }}"
+              tabindex="-1"
+              aria-labelledby="reminderModalLabel"
+              aria-hidden="true"
+            >
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="reminderModalLabel">
+                      {{ Reminder.title }}
+                    </h5>
+                    <button
+                      type="button"
+                      class="btn-close"
+                      data-bs-dismiss="modal"
+                      aria-label="Close"
+                    ></button>
+                  </div>
+                  <div class="modal-body">
+                    <p>{{ Reminder.description }}</p>
+                    <p>Date: {{ Reminder.date }}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
             {% endfor %}
           </div>
         </div>
@@ -485,9 +431,41 @@ _-------------------------------------------_-----------------------------------
         <div class="Expense">
           <div class="info">
             {% for Expense in expenses %}
-            <div class="item">
+            <div
+              class="item"
+              data-bs-toggle="modal"
+              data-bs-target="#expenseModal{{ Expense.Expense_id }}"
+            >
               <div class="dot"></div>
               <div class="text">{{ Expense.title }}</div>
+            </div>
+
+            <div
+              class="modal fade"
+              id="expenseModal{{ Expense.Expense_id }}"
+              tabindex="-1"
+              aria-labelledby="expenseModalLabel"
+              aria-hidden="true"
+            >
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="expenseModalLabel">
+                      {{ Expense.title }}
+                    </h5>
+                    <button
+                      type="button"
+                      class="btn-close"
+                      data-bs-dismiss="modal"
+                      aria-label="Close"
+                    ></button>
+                  </div>
+                  <div class="modal-body">
+                    <p>{{ Expense.description }}</p>
+                    <p>Date: {{ Expense.date }}</p>
+                  </div>
+                </div>
+              </div>
             </div>
             {% endfor %}
           </div>
@@ -518,5 +496,12 @@ _-------------------------------------------_-----------------------------------
           break;
       }
     }
+
+    var popoverTriggerList = [].slice.call(
+      document.querySelectorAll('[data-bs-toggle="popover"]')
+    );
+    var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
+      return new bootstrap.Popover(popoverTriggerEl);
+    });
   </script>
 </html>
