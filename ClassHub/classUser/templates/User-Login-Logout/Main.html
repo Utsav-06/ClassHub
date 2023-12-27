@@ -75,6 +75,9 @@
     }
     
     .arrow-to-page {
+      position: absolute;
+      right: 10px;
+      top: -1.7px;
       cursor: pointer;
       font-size: 20px;
     }
@@ -110,6 +113,7 @@
     
     .upcoming-reminder {
       grid-area: 6 / 3 / 9 / 5;
+      position: relative;
       border: 1px solid black;
       border-radius: 5px;
       margin: 1px 10px;
@@ -120,6 +124,7 @@
     
     .recent-material {
       grid-area: 3 / 5 / 6 / 7;
+      position: relative;
       border: 1px solid black;
       border-radius: 5px;
       margin: 1px 10px;
@@ -130,6 +135,7 @@
     
     .expense-overview {
       grid-area: 6 / 5 / 9 / 7;
+      position: relative;
       border: 1px solid black;
       border-radius: 5px;
       margin: 1px 10px;
@@ -185,9 +191,10 @@
         " class="naming">Hello, {{ user_info.username }}</div>
 
       <div class="tasks">
-        <div class="titles">Tasks</div>
-        <div class="arrow-to-page">
-          <i id="task-arrow" onclick="redirectToPage(id)" class="bi bi-arrow-right"></i>
+        <div class="titles">
+          Tasks<div class="arrow-to-page">
+            <i id="task-arrow" onclick="redirectToPage(id)" class="bi bi-arrow-right"></i>
+          </div>
         </div>
         <div class="info">
           {% for task in recent_tasks %}
@@ -220,9 +227,10 @@
         </div>
       </div>
       <div class="pending-assignment scrollable-list">
-        <div class="titles">Pending Assignments</div>
-        <div class="arrow-to-page">
-          <i id="assignment-arrow" onclick="redirectToPage(id)" class="bi bi-arrow-right"></i>
+        <div class="titles">
+          Pending Assignments<div class="arrow-to-page">
+            <i id="assignment-arrow" onclick="redirectToPage(id)" class="bi bi-arrow-right"></i>
+          </div>
         </div>
         <div class="info">
           {% if pending_assignments %}
@@ -268,9 +276,10 @@
         </div>
       </div>
       <div class="recent-material scrollable-list">
-        <div class="titles">Recent Materials</div>
-        <div class="arrow-to-page">
-          <i id="material-arrow" onclick="redirectToPage(id)" class="bi bi-arrow-right"></i>
+        <div class="titles">
+          Recent Materials<div class="arrow-to-page">
+            <i id="material-arrow" onclick="redirectToPage(id)" class="bi bi-arrow-right"></i>
+          </div>
         </div>
         <div class="Material">
           <div class="info">
@@ -314,9 +323,10 @@
         </div>
       </div>
       <div class="upcoming-reminder scrollable-list">
-        <div class="titles">Reminders</div>
-        <div class="arrow-to-page">
-          <i id="reminder-arrow" onclick="redirectToPage(id)" class="bi bi-arrow-right"></i>
+        <div class="titles">
+          Reminders<div class="arrow-to-page">
+            <i id="reminder-arrow" onclick="redirectToPage(id)" class="bi bi-arrow-right"></i>
+          </div>
         </div>
         <div class="Reminder">
           <div class="info">
@@ -360,9 +370,10 @@
         </div>
       </div>
       <div class="expense-overview scrollable-list">
-        <div class="titles">Expenses</div>
-        <div class="arrow-to-page">
-          <i id="expense-arrow" onclick="redirectToPage(id)" class="bi bi-arrow-right"></i>
+        <div class="titles">
+          Expenses<div class="arrow-to-page">
+            <i id="expense-arrow" onclick="redirectToPage(id)" class="bi bi-arrow-right"></i>
+          </div>
         </div>
         <div class="Expense">
           <div class="info">
