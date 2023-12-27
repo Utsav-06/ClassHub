@@ -15,26 +15,24 @@
     body,
     html {
       height: 100%;
-      margin: 0;
+      margin: 10px;
     }
     .main-body {
       display: grid;
       grid-template-columns: repeat(6, 1fr);
-      grid-template-rows: repeat(4, 1fr) repeat(2, 0.5fr) repeat(2, 1fr);
+      grid-template-rows: repeat(3, 1fr) repeat(2, 0.5fr) repeat(2, 1fr);
       grid-column-gap: 3px;
-      grid-row-gap: 3px;
-      background: url('/User-Login-Logout/bg.jpg') center center/cover no-repeat;
-      background-color: rgba(255, 255, 255, 0.8);
+      grid-row-gap: 20px;
     }
     
     .navigatin {
-      grid-area: 1 / 2 / 2 / 6;
+      grid-area: 1 / 1 / 2 / 7;
       position: relative;
       border-bottom: 2px solid transparent;
       border-image: linear-gradient(0.25turn, rgba(0, 0, 0, 0), rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
       border-image-slice: 1;
       width: 100%;
-      height: 70px;
+      height: 60px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -45,13 +43,9 @@
       cursor: pointer;
     }
     
-    .profile-button {
-      grid-area: 1 / 6 / 2 / 7;
-    }
-    
     .avatar {
       position: absolute;
-      top: 10px;
+      top: 17px;
       right: 20px;
       border-radius: 50%;
       width: 45px;
@@ -82,26 +76,19 @@
       font-size: 20px;
     }
     
-    .naming {
-      grid-area: 2 / 1 / 3 / 7;
-      position: relative;
-      margin-left: 80px;
-      padding: 12px;
-    }
-    
     .tasks {
-      grid-area: 3 / 1 / 9 / 3;
+      grid-area: 2 / 1 / 8 / 3;
       position: relative;
       border: 1px solid black;
       border-radius: 5px;
       margin: 1px 10px;
-      height: 505px;
+      height: 522px;
       text-align: center;
       overflow-y: auto;
     }
     
     .pending-assignment {
-      grid-area: 3 / 3 / 6 / 5;
+      grid-area: 2 / 3 / 5 / 5;
       position: relative;
       border: 1px solid black;
       border-radius: 5px;
@@ -112,7 +99,7 @@
     }
     
     .upcoming-reminder {
-      grid-area: 6 / 3 / 9 / 5;
+      grid-area: 5 / 3 / 8 / 5;
       position: relative;
       border: 1px solid black;
       border-radius: 5px;
@@ -123,7 +110,7 @@
     }
     
     .recent-material {
-      grid-area: 3 / 5 / 6 / 7;
+      grid-area: 2 / 5 / 5 / 7;
       position: relative;
       border: 1px solid black;
       border-radius: 5px;
@@ -134,7 +121,7 @@
     }
     
     .expense-overview {
-      grid-area: 6 / 5 / 9 / 7;
+      grid-area: 5 / 5 / 8 / 7;
       position: relative;
       border: 1px solid black;
       border-radius: 5px;
@@ -173,22 +160,24 @@
       color: #495057;
       cursor: pointer;
     }
+    
+    .modal-header {
+      text-align: center;
+    }
+    
+    .modal-body {
+      text-align: start;
+    }
   </style>
 
   <body>
     <div class="main-body">
-      <div class="app-name"></div>
       <div class="profile-button">
         <img class="avatar" src="{{ user_info.profile_pic.url }}" alt="Profile" />
       </div>
       <div class="navigatin">
-        <h1 id="main-page" onclick="redirectToPage(id)">ClassHub</h1>
+        <h1 style="margin-top: -17px;" id="main-page" onclick="redirectToPage(id)">ClassHub</h1>
       </div>
-      <div style="
-          font-family: sans-serif;
-          font-size: 22px;
-          aligi
-        " class="naming">Hello, {{ user_info.username }}</div>
 
       <div class="tasks">
         <div class="titles">
@@ -206,7 +195,7 @@
             <div class="modal fade" id="taskModal{{ task.Task_id }}" tabindex="-1" aria-labelledby="taskModalLabel" aria-hidden="true">
               <div class="modal-dialog">
                 <div class="modal-content">
-                  <div class="modal-header text-center">
+                  <div class="modal-header">
                     <h5 class="modal-title w-100" id="taskModalLabel">{{ task.title }}</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
@@ -243,7 +232,7 @@
               <div class="modal fade" id="assignmentModal{{ Assignment.Assignment_id }}" tabindex="-1" aria-labelledby="assignmentModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                   <div class="modal-content">
-                    <div class="modal-header text-center">
+                    <div class="modal-header">
                       <h5 class="modal-title w-100" id="assignmentModalLabel">{{ Assignment.title }}</h5>
                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
@@ -292,7 +281,7 @@
               <div class="modal fade" id="materialModal{{ Material.Material_id }}" tabindex="-1" aria-labelledby="materialModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                   <div class="modal-content">
-                    <div class="modal-header text-center">
+                    <div class="modal-header">
                       <h5 class="modal-title w-100" id="materialModalLabel">{{ Material.title }}</h5>
                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
@@ -339,7 +328,7 @@
               <div class="modal fade" id="reminderModal{{ Reminder.Reminder_id }}" tabindex="-1" aria-labelledby="reminderModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                   <div class="modal-content">
-                    <div class="modal-header text-center">
+                    <div class="modal-header">
                       <h5 class="modal-title w-100" id="reminderModalLabel">{{ Reminder.title }}</h5>
                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
@@ -386,7 +375,7 @@
               <div class="modal fade" id="expenseModal{{ Expense.Expense_id }}" tabindex="-1" aria-labelledby="expenseModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                   <div class="modal-content">
-                    <div class="modal-header text-center">
+                    <div class="modal-header">
                       <h5 class="modal-title w-100" id="expenseModalLabel">{{ Expense.title }}</h5>
                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
