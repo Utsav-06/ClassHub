@@ -78,8 +78,9 @@ class Reminder(models.Model):
 
 class Expense(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, default="")
+    Expense_id = models.AutoField(primary_key=True, auto_created=True)
     title = models.CharField(max_length=255)
-    amount = models.DecimalField(null=False, max_digits=10, decimal_places=2)
+    amount = models.DecimalField(null=False, max_digits=20, decimal_places=2)
     date = models.DateField(default=date.today)
     time = models.TimeField(default=timezone.now)
     Location = models.CharField(max_length=100, blank=True)

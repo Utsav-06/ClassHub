@@ -26,9 +26,7 @@ def main(request):
     recent_materials = Material.objects.filter(user=user).order_by("-date_added")
     upcoming_reminder = Reminder.objects.filter(
         user=user,
-    ).order_by(
-        "R_date", "R_time"
-    )
+    ).order_by("R_date", "R_time")
     expenses = Expense.objects.filter(user=user).order_by("-date")
 
     total_tasks = Task.objects.filter(user=user).count()
@@ -261,6 +259,8 @@ def Add_Assignment(request):
         due_date = request.POST.get("due_date", "")
         Assignment_files = request.FILES.get("Assignment_files", None)
         status = request.POST.get("status", "")
+        print(desc)
+        print(title)
 
         if subject:
             Assi_info.subject = subject
@@ -304,10 +304,12 @@ def Edit_Assignment(request, pk):
     if request.method == "POST":
         subject = request.POST.get("subject", "")
         title = request.POST.get("title", "")
-        desc = request.POST.get("desc", "")
+        description = request.POST.get("desc", "")
         due_date = request.POST.get("due_date", "")
         Assignment_files = request.FILES.get("Assignment_files", None)
         status = request.POST.get("status", "")
+        print(description)
+        print(title)
 
         if subject:
             Assi_info.subject = subject
@@ -315,8 +317,8 @@ def Edit_Assignment(request, pk):
         if title:
             Assi_info.title = title
 
-        if desc:
-            Assi_info.description = desc
+        if description:
+            Assi_info.description = description
 
         if due_date:
             Assi_info.due_date = due_date
@@ -441,7 +443,7 @@ def Delete_Material(request, pk):
         return redirect("list_materials")
     return render(
         request,
-        "Material/Delete_Notes.html",
+        "Material/Delete_Material.html",
         {"material_info": material_info},
     )
 
@@ -578,7 +580,7 @@ def List_Expense(request):
 
 @login_required(login_url="/Login")
 def Delete_Expense(request, pk):
-    expense = get_object_or_404(Expense, id=pk, user=request.user)
+    expense = get_object_or_404(Expense, Expense_id=pk, user=request.user)
 
     if request.method == "POST":
         expense.delete()

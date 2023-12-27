@@ -51,7 +51,7 @@ urlpatterns = [
 
 # Path Converters:
 #   - int: numbers
-#   -  str: strings
+#   - str: strings
 #   - path: whole urls /
 #   - slud: hyphens-underscore-stuff
 #   - UUID: Universally Unique Identifier

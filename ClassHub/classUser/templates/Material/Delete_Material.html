@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Assignment - Delete</title>
+    <title>Material - Delete</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link
@@ -18,10 +18,10 @@
   </head>
   <body style="margin: 20px">
     <h2>Confirm Deletion</h2>
-    <p>Are you sure you want to delete "{{ assignment_info.title }}"?</p>
+    <p>Are you sure you want to delete "{{ material_info.title }}"?</p>
     <form method="post">
       {% csrf_token %}
-      <a href="{% url 'list_assignment' %}"
+      <a href="{% url 'list_materials' %}"
         ><button class="btn btn-light" type="button">Cancel</button></a
       >
       <button type="submit" class="btn btn-primary">Delete</button>

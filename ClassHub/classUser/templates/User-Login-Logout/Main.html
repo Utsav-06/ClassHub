@@ -6,18 +6,9 @@
     <title>ClassHub</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css"
-    />
-    <link
-      href="https://getbootstrap.com/docs/5.3/assets/css/docs.css"
-      rel="stylesheet"
-    />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css" />
+    <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
   </head>
   <style>
@@ -32,20 +23,15 @@
       grid-template-rows: repeat(4, 1fr) repeat(2, 0.5fr) repeat(2, 1fr);
       grid-column-gap: 3px;
       grid-row-gap: 3px;
-      background: url("/User-Login-Logout/bg.jpg") center center/cover no-repeat;
+      background: url('/User-Login-Logout/bg.jpg') center center/cover no-repeat;
       background-color: rgba(255, 255, 255, 0.8);
     }
-
+    
     .navigatin {
       grid-area: 1 / 2 / 2 / 6;
       position: relative;
       border-bottom: 2px solid transparent;
-      border-image: linear-gradient(
-        0.25turn,
-        rgba(0, 0, 0, 0),
-        rgba(0, 0, 0, 1),
-        rgba(0, 0, 0, 0)
-      );
+      border-image: linear-gradient(0.25turn, rgba(0, 0, 0, 0), rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
       border-image-slice: 1;
       width: 100%;
       height: 70px;
@@ -53,16 +39,16 @@
       align-items: center;
       justify-content: center;
     }
-
+    
     .navigatin h1 {
       font-size: 32px;
       cursor: pointer;
     }
-
+    
     .profile-button {
       grid-area: 1 / 6 / 2 / 7;
     }
-
+    
     .avatar {
       position: absolute;
       top: 10px;
@@ -71,8 +57,12 @@
       width: 45px;
       height: 45px;
     }
-
+    
     .titles {
+      position: -webkit-sticky;
+      position: sticky;
+      top: 0;
+      background-color: white;
       font-family: sans-serif;
       font-size: larger;
       margin-top: 5px;
@@ -80,22 +70,22 @@
       text-align: center;
       height: 35px;
       border-bottom: 2px solid transparent;
-      border-image: linear-gradient(
-        0.25turn,
-        rgba(255, 255, 255, 0),
-        rgba(192, 192, 192),
-        rgba(255, 255, 255, 0)
-      );
+      border-image: linear-gradient(0.25turn, rgba(255, 255, 255, 0), rgba(192, 192, 192), rgba(255, 255, 255, 0));
       border-image-slice: 1;
     }
-
+    
+    .arrow-to-page {
+      cursor: pointer;
+      font-size: 20px;
+    }
+    
     .naming {
       grid-area: 2 / 1 / 3 / 7;
       position: relative;
       margin-left: 80px;
       padding: 12px;
     }
-
+    
     .tasks {
       grid-area: 3 / 1 / 9 / 3;
       position: relative;
@@ -104,72 +94,58 @@
       margin: 1px 10px;
       height: 505px;
       text-align: center;
-      font-size: medium;
+      overflow-y: auto;
     }
-
-    .arrow-to-page {
-      position: absolute;
-      top: 3px;
-      right: 20px;
-      cursor: pointer;
-      font-size: 20px;
-    }
-
+    
     .pending-assignment {
       grid-area: 3 / 3 / 6 / 5;
+      position: relative;
       border: 1px solid black;
       border-radius: 5px;
       margin: 1px 10px;
       height: 250px;
+      text-align: center;
       overflow-y: auto;
     }
-
+    
     .upcoming-reminder {
       grid-area: 6 / 3 / 9 / 5;
       border: 1px solid black;
       border-radius: 5px;
       margin: 1px 10px;
       height: 250px;
+      text-align: center;
       overflow-y: auto;
     }
-
+    
     .recent-material {
       grid-area: 3 / 5 / 6 / 7;
       border: 1px solid black;
       border-radius: 5px;
       margin: 1px 10px;
       height: 250px;
+      text-align: center;
       overflow-y: auto;
     }
-
+    
     .expense-overview {
       grid-area: 6 / 5 / 9 / 7;
       border: 1px solid black;
       border-radius: 5px;
       margin: 1px 10px;
       height: 250px;
+      text-align: center;
       overflow-y: auto;
     }
-
-    .scrollable-list {
-      max-height: 250px;
-      overflow-y: auto;
-      position: relative;
-    }
-
+    
     .scrollable-list::-webkit-scrollbar {
-      width: none;
+      width: 0px;
     }
-
-    .scrollable-list::-webkit-scrollbar-thumb {
-      background-color: #000;
-      border-radius: 5px;
-    }
-
+    
     .info {
       margin-top: 10px;
     }
-
+    
     .item {
       padding: 7px;
       margin: 7px;
@@ -177,7 +153,7 @@
       display: flex;
       align-items: center;
     }
-
+    
     .dot {
       width: 7px;
       height: 7px;
@@ -185,7 +161,7 @@
       border-radius: 50%;
       margin-right: 15px;
     }
-
+    
     .text {
       font-size: 16px;
       color: #495057;
@@ -197,171 +173,142 @@
     <div class="main-body">
       <div class="app-name"></div>
       <div class="profile-button">
-        <img class="avatar" src="{{user_info.profile_pic.url}}" alt="Profile" />
+        <img class="avatar" src="{{ user_info.profile_pic.url }}" alt="Profile" />
       </div>
       <div class="navigatin">
         <h1 id="main-page" onclick="redirectToPage(id)">ClassHub</h1>
       </div>
-      <div
-        style="
+      <div style="
           font-family: sans-serif;
           font-size: 22px;
           aligi
-        "
-        class="naming"
-      >
-        Hello, {{user_info.username}}
-      </div>
+        " class="naming">Hello, {{ user_info.username }}</div>
+
       <div class="tasks">
         <div class="titles">Tasks</div>
         <div class="arrow-to-page">
-          <i
-            id="task-arrow"
-            onclick="redirectToPage(id)"
-            class="bi bi-arrow-right"
-          ></i>
+          <i id="task-arrow" onclick="redirectToPage(id)" class="bi bi-arrow-right"></i>
         </div>
         <div class="info">
           {% for task in recent_tasks %}
-          <div
-            class="item"
-            data-bs-toggle="modal"
-            data-bs-target="#taskModal{{ task.id }}"
-          >
-            <div class="dot"></div>
-            <div class="text">{{ task.title }}</div>
-          </div>
+            <div class="item" data-bs-toggle="modal" data-bs-target="#taskModal{{ task.Task_id }}">
+              <div class="dot"></div>
+              <div class="text">{{ task.title }}</div>
+            </div>
 
-          <div
-            class="modal fade"
-            id="taskModal{{ task.id }}"
-            tabindex="-1"
-            aria-labelledby="taskModalLabel"
-            aria-hidden="true"
-          >
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="taskModalLabel">
-                    {{ task.title }}
-                  </h5>
-                  <button
-                    type="button"
-                    class="btn-close"
-                    data-bs-dismiss="modal"
-                    aria-label="Close"
-                  ></button>
-                </div>
-                <div class="modal-body">
-                  <p>{{ task.description }}</p>
-                  <p>Date: {{ task.date }}</p>
+            <div class="modal fade" id="taskModal{{ task.Task_id }}" tabindex="-1" aria-labelledby="taskModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header text-center">
+                    <h5 class="modal-title w-100" id="taskModalLabel">{{ task.title }}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body text-start">
+                    <p>
+                      <b>Description:</b>
+                      {{ task.desc }}
+                    </p>
+                  </div>
+                  <div class="modal-footer">
+                    <a class="btn btn-success" style="color: black; margin-left: 6px" href="{% url 'edit_task' task.Task_id %}" role="button">Edit</a>
+                    <a class="btn btn-danger" style="color: black; margin-left: 6px" href="{% url 'delete_task' task.Task_id %}" role="button">Delete</a>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
           {% endfor %}
         </div>
       </div>
       <div class="pending-assignment scrollable-list">
         <div class="titles">Pending Assignments</div>
         <div class="arrow-to-page">
-          <i
-            id="assignment-arrow"
-            onclick="redirectToPage(id)"
-            class="bi bi-arrow-right"
-          ></i>
+          <i id="assignment-arrow" onclick="redirectToPage(id)" class="bi bi-arrow-right"></i>
         </div>
-        <div class="Assignment">
-          <div class="info">
+        <div class="info">
+          {% if pending_assignments %}
             {% for Assignment in pending_assignments %}
-            <div
-              class="item"
-              data-bs-toggle="modal"
-              data-bs-target="#assignmentModal{{ Assignment.Assignment_id }}"
-            >
-              <div class="dot"></div>
-              <div class="text">{{ Assignment.title }}</div>
-            </div>
+              <div class="item" data-bs-toggle="modal" data-bs-target="#assignmentModal{{ Assignment.Assignment_id }}">
+                <div class="dot"></div>
+                <div class="text">{{ Assignment.title }}</div>
+              </div>
 
-            <div
-              class="modal fade"
-              id="assignmentModal{{ Assignment.Assignment_id }}"
-              tabindex="-1"
-              aria-labelledby="assignmentModalLabel"
-              aria-hidden="true"
-            >
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="assignmentModalLabel">
-                      {{ Assignment.title }}
-                    </h5>
-                    <button
-                      type="button"
-                      class="btn-close"
-                      data-bs-dismiss="modal"
-                      aria-label="Close"
-                    ></button>
-                  </div>
-                  <div class="modal-body">
-                    <p>{{ Assignment.description }}</p>
-                    <p>Date: {{ Assignment.date }}</p>
+              <div class="modal fade" id="assignmentModal{{ Assignment.Assignment_id }}" tabindex="-1" aria-labelledby="assignmentModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header text-center">
+                      <h5 class="modal-title w-100" id="assignmentModalLabel">{{ Assignment.title }}</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      {% if Assignment.subject %}
+                        <p>
+                          <b>Subject:</b> {{ Assignment.subject }}
+                        </p>
+                      {% endif %} {% if Assignment.description %}
+                        <p>
+                          <b>Description:</b> {{ Assignment.description }}
+                        </p>
+                      {% endif %} {% if Assignment.due_date %}
+                        <p>
+                          <b>Due Date:</b> {{ Assignment.due_date }}
+                        </p>
+                      {% endif %}
+                    </div>
+                    <div class="modal-footer">
+                      <a class="btn btn-success" style="color: black; margin-left: 6px" href="{% url 'edit_assignment' Assignment.Assignment_id %}" role="button">Edit</a>
+                      <a class="btn btn-danger" style="color: black; margin-left: 6px" href="{% url 'delete_assignment' Assignment.Assignment_id %}" role="button">Delete</a>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
             {% endfor %}
-          </div>
+          {% else %}
+            <p>No Assignments available</p>
+          {% endif %}
         </div>
       </div>
       <div class="recent-material scrollable-list">
         <div class="titles">Recent Materials</div>
         <div class="arrow-to-page">
-          <i
-            id="material-arrow"
-            onclick="redirectToPage(id)"
-            class="bi bi-arrow-right"
-          ></i>
+          <i id="material-arrow" onclick="redirectToPage(id)" class="bi bi-arrow-right"></i>
         </div>
         <div class="Material">
           <div class="info">
             {% for Material in recent_materials %}
-            <div
-              class="item"
-              data-bs-toggle="modal"
-              data-bs-target="#materialModal{{ Material.Material_id }}"
-            >
-              <div class="dot"></div>
-              <div class="text">{{ Material.title }}</div>
-            </div>
+              <div class="item" data-bs-toggle="modal" data-bs-target="#materialModal{{ Material.Material_id }}">
+                <div class="dot"></div>
+                <div class="text">{{ Material.title }}</div>
+              </div>
 
-            <div
-              class="modal fade"
-              id="materialModal{{ Material.Material_id }}"
-              tabindex="-1"
-              aria-labelledby="materialModalLabel"
-              aria-hidden="true"
-            >
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="materialModalLabel">
-                      {{ Material.title }}
-                    </h5>
-                    <button
-                      type="button"
-                      class="btn-close"
-                      data-bs-dismiss="modal"
-                      aria-label="Close"
-                    ></button>
-                  </div>
-                  <div class="modal-body">
-                    <p>{{ Material.description }}</p>
-                    <p>Date: {{ Material.date }}</p>
+              <div class="modal fade" id="materialModal{{ Material.Material_id }}" tabindex="-1" aria-labelledby="materialModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header text-center">
+                      <h5 class="modal-title w-100" id="materialModalLabel">{{ Material.title }}</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      {% if Material.subject %}
+                        <p>
+                          <b>Subject:</b> {{ Material.subject }}
+                        </p>
+                      {% endif %} {% if Material.content %}
+                        <p>
+                          <b>Description:</b> {{ Material.content }}
+                        </p>
+                      {% endif %} {% if Material.Assignment_files %}
+                        <p>
+                          <a style="text-decoration: none; color: black" href="{{ Material.Assignment_files.url }}" target="_blank">Open <i class="bi bi-filetype-pdf"></i></a>
+                        </p>
+                      {% endif %}
+                    </div>
+                    <div class="modal-footer">
+                      <a class="btn btn-success" style="color: black; margin-left: 6px" href="{% url 'edit_material' Material.Material_id %}" role="button">Edit</a>
+                      <a class="btn btn-danger" style="color: black; margin-left: 6px" href="{% url 'delete_material' Material.Material_id %}" role="button">Delete</a>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
             {% endfor %}
           </div>
         </div>
@@ -369,52 +316,45 @@
       <div class="upcoming-reminder scrollable-list">
         <div class="titles">Reminders</div>
         <div class="arrow-to-page">
-          <i
-            id="reminder-arrow"
-            onclick="redirectToPage(id)"
-            class="bi bi-arrow-right"
-          ></i>
+          <i id="reminder-arrow" onclick="redirectToPage(id)" class="bi bi-arrow-right"></i>
         </div>
         <div class="Reminder">
           <div class="info">
             {% for Reminder in upcoming_reminder %}
-            <div
-              class="item"
-              data-bs-toggle="modal"
-              data-bs-target="#reminderModal{{ Reminder.Reminder_id }}"
-            >
-              <div class="dot"></div>
-              <div class="text">{{ Reminder.title }}</div>
-            </div>
+              <div class="item" data-bs-toggle="modal" data-bs-target="#reminderModal{{ Reminder.Reminder_id }}">
+                <div class="dot"></div>
+                <div class="text">{{ Reminder.title }}</div>
+              </div>
 
-            <div
-              class="modal fade"
-              id="reminderModal{{ Reminder.Reminder_id }}"
-              tabindex="-1"
-              aria-labelledby="reminderModalLabel"
-              aria-hidden="true"
-            >
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="reminderModalLabel">
-                      {{ Reminder.title }}
-                    </h5>
-                    <button
-                      type="button"
-                      class="btn-close"
-                      data-bs-dismiss="modal"
-                      aria-label="Close"
-                    ></button>
-                  </div>
-                  <div class="modal-body">
-                    <p>{{ Reminder.description }}</p>
-                    <p>Date: {{ Reminder.date }}</p>
+              <div class="modal fade" id="reminderModal{{ Reminder.Reminder_id }}" tabindex="-1" aria-labelledby="reminderModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header text-center">
+                      <h5 class="modal-title w-100" id="reminderModalLabel">{{ Reminder.title }}</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      {% if Reminder.desc %}
+                        <p>
+                          <b>Description:</b> {{ Reminder.desc }}
+                        </p>
+                      {% endif %} {% if Reminder.R_date %}
+                        <p>
+                          <b>Date:</b> {{ Reminder.R_date }}
+                        </p>
+                      {% endif %} {% if Reminder.R_time %}
+                        <p>
+                          <b>Time:</b> {{ Reminder.R_time }}
+                        </p>
+                      {% endif %}
+                    </div>
+                    <div class="modal-footer">
+                      <a class="btn btn-success" style="color: black; margin-left: 6px" href="{% url 'edit_reminder' Reminder.Reminder_id %}" role="button">Edit</a>
+                      <a class="btn btn-danger" style="color: black; margin-left: 6px" href="{% url 'delete_reminder' Reminder.Reminder_id %}" role="button">Delete</a>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-
             {% endfor %}
           </div>
         </div>
@@ -422,51 +362,51 @@
       <div class="expense-overview scrollable-list">
         <div class="titles">Expenses</div>
         <div class="arrow-to-page">
-          <i
-            id="expense-arrow"
-            onclick="redirectToPage(id)"
-            class="bi bi-arrow-right"
-          ></i>
+          <i id="expense-arrow" onclick="redirectToPage(id)" class="bi bi-arrow-right"></i>
         </div>
         <div class="Expense">
           <div class="info">
             {% for Expense in expenses %}
-            <div
-              class="item"
-              data-bs-toggle="modal"
-              data-bs-target="#expenseModal{{ Expense.Expense_id }}"
-            >
-              <div class="dot"></div>
-              <div class="text">{{ Expense.title }}</div>
-            </div>
+              <div class="item" data-bs-toggle="modal" data-bs-target="#expenseModal{{ Expense.Expense_id }}">
+                <div class="dot"></div>
+                <div class="text">{{ Expense.title }}</div>
+              </div>
 
-            <div
-              class="modal fade"
-              id="expenseModal{{ Expense.Expense_id }}"
-              tabindex="-1"
-              aria-labelledby="expenseModalLabel"
-              aria-hidden="true"
-            >
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="expenseModalLabel">
-                      {{ Expense.title }}
-                    </h5>
-                    <button
-                      type="button"
-                      class="btn-close"
-                      data-bs-dismiss="modal"
-                      aria-label="Close"
-                    ></button>
-                  </div>
-                  <div class="modal-body">
-                    <p>{{ Expense.description }}</p>
-                    <p>Date: {{ Expense.date }}</p>
+              <div class="modal fade" id="expenseModal{{ Expense.Expense_id }}" tabindex="-1" aria-labelledby="expenseModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header text-center">
+                      <h5 class="modal-title w-100" id="expenseModalLabel">{{ Expense.title }}</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      {% if Expense.amount %}
+                        <p>
+                          <b>Amount:</b> {{ Expense.amount }}
+                        </p>
+                      {% endif %}
+                      {% if Expense.Location %}
+                        <p>
+                          <b>Location:</b> {{ Expense.Location }}
+                        </p>
+                      {% endif %}
+                      {% if Expense.date %}
+                        <p>
+                          <b>Date:</b> {{ Expense.date }}
+                        </p>
+                      {% endif %}
+                      {% if Expense.time %}
+                        <p>
+                          <b>Time:</b> {{ Expense.time }}
+                        </p>
+                      {% endif %}
+                    </div>
+                    <div class="modal-footer">
+                      <a class="btn btn-danger" style="color: black; margin-left: 6px" href="{% url 'delete_expense' Expense.Expense_id %}" role="button">Delete</a>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
             {% endfor %}
           </div>
         </div>
@@ -476,32 +416,30 @@
   <script>
     function redirectToPage(arrowId) {
       switch (arrowId) {
-        case "task-arrow":
-          window.location.href = "{% url 'list_task' %}";
-          break;
-        case "assignment-arrow":
-          window.location.href = "{% url 'list_assignment' %}";
-          break;
-        case "material-arrow":
-          window.location.href = "{% url 'list_materials' %}";
-          break;
-        case "reminder-arrow":
-          window.location.href = "{% url 'list_reminder' %}";
-          break;
-        case "expense-arrow":
-          window.location.href = "{% url 'list_expense' %}";
-          break;
-        case "main-page":
-          window.location.href = "{% url 'main' %}";
-          break;
+        case 'task-arrow':
+          window.location.href = "{% url 'list_task' %}"
+          break
+        case 'assignment-arrow':
+          window.location.href = "{% url 'list_assignment' %}"
+          break
+        case 'material-arrow':
+          window.location.href = "{% url 'list_materials' %}"
+          break
+        case 'reminder-arrow':
+          window.location.href = "{% url 'list_reminder' %}"
+          break
+        case 'expense-arrow':
+          window.location.href = "{% url 'list_expense' %}"
+          break
+        case 'main-page':
+          window.location.href = "{% url 'main' %}"
+          break
       }
     }
-
-    var popoverTriggerList = [].slice.call(
-      document.querySelectorAll('[data-bs-toggle="popover"]')
-    );
+    
+    var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
     var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
-      return new bootstrap.Popover(popoverTriggerEl);
-    });
+      return new bootstrap.Popover(popoverTriggerEl)
+    })
   </script>
 </html>
