@@ -14,8 +14,10 @@
   <style>
     body,
     html {
-      height: 100%;
-      margin: 10px;
+      width: 100%;
+      height: 95vh;
+      margin: 10px 0px;
+      background-color: #fafafa;
     }
     .main-body {
       display: grid;
@@ -43,15 +45,6 @@
       cursor: pointer;
     }
     
-    .avatar {
-      position: absolute;
-      top: 17px;
-      right: 20px;
-      border-radius: 50%;
-      width: 45px;
-      height: 45px;
-    }
-    
     .titles {
       position: -webkit-sticky;
       position: sticky;
@@ -59,18 +52,20 @@
       background-color: white;
       font-family: sans-serif;
       font-size: larger;
-      margin-top: 5px;
+      margin-top: 3px;
+      padding-top: 2px 0px;
       text-decoration: black;
       text-align: center;
       height: 35px;
       border-bottom: 2px solid transparent;
       border-image: linear-gradient(0.25turn, rgba(255, 255, 255, 0), rgba(192, 192, 192), rgba(255, 255, 255, 0));
       border-image-slice: 1;
+      cursor: pointer;
     }
     
     .arrow-to-page {
       position: absolute;
-      right: 10px;
+      right: 15px;
       top: -1.7px;
       cursor: pointer;
       font-size: 20px;
@@ -79,9 +74,11 @@
     .tasks {
       grid-area: 2 / 1 / 8 / 3;
       position: relative;
-      border: 1px solid black;
-      border-radius: 5px;
-      margin: 1px 10px;
+      background-color: #fff;
+      border: 1px solid #e0e0e0;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      border-radius: 7px;
+      margin: 1px 10px 1px 40px;
       height: 522px;
       text-align: center;
       overflow-y: auto;
@@ -90,8 +87,10 @@
     .pending-assignment {
       grid-area: 2 / 3 / 5 / 5;
       position: relative;
-      border: 1px solid black;
-      border-radius: 5px;
+      background-color: #fff;
+      border: 1px solid #e0e0e0;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      border-radius: 7px;
       margin: 1px 10px;
       height: 250px;
       text-align: center;
@@ -101,8 +100,10 @@
     .upcoming-reminder {
       grid-area: 5 / 3 / 8 / 5;
       position: relative;
-      border: 1px solid black;
-      border-radius: 5px;
+      background-color: #fff;
+      border: 1px solid #e0e0e0;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      border-radius: 7px;
       margin: 1px 10px;
       height: 250px;
       text-align: center;
@@ -112,9 +113,11 @@
     .recent-material {
       grid-area: 2 / 5 / 5 / 7;
       position: relative;
-      border: 1px solid black;
-      border-radius: 5px;
-      margin: 1px 10px;
+      background-color: #fff;
+      border: 1px solid #e0e0e0;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      border-radius: 7px;
+      margin: 1px 40px 1px 10px;
       height: 250px;
       text-align: center;
       overflow-y: auto;
@@ -123,9 +126,11 @@
     .expense-overview {
       grid-area: 5 / 5 / 8 / 7;
       position: relative;
-      border: 1px solid black;
-      border-radius: 5px;
-      margin: 1px 10px;
+      background-color: #fff;
+      border: 1px solid #e0e0e0;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      border-radius: 7px;
+      margin: 1px 40px 1px 10px;
       height: 250px;
       text-align: center;
       overflow-y: auto;
@@ -148,11 +153,12 @@
     }
     
     .dot {
-      width: 7px;
-      height: 7px;
+      width: 5.5px;
+      height: 5.5px;
       background-color: #01074f;
       border-radius: 50%;
-      margin-right: 15px;
+      margin-left: 10px;
+      margin-right: 20px;
     }
     
     .text {
@@ -168,12 +174,100 @@
     .modal-body {
       text-align: start;
     }
+    
+    .avt {
+      position: absolute;
+      top: 17px;
+      right: 20px;
+      border-radius: 50%;
+      width: 45px;
+      height: 45px;
+      cursor: pointer;
+    }
+    
+    .sub-menu-wrap {
+      position: absolute;
+      top: 100px;
+      right: 10px;
+      width: 250px;
+      max-height: 0px;
+      overflow: hidden;
+      transition: max-height 0.5s;
+    }
+    
+    .sub-menu-wrap.open-menu {
+      max-height: 400px;
+    }
+    
+    .sub-menu {
+      background: #fff;
+      padding: 20px;
+      margin: 10x;
+    }
+    
+    .user-info {
+      display: flex;
+      align-items: center;
+    }
+    
+    .user-info h3 {
+      font-weight: 500;
+    }
+    
+    .sub-menu hr {
+      border: 0;
+      height: 1px;
+      width: 100%;
+      background: #ccc;
+      margin: 15px 0 10px;
+    }
+    
+    .sub-menu-link {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      color: #525252;
+      margin: 12px 0;
+    }
+    
+    .sub-menu-link p {
+      width: 100%;
+    }
+    
+    .sub-menu-link span {
+      font-size: 32px;
+      transition: transform 0.5s;
+    }
+    
+    .sub-menu-link:hover span {
+      transform: translateX(5px);
+    }
+    
+    .sub-menu-link:hover p {
+      font-weight: 600;
+    }
   </style>
 
   <body>
     <div class="main-body">
-      <div class="profile-button">
-        <img class="avatar" src="{{ user_info.profile_pic.url }}" alt="Profile" />
+      <div style="cursor: pointer;" data-toogle="dropdown" class="profile-button">
+        <img class="avt" src="{{ user_info.profile_pic.url }}" alt="Profile" onclick="toggleMenu()" />
+        <div class="sub-menu-wrap" id="subMenu">
+          <div class="sub-menu">
+            <div class="user-info">
+              <h3>{{ user.username }}</h3>
+            </div>
+            <hr />
+            <a href="#" class="sub-menu-link">
+              <p>Your Profile</p>
+              <span>></span>
+            </a>
+            <a href="#" class="sub-menu-link">
+              <p>Logout</p>
+              <span>></span>
+            </a>
+          </div>
+        </div>
       </div>
       <div class="navigatin">
         <h1 style="margin-top: -17px;" id="main-page" onclick="redirectToPage(id)">ClassHub</h1>
@@ -441,5 +535,11 @@
     var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
       return new bootstrap.Popover(popoverTriggerEl)
     })
+    
+    let subMenu = document.getElementById('subMenu')
+    
+    function toggleMenu() {
+      subMenu.classList.toggle('open-menu')
+    }
   </script>
 </html>
