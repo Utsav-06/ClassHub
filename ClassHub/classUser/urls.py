@@ -5,6 +5,7 @@ from django.urls import path
 from .views import *
 
 urlpatterns = [
+    path("temp/", temp, name="temp"),
     # ---------------------------------------------------------------------
     # User Authentication and welcome page
     path("", welcome, name="welcome"),

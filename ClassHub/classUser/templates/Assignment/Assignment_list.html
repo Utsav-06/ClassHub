@@ -20,6 +20,11 @@
     />
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
   </head>
+  <style>
+    body {
+      font-family: monospace;
+    }
+  </style>
   <body>
     <div style="text-align: center">
       <h2 style="margin: 40px">Assignments</h2>
@@ -54,15 +59,25 @@
         style="width: 100%; margin-top: 10px; border-collapse: collapse"
       >
         <thead>
-          <tr>
-            <th style="padding: 10px; text-align: center"><h4>Subject</h4></th>
-            <th style="padding: 10px; text-align: center"><h4>Title</h4></th>
+          <tr style="border-bottom: gray">
+            <th style="padding: 10px; text-align: center">
+              <h4>Subject</h4>
+            </th>
+            <th style="padding: 10px; text-align: center">
+              <h4>Title</h4>
+            </th>
             <th style="padding: 10px; text-align: center">
               <h4>Description</h4>
             </th>
-            <th style="padding: 10px; text-align: center"><h4>Due Date</h4></th>
-            <th style="padding: 10px; text-align: center"><h4>Status</h4></th>
-            <th style="padding: 10px; text-align: center"><h4>Files</h4></th>
+            <th style="padding: 10px; text-align: center">
+              <h4>Due Date</h4>
+            </th>
+            <th style="padding: 10px; text-align: center">
+              <h4>Status</h4>
+            </th>
+            <th style="padding: 10px; text-align: center">
+              <h4>Files</h4>
+            </th>
             <th style="padding: 10px; text-align: center">
               <a
                 style="margin-left: 5px"
@@ -93,12 +108,13 @@
               {{ Assignment.status|capfirst }}
             </td>
             <td style="padding: 10px; text-align: center">
-              {% if Assignment.Assignment_files %}<a
+              {% if Assignment.Assignment_files %}
+              <a
                 style="text-decoration: none; color: black"
                 href="{{ Assignment.Assignment_files.url }}"
                 target="_blank"
-                >Open <i class="bi bi-filetype-pdf"></i>
-              </a>
+                >Open <i class="bi bi-filetype-pdf"></i
+              ></a>
               {% else %} No files attached {% endif %}
             </td>
 
@@ -108,17 +124,15 @@
                 style="color: black; margin-right: 6px"
                 href="{% url 'edit_assignment' Assignment.Assignment_id %}"
                 role="button"
-              >
-                <i class="bi bi-pencil-fill"></i>
-              </a>
+                ><i class="bi bi-pencil-fill"></i
+              ></a>
               <a
                 class="btn btn-danger"
                 style="color: black; margin-left: 6px"
                 href="{% url 'delete_assignment' Assignment.Assignment_id %}"
                 role="button"
-              >
-              <i class="bi bi-trash-fill"></i>
-              </a>
+                ><i class="bi bi-trash-fill"></i
+              ></a>
             </td>
           </tr>
         </tbody>

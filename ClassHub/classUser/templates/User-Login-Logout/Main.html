@@ -18,6 +18,7 @@
       height: 95vh;
       margin: 10px 0px;
       background-color: #fafafa;
+      font-family: monospace;
     }
     .main-body {
       display: grid;
@@ -27,7 +28,7 @@
       grid-row-gap: 20px;
     }
     
-    .navigatin {
+    .navigation-bar {
       grid-area: 1 / 1 / 2 / 7;
       position: relative;
       border-bottom: 2px solid transparent;
@@ -40,7 +41,43 @@
       justify-content: center;
     }
     
-    .navigatin h1 {
+    nav {
+      width: 100%;
+      padding: 10px 10%;
+      margin-right: 35px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+    }
+    
+    nav h1 {
+      position: absolute;
+      top: 29px;
+      left: 60px;
+      font-style: normal;
+    }
+    
+    nav ul {
+      width: 100%;
+      margin-top: 20px;
+      text-align: center;
+    }
+    
+    nav ul li {
+      display: inline-block;
+      list-style: none;
+      margin: 10px 20px;
+    }
+    
+    nav ul li a {
+      color: black;
+      font-family: monospace;
+      font-size: 17px;
+      text-decoration: none;
+    }
+    
+    .navigation-bar h1 {
       font-size: 32px;
       cursor: pointer;
     }
@@ -50,8 +87,7 @@
       position: sticky;
       top: 0;
       background-color: white;
-      font-family: sans-serif;
-      font-size: larger;
+      font-size: 20px;
       margin-top: 3px;
       padding-top: 2px 0px;
       text-decoration: black;
@@ -250,27 +286,28 @@
 
   <body>
     <div class="main-body">
-      <div style="cursor: pointer;" data-toogle="dropdown" class="profile-button">
-        <img class="avt" src="{{ user_info.profile_pic.url }}" alt="Profile" onclick="toggleMenu()" />
-        <div class="sub-menu-wrap" id="subMenu">
-          <div class="sub-menu">
-            <div class="user-info">
-              <h3>{{ user.username }}</h3>
-            </div>
-            <hr />
-            <a href="#" class="sub-menu-link">
-              <p>Your Profile</p>
-              <span>></span>
-            </a>
-            <a href="#" class="sub-menu-link">
-              <p>Logout</p>
-              <span>></span>
-            </a>
-          </div>
-        </div>
-      </div>
-      <div class="navigatin">
-        <h1 style="margin-top: -17px;" id="main-page" onclick="redirectToPage(id)">ClassHub</h1>
+      <div class="navigation-bar">
+        <nav>
+          <h1 id="main-page" onclick="redirectToPage(id)">ClassHub</h1>
+
+          <ul>
+            <li>
+              <a href="{% url 'list_task' %}">Tasks</a>
+            </li>
+            <li>
+              <a href="{% url 'list_assignment' %}">Assignment</a>
+            </li>
+            <li>
+              <a href="{% url 'list_materials' %}">Materials</a>
+            </li>
+            <li>
+              <a href="{% url 'list_reminder' %}">Reminders</a>
+            </li>
+            <li>
+              <a href="{% url 'list_expense' %}">Expenses</a>
+            </li>
+          </ul>
+        </nav>
       </div>
 
       <div class="tasks">
@@ -478,18 +515,15 @@
                         <p>
                           <b>Amount:</b> {{ Expense.amount }}
                         </p>
-                      {% endif %}
-                      {% if Expense.Location %}
+                      {% endif %} {% if Expense.Location %}
                         <p>
                           <b>Location:</b> {{ Expense.Location }}
                         </p>
-                      {% endif %}
-                      {% if Expense.date %}
+                      {% endif %} {% if Expense.date %}
                         <p>
                           <b>Date:</b> {{ Expense.date }}
                         </p>
-                      {% endif %}
-                      {% if Expense.time %}
+                      {% endif %} {% if Expense.time %}
                         <p>
                           <b>Time:</b> {{ Expense.time }}
                         </p>
