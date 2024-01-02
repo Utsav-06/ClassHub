@@ -76,7 +76,9 @@
         <thead>
           <tr style="border-bottom: gray">
             <th style="padding: 10px; text-align: center"><h4>Title</h4></th>
-            <th style="padding: 10px; text-align: center"><h4>Content</h4></th>
+            <th style="padding: 10px; text-align: center">
+              <h4>Description</h4>
+            </th>
             <th style="padding: 10px; text-align: center">
               <h4>Date Added</h4>
             </th>
@@ -88,13 +90,19 @@
           {% for material in materials %}
           <tr>
             <td style="padding: 10px; text-align: center">
+              {% if material.title %}
               <p style="margin: 1px">{{ material.title }}</p>
+              {% else %} - {%endif %}
             </td>
             <td style="padding: 10px; text-align: center">
-              <p style="margin: 1px">{{ material.content }}</p>
+              {% if material.description %}
+              <p style="margin: 1px">{{ material.description }}</p>
+              {% else %} - {%endif %}
             </td>
             <td style="padding: 10px; text-align: center">
+              {% if material.date_added %}
               <p style="margin: 1px">{{ material.date_added }}</p>
+              {% else %} - {%endif %}
             </td>
             <td style="padding: 10px; text-align: center">
               {% if material.Assignment_files %}

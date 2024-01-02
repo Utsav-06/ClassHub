@@ -220,14 +220,14 @@ def Add_Task(request):
 
     if request.method == "POST":
         title = request.POST.get("title")
-        desc = request.POST.get("desc")
+        description = request.POST.get("description")
         priority = request.POST.get("priority")
 
         if title:
             task_info.title = title
 
-        if desc:
-            task_info.desc = desc
+        if description:
+            task_info.description = description
 
         if priority:
             task_info.priority = True
@@ -250,15 +250,15 @@ def Edit_Task(request, pk):
 
     if request.method == "POST":
         title = request.POST.get("title", "")
-        desc = request.POST.get("desc", "")
+        description = request.POST.get("description", "")
         due_date = request.POST.get("due_date", "")
         priority = request.POST.get("priority", "")
 
         if title:
             task_info.title = title
 
-        if desc:
-            task_info.desc = desc
+        if description:
+            task_info.description = description
 
         if due_date:
             task_info.due_date = due_date
@@ -294,11 +294,11 @@ def Add_Assignment(request):
     if request.method == "POST":
         subject = request.POST.get("subject", "")
         title = request.POST.get("title", "")
-        desc = request.POST.get("desc", "")
+        description = request.POST.get("description", "")
         due_date = request.POST.get("due_date", "")
         Assignment_files = request.FILES.get("Assignment_files", None)
         status = request.POST.get("status", "")
-        print(desc)
+        print(description)
         print(title)
 
         if subject:
@@ -307,8 +307,8 @@ def Add_Assignment(request):
         if title:
             Assi_info.title = title
 
-        if desc:
-            Assi_info.desc = desc
+        if description:
+            Assi_info.description = description
 
         if due_date:
             Assi_info.due_date = due_date
@@ -343,7 +343,7 @@ def Edit_Assignment(request, pk):
     if request.method == "POST":
         subject = request.POST.get("subject", "")
         title = request.POST.get("title", "")
-        description = request.POST.get("desc", "")
+        description = request.POST.get("description", "")
         due_date = request.POST.get("due_date", "")
         Assignment_files = request.FILES.get("Assignment_files", None)
         status = request.POST.get("status", "")
@@ -400,8 +400,7 @@ def Add_Material(request):
     if request.method == "POST":
         subject = request.POST.get("subject", "")
         title = request.POST.get("title", "")
-        content = request.POST.get("content", "")
-        category = request.POST.get("category", "")
+        description = request.POST.get("description", "")
         Assignment_files = request.FILES.get("Assignment_files", None)
 
         if subject:
@@ -410,11 +409,8 @@ def Add_Material(request):
         if title:
             material_info.title = title
 
-        if content:
-            material_info.content = content
-
-        if category:
-            material_info.category = category
+        if description:
+            material_info.description = description
 
         if "Assignment_files" in request.FILES:
             material_info.Assignment_files = Assignment_files
@@ -449,19 +445,15 @@ def Edit_Material(request, pk):
     material_info = Material.objects.get(Material_id=pk)
 
     if request.method == "POST":
-        title = request.POST.get("title")
-        content = request.POST.get("content")
-        category = request.POST.get("category")
-        Assignment_files = request.POST.get("status")
+        title = request.POST.get("title", "")
+        description = request.POST.get("description", "")
+        Assignment_files = request.FILES.get("Assignment_files", None)
 
         if title:
             material_info.title = title
 
-        if content:
-            material_info.desc = content
-
-        if category:
-            material_info.due_date = category
+        if description:
+            material_info.description = description
 
         if Assignment_files:
             material_info.Assignment_files = Assignment_files
@@ -497,7 +489,7 @@ def Set_Reminder(request):
     Rem_info.user = request.user
     if request.method == "POST":
         title = request.POST.get("title", "")
-        desc = request.POST.get("desc", "")
+        description = request.POST.get("description", "")
         R_date = request.POST.get("R_date", "")
         R_time = request.POST.get("R_time", "")
         Location = request.POST.get("Location", "")
@@ -505,8 +497,8 @@ def Set_Reminder(request):
         if title:
             Rem_info.title = title
 
-        if desc:
-            Rem_info.desc = desc
+        if description:
+            Rem_info.description = description
 
         if R_date:
             Rem_info.R_date = R_date
@@ -535,7 +527,7 @@ def Edit_Reminder(request, pk):
 
     if request.method == "POST":
         title = request.POST.get("title", "")
-        desc = request.POST.get("desc", "")
+        description = request.POST.get("description", "")
         R_date = request.POST.get("R_date", "")
         R_time = request.POST.get("R_time", "")
         Location = request.POST.get("Location", "")
@@ -543,8 +535,8 @@ def Edit_Reminder(request, pk):
         if title:
             Rem_info.title = title
 
-        if desc:
-            Rem_info.desc = desc
+        if description:
+            Rem_info.description = description
 
         if R_date:
             Rem_info.R_date = R_date

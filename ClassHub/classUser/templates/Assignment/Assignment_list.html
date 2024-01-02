@@ -93,19 +93,29 @@
         <tbody>
           <tr>
             <td style="padding: 10px; text-align: center">
-              {{ Assignment.subject }}
+              {% if Assignment.subject %}
+              <p>{{Assignment.subject}}</p>
+              {% else %} - {%endif %}
             </td>
             <td style="padding: 10px; text-align: center">
-              {{ Assignment.title }}
+              {% if Assignment.title %}
+              <p>{{Assignment.title}}</p>
+              {% else %} - {%endif %}
             </td>
             <td style="padding: 10px; text-align: center">
-              {{ Assignment.description }}
+              {% if Assignment.description %}
+              <p>{{Assignment.description}}</p>
+              {% else %} - {%endif %}
             </td>
             <td style="padding: 10px; text-align: center">
-              {{ Assignment.due_date }}
+              {% if Assignment.due_date %}
+              <p>{{Assignment.due_date}}</p>
+              {% else %} - {%endif %}
             </td>
             <td style="padding: 10px; text-align: center">
-              {{ Assignment.status|capfirst }}
+              {% if Assignment.status %}
+              <p>{{Assignment.status|capfirst}}</p>
+              {% else %} - {%endif %}
             </td>
             <td style="padding: 10px; text-align: center">
               {% if Assignment.Assignment_files %}

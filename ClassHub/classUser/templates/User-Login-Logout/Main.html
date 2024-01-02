@@ -331,9 +331,17 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
                   <div class="modal-body text-start">
+                    {% if task.description %}
+                      <p>
+                        <b>Description:</b> {{ task.description }}
+                      </p>
+                    {% endif %}
                     <p>
-                      <b>Description:</b>
-                      {{ task.desc }}
+                      <b>Priority:</b> {% if task.priority %}
+                        Important
+                      {% else %}
+                        Not Important
+                      {% endif %}
                     </p>
                   </div>
                   <div class="modal-footer">
@@ -421,9 +429,9 @@
                         <p>
                           <b>Subject:</b> {{ Material.subject }}
                         </p>
-                      {% endif %} {% if Material.content %}
+                      {% endif %} {% if Material.description %}
                         <p>
-                          <b>Description:</b> {{ Material.content }}
+                          <b>Description:</b> {{ Material.description }}
                         </p>
                       {% endif %} {% if Material.Assignment_files %}
                         <p>
@@ -464,9 +472,9 @@
                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                      {% if Reminder.desc %}
+                      {% if Reminder.description %}
                         <p>
-                          <b>Description:</b> {{ Reminder.desc }}
+                          <b>Description:</b> {{ Reminder.description }}
                         </p>
                       {% endif %} {% if Reminder.R_date %}
                         <p>

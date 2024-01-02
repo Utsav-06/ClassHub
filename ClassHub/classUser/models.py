@@ -24,7 +24,7 @@ class Task(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, default="")
     Task_id = models.AutoField(primary_key=True, auto_created=True)
     title = models.CharField(max_length=50)
-    desc = models.TextField(blank=True)
+    description = models.TextField(blank=True)
     due_date = models.DateField(default=date.today)
     priority = models.BooleanField(default=False)
 
@@ -37,7 +37,7 @@ class Assignment(models.Model):
     Assignment_id = models.AutoField(primary_key=True, auto_created=True)
     subject = models.CharField(max_length=255, blank=True)
     title = models.CharField(max_length=255)
-    description = models.CharField(max_length=500, blank=True)
+    description = models.TextField(blank=True)
     due_date = models.DateField(blank=True)
     Assignment_files = models.FileField(
         upload_to="Uploaded_files/Assignment_pdfs/", blank=True
@@ -53,7 +53,7 @@ class Material(models.Model):
     Material_id = models.AutoField(primary_key=True, auto_created=True)
     subject = models.CharField(max_length=255, blank=True)
     title = models.CharField(max_length=255)
-    content = models.TextField(blank=True)
+    description = models.TextField(blank=True)
     date_added = models.DateField(default=date.today)
     Assignment_files = models.FileField(
         upload_to="Uploaded_files/Materials/", blank=True
@@ -67,7 +67,7 @@ class Reminder(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, default="")
     Reminder_id = models.AutoField(primary_key=True, auto_created=True)
     title = models.CharField(max_length=255)
-    desc = models.TextField(blank=True)
+    description = models.TextField(blank=True)
     R_date = models.DateField(blank=False)
     R_time = models.TimeField(blank=False)
     Location = models.CharField(max_length=100, blank=True)

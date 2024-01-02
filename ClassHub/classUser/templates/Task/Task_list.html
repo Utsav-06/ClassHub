@@ -78,8 +78,16 @@
         {% for Tasks in task_list %}
         <tbody>
           <tr>
-            <td style="padding: 10px; text-align: center">{{ Tasks.title }}</td>
-            <td style="padding: 10px; text-align: center">{{ Tasks.desc }}</td>
+            <td style="padding: 10px; text-align: center">
+              {% if Tasks.title %}
+              <p>{{ Tasks.title }}</p>
+              {% else %} - {%endif %}
+            </td>
+            <td style="padding: 10px; text-align: center">
+              {% if Tasks.description %}
+              <p>{{ Tasks.description }}</p>
+              {% else %} - {%endif %}
+            </td>
             <td style="padding: 10px; text-align: center">
               {% if Tasks.priority %}Important {% else %} Not Important{%endif%}
             </td>
