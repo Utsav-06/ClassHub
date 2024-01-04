@@ -15,6 +15,15 @@
     body {
       font-family: monospace;
     }
+
+    .data-row {
+      text-align: center;
+    }
+
+    .text-data{
+      margin-top: 10px;
+      margin-bottom: 0px;
+    }
   </style>
   <body>
     <div style="text-align: center">
@@ -58,25 +67,25 @@
           {% for Tasks in task_list %}
             <tbody>
               <tr>
-                <td style="padding: 10px; text-align: center">
+                <td class="data-row">
                   {% if Tasks.title %}
-                    <p>{{ Tasks.title }}</p>
+                    <p class="text-data">{{ Tasks.title }}</p>
                   {% else %}
                     -
                   {% endif %}
                 </td>
-                <td style="padding: 10px; text-align: center">
+                <td class="data-row">
                   {% if Tasks.description %}
-                    <p>{{ Tasks.description }}</p>
+                    <p class="text-data">{{ Tasks.description }}</p>
                   {% else %}
                     -
                   {% endif %}
                 </td>
-                <td style="padding: 10px; text-align: center">
+                <td class="data-row">
                   {% if Tasks.priority %}
-                    Important
+                    <p class="text-data">Important</p>
                   {% else %}
-                    Not Important
+                    <p class="text-data">Not Important</p>
                   {% endif %}
                 </td>
 
@@ -93,7 +102,7 @@
               <th></th>
               <th></th>
               <th style="padding-top: 30px">
-                <p>No Reminders</p>
+                <p>-- No Tasks Found --</p>
               </th>
               <th></th>
             </tr>

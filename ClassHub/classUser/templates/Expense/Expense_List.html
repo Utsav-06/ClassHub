@@ -15,6 +15,15 @@
     body {
       font-family: monospace;
     }
+    
+    .data-row {
+      text-align: center;
+    }
+    
+    .expense-data {
+      margin-top: 10px;
+      margin-bottom: 0px;
+    }
   </style>
   <body>
     <div style="text-align: center">
@@ -67,12 +76,43 @@
           {% for expenses in expense_list %}
             <tbody>
               <tr>
-                <td style="padding: 10px; text-align: center">{{ expenses.title }}</td>
-                <td style="padding: 10px; text-align: center">{{ expenses.amount }}</td>
-                <td style="padding: 10px; text-align: center">{{ expenses.Location }}</td>
-                <td style="padding: 10px; text-align: center">{{ expenses.date }}</td>
-                <td style="padding: 10px; text-align: center">{{ expenses.time }}</td>
-                <td style="padding: 10px; text-align: center">
+                <td class="data-row">
+                  {% if expenses.title %}
+                    <p class="expense-data">{{ expenses.title }}</p>
+                  {% else %}
+                    -
+                  {% endif %}
+                </td>
+                <td class="data-row">
+                  {% if expenses.amount %}
+                    <p class="expense-data">{{ expenses.amount }}</p>
+                  {% else %}
+                    -
+                  {% endif %}
+                </td>
+                <td class="data-row">
+                  {% if expenses.Location %}
+                    <p class="expense-data">{{ expenses.Location }}</p>
+                  {% else %}
+                    -
+                  {% endif %}
+                </td>
+                <td class="data-row">
+                  {% if expenses.date %}
+                    <p class="expense-data">{{ expenses.date }}</p>
+                  {% else %}
+                    -
+                  {% endif %}
+                </td>
+                <td class="data-row">
+                  {% if expenses.time %}
+                    <p class="expense-data">{{ expenses.time }}</p>
+                  {% else %}
+                    -
+                  {% endif %}
+                </td>
+
+                <td class="data-row" style="padding: 10px; text-align: center">
                   <a class="btn btn-danger" style="color: black; margin-left: 10px" href="{% url 'delete_expense' expenses.Expense_id %}" role="button"><i class="bi bi-trash-fill"></i></a>
                 </td>
               </tr>
@@ -85,7 +125,7 @@
               <th></th>
               <th></th>
               <th style="padding-top: 30px">
-                <p>No Expenses</p>
+                <p>-- No Expenses Found --</p>
               </th>
               <th></th>
               <th></th>

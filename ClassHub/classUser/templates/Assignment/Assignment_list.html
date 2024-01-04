@@ -15,6 +15,15 @@
     body {
       font-family: monospace;
     }
+    
+    .data-row {
+      text-align: center;
+    }
+    
+    .assignment-data {
+      margin-top: 10px;
+      margin-bottom: 0px;
+    }
   </style>
   <body>
     <div style="text-align: center">
@@ -67,44 +76,46 @@
           {% for Assignment in Assignments %}
             <tbody>
               <tr>
-                <td style="padding: 10px; text-align: center">
+                <td class="data-row">
                   {% if Assignment.subject %}
-                    <p>{{ Assignment.subject }}</p>
+                    <p class="assignment-data">{{ Assignment.subject }}</p>
                   {% else %}
                     -
                   {% endif %}
                 </td>
-                <td style="padding: 10px; text-align: center">
+                <td class="data-row">
                   {% if Assignment.title %}
-                    <p>{{ Assignment.title }}</p>
+                    <p class="assignment-data">{{ Assignment.title }}</p>
                   {% else %}
                     -
                   {% endif %}
                 </td>
-                <td style="padding: 10px; text-align: center">
+                <td class="data-row">
                   {% if Assignment.description %}
-                    <p>{{ Assignment.description }}</p>
+                    <p class="assignment-data">{{ Assignment.description }}</p>
                   {% else %}
                     -
                   {% endif %}
                 </td>
-                <td style="padding: 10px; text-align: center">
+                <td class="data-row">
                   {% if Assignment.due_date %}
-                    <p>{{ Assignment.due_date }}</p>
+                    <p class="assignment-data">{{ Assignment.due_date }}</p>
                   {% else %}
                     -
                   {% endif %}
                 </td>
-                <td style="padding: 10px; text-align: center">
+                <td class="data-row">
                   {% if Assignment.status %}
-                    <p>{{ Assignment.status|capfirst }}</p>
+                    <p class="assignment-data">{{ Assignment.status|capfirst }}</p>
                   {% else %}
                     -
                   {% endif %}
                 </td>
-                <td style="padding: 10px; text-align: center">
+                <td class="data-row">
                   {% if Assignment.Assignment_files %}
-                    <a style="text-decoration: none; color: black" href="{{ Assignment.Assignment_files.url }}" target="_blank">Open <i class="bi bi-filetype-pdf"></i></a>
+                    <p class="assignment-data">
+                      <a style="text-decoration: none; color: black" href="{{ Assignment.Assignment_files.url }}" target="_blank">Open <i class="bi bi-filetype-pdf"></i></a>
+                    </p>
                   {% else %}
                     No files attached
                   {% endif %}
@@ -124,7 +135,7 @@
               <th></th>
               <th></th>
               <th style="padding-top: 30px">
-                <p>No Assignments</p>
+                <p>-- No Assignments Found --</p>
               </th>
               <th></th>
               <th></th>
