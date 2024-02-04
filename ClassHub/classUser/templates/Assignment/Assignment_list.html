@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Assignments</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css" />
+    <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  </head>
+  <style>
+    body {
+      font-family: monospace;
+    }
+    
+    .data-row {
+      text-align: center;
+    }
+    
+    .assignment-data {
+      margin-top: 10px;
+      margin-bottom: 0px;
+    }
+  </style>
+  <body>
+    <div style="text-align: center">
+      <h2 style="margin: 40px">Assignments</h2>
+    </div>
+    <div>
+      <a class="btn btn-primary" style="
+          position: absolute;
+          margin-top: 10px;
+          margin-left: 10px;
+          top: 0px;
+          left: 0px;
+        " href="{% url 'main' %}" role="button">Home</a>
+    </div>
+
+    <div style="
+        margin: 20px;
+        border: 1.5px solid black;
+        border-radius: 10px;
+        width: 98%;
+        margin: 0 auto;
+      ">
+      <table class="table table-hover" style="width: 100%; margin-top: 10px; border-collapse: collapse">
+        <thead>
+          <tr style="border-bottom: gray">
+            <th style="padding: 10px; text-align: center">
+              <h4>Subject</h4>
+            </th>
+            <th style="padding: 10px; text-align: center">
+              <h4>Title</h4>
+            </th>
+            <th style="padding: 10px; text-align: center">
+              <h4>Description</h4>
+            </th>
+            <th style="padding: 10px; text-align: center">
+              <h4>Due Date</h4>
+            </th>
+            <th style="padding: 10px; text-align: center">
+              <h4>Status</h4>
+            </th>
+            <th style="padding: 10px; text-align: center">
+              <h4>Files</h4>
+            </th>
+            <th style="padding: 10px; text-align: center">
+              <a style="margin-left: 5px" class="btn btn-primary" href="{% url 'add_assignment' %}" role="button">Add Assignment</a>
+            </th>
+          </tr>
+        </thead>
+        {% if Assignments %}
+          {% for Assignment in Assignments %}
+            <tbody>
+              <tr>
+                <td class="data-row">
+                  {% if Assignment.subject %}
+                    <p class="assignment-data">{{ Assignment.subject }}</p>
+                  {% else %}
+                    -
+                  {% endif %}
+                </td>
+                <td class="data-row">
+                  {% if Assignment.title %}
+                    <p class="assignment-data">{{ Assignment.title }}</p>
+                  {% else %}
+                    -
+                  {% endif %}
+                </td>
+                <td class="data-row">
+                  {% if Assignment.description %}
+                    <p class="assignment-data">{{ Assignment.description }}</p>
+                  {% else %}
+                    -
+                  {% endif %}
+                </td>
+                <td class="data-row">
+                  {% if Assignment.due_date %}
+                    <p class="assignment-data">{{ Assignment.due_date }}</p>
+                  {% else %}
+                    -
+                  {% endif %}
+                </td>
+                <td class="data-row">
+                  {% if Assignment.status %}
+                    <p class="assignment-data">{{ Assignment.status|capfirst }}</p>
+                  {% else %}
+                    -
+                  {% endif %}
+                </td>
+                <td class="data-row">
+                  {% if Assignment.Assignment_files %}
+                    <p class="assignment-data">
+                      <a style="text-decoration: none; color: black" href="{{ Assignment.Assignment_files.url }}" target="_blank">Open <i class="bi bi-filetype-pdf"></i></a>
+                    </p>
+                  {% else %}
+                    No files attached
+                  {% endif %}
+                </td>
+
+                <td style="padding: 10px; text-align: center">
+                  <a class="btn btn-success" style="color: black; margin-right: 6px" href="{% url 'edit_assignment' Assignment.Assignment_id %}" role="button"><i class="bi bi-pencil-fill"></i></a>
+                  <a class="btn btn-danger" style="color: black; margin-left: 6px" href="{% url 'delete_assignment' Assignment.Assignment_id %}" role="button"><i class="bi bi-trash-fill"></i></a>
+                </td>
+              </tr>
+            </tbody>
+          {% endfor %}
+        {% else %}
+          <tbody>
+            <tr>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th style="padding-top: 30px">
+                <p>-- No Assignments Found --</p>
+              </th>
+              <th></th>
+              <th></th>
+              <th></th>
+            </tr>
+          </tbody>
+        {% endif %}
+      </table>
+    </div>
+  </body>
+</html>
