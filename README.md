@@ -40,5 +40,3 @@ If you'd like to contribute to ClassHub, please follow these guidelines:
 - Push to the branch: `git push origin feature/your-feature`.
 - Submit a pull request.
 
-
-Change the branch to master to see the codebase of the webapp.
