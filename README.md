@@ -31,7 +31,7 @@ ClassHub is a comprehensive web application designed to streamline educational a
     - `python manage.py migrate`
 4. Start the development server: `python manage.py runserver`.
 
-## Want to Contributing 
+## Want to Contribute 
 
 If you'd like to contribute to ClassHub, please follow these guidelines:
 - Fork the repository.
