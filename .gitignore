@@ -4,9 +4,9 @@ ClassHub/classUser/migrations
 ClassHub/ClassHub/db.sqlite3
 ClassHub/Uploaded_files
 ClassHub/profile_pics
-node_modules/
 ClassHub/classUser/__pycache__/
 package-lock.json
 package.json
 .vscode/extensions.json
 Post_adds.txt
+ClassHub/db.sqlite3
