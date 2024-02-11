@@ -21,9 +21,8 @@
         <nav>
           <h1 id="main-page" onclick="redirectToPage(id)">ClassHub</h1>
 
-          <div class="tdnn">
-            <div class="moon"></div>
-          </div>
+          <input type="checkbox" id="theme-toggle" />
+          <label for="theme-toggle"></label>
 
           <ul>
             <li>
@@ -334,34 +333,10 @@
           break
       }
     }
-    
-    $('body').hide()
-    
-    function saveThemePreference() {
-      const body = document.body
-      const isDarkMode = body.classList.contains('dark')
-      localStorage.setItem('theme', isDarkMode ? 'dark' : 'light')
-    }
-    
-    function loadThemePreference() {
-      const savedTheme = localStorage.getItem('theme')
-      if (savedTheme === 'dark') {
-        $('body').addClass('dark')
-        $('.moon').addClass('sun')
-        $('.tdnn').addClass('day')
-      }
-      $('body').show()
-    }
-    
-    $(document).ready(function () {
-      loadThemePreference()
-    })
-    
-    $('.tdnn').click(function () {
-      $('body').toggleClass('dark')
-      $('.moon').toggleClass('sun')
-      $('.tdnn').toggleClass('day')
-      saveThemePreference()
+   
+    document.getElementById('theme-toggle').addEventListener('click', (e) => {
+      const checked = e.target.checked
+      document.body.setAttribute('theme', checked ? 'dark' : 'light')
     })
   </script>
 </html>
