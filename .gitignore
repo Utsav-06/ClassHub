@@ -10,3 +10,4 @@ package.json
 .vscode/extensions.json
 Post_adds.txt
 ClassHub/db.sqlite3
+Today.txt
