@@ -3,6 +3,7 @@ from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.http import HttpResponse
+from django.http import JsonResponse
 from collections import defaultdict
 from django.template import loader
 from .models import *
@@ -47,6 +48,9 @@ def temp(request):
     return render(request, "Temp.html", context)
 
 
+# -----------------------------------------------------------------------------------------------------------#
+
+
 def welcome(request):
     template = loader.get_template("User-Login-Logout/Welcome.html")
     return HttpResponse(template.render())
@@ -54,10 +58,6 @@ def welcome(request):
 
 def main(request):
     user = request.user
-
-    if request.method == "POST":
-        auth_logout(request)
-        return redirect("welcome")
 
     user_info = get_object_or_404(UserProfile, user=request.user)
     recent_tasks = Task.objects.filter(user=user).order_by("-due_date")
@@ -73,6 +73,12 @@ def main(request):
     total_materials = Material.objects.filter(user=user).count()
     total_reminders = Reminder.objects.filter(user=user).count()
     total_expenses = Expense.objects.filter(user=user).count()
+
+    if request.method == "POST":
+        theme = request.POST.get("theme")
+        isThemeLight = theme != "on"
+        user_info.IsThemeLight = isThemeLight
+        user_info.save()
 
     context = {
         "user": user,
@@ -241,7 +247,12 @@ def Add_Task(request):
 @login_required(login_url="/Login")
 def List_Task(request):
     task_list = Task.objects.filter(user=request.user)
-    return render(request, "Task/Task_list.html", context={"task_list": task_list})
+    theme_mode = request.session.get("theme_mode", "light")
+    return render(
+        request,
+        "Task/Task_list.html",
+        context={"task_list": task_list, "theme_mode": theme_mode},
+    )
 
 
 @login_required(login_url="/Login")

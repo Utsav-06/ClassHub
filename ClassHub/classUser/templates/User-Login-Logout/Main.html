@@ -21,8 +21,11 @@
         <nav>
           <h1 id="main-page" onclick="redirectToPage(id)">ClassHub</h1>
 
-          <input type="checkbox" id="theme-toggle" />
-          <label for="theme-toggle"></label>
+          <form id="theme-form" method="post">
+            {% csrf_token %}
+            <input type="checkbox" id="theme-toggle" name="theme" onchange="submitForm()" />
+            <label for="theme-toggle"></label>
+          </form>
 
           <ul>
             <li>
@@ -356,30 +359,25 @@
       }
     }
     
-    // Check if there's a saved preference in local storage
     const savedTheme = localStorage.getItem('theme')
     
-    // If there's a saved preference, set the theme accordingly; otherwise, default to 'light'
     if (savedTheme) {
       document.body.setAttribute('theme', savedTheme)
     }
     
-    // Update the checkbox state based on the saved theme
     document.getElementById('theme-toggle').checked = savedTheme === 'dark'
     
-    // Update the theme when the toggle button is clicked
     document.getElementById('theme-toggle').addEventListener('click', (e) => {
       const checked = e.target.checked
-    
-      // Set the theme attribute on the body
       document.body.setAttribute('theme', checked ? 'dark' : 'light')
-    
-      // Save the preference in local storage
       localStorage.setItem('theme', checked ? 'dark' : 'light')
-    
-      // Update the toggle button logo based on the theme
       const label = document.querySelector('#theme-toggle + label')
       label.classList.toggle('dark-mode', checked)
     })
+    
+    function submitForm() {
+      console.log(document.getElementById("theme-toggle").checked);
+      document.getElementById('theme-form').submit()
+    }
   </script>
 </html>
