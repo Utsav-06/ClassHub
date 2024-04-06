@@ -1,7 +1,6 @@
 * {
   box-sizing: border-box;
   transition: all 0.2s linear;
-  /* Add a transition for all properties */
 }
 
 body {
@@ -9,7 +8,7 @@ body {
   height: 95vh;
   margin: 10px 0px;
   z-index: -1;
-  background: #e6e6e6;
+  background: #b8b8b8;
   color: #000000;
   font-family: monospace;
 }
@@ -188,7 +187,7 @@ nav ul li a {
   border-radius: 8px;
   display: flex;
   align-items: center;
-  background-color: #d1cdcd;
+  background-color: black;
 }
 
 .dot {
@@ -278,6 +277,10 @@ body[theme="dark"] .modal-content {
 
 body[theme="dark"] .modal-header {
   border-bottom: 1px solid #666;
+}
+
+body[theme="dark"] button {
+  color: white;
 }
 
 body[theme="dark"] .modal-footer {

@@ -9,13 +9,34 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css" />
     <link rel="stylesheet" type="text/css" href="{% static 'Css/MainPage.css' %}" />
   </head>
+  <style>
+    .item {
+      padding: 7px;
+      margin: 7px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      background-color: #e8e8e8;
+    }
+
+    body {
+      width: 100%;
+      height: 95vh;
+      margin: 10px 0px;
+      z-index: -1;
+      background: #dddddd;
+      color: #000000;
+      font-family: monospace;
+    }
+    
+  </style>
   <body>
     <div class="main-body">
       <div class="navigation-bar">
         <nav>
           <h1 id="main-page" onclick="redirectToPage(id)">ClassHub</h1>
           <!-- Theme button -->
-          <input type="checkbox" id="theme-toggle" name="theme" onchange="submitForm()" />
+          <input type="checkbox" id="theme-toggle" name="theme" onchange="sessionThemeManagement()" />
           <label for="theme-toggle"></label>
           <ul>
             <li>
@@ -59,14 +80,12 @@
                       <h6 class="modal-title w-100" id="taskModalLabel"><b>{{ task.title }}</b></h6>
                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <div class="modal-body text-start">
+                    <div class="modal-body">
                       {% if task.description %}
-                        <p>
-                          <b>Description:</b> {{ task.description }}
-                        </p>
+                        <p>Description: {{ task.description }}</p>
                       {% endif %}
                       <p>
-                        <b>Priority:</b> {% if task.priority %}
+                        Priority:{% if task.priority %}
                           Important
                         {% else %}
                           Not Important

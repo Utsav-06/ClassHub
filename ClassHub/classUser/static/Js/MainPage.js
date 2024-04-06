@@ -60,7 +60,7 @@ document.getElementById('theme-toggle').addEventListener('click', (e) => {
   label.classList.toggle('dark-mode', checked);
 });
 
-function submitForm() {
+function sessionThemeManagement() {
   const themeToggle = document.getElementById("theme-toggle");
   if (themeToggle.checked) {
     sessionStorage.setItem("theme", "dark");
