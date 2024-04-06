@@ -42,13 +42,15 @@ function redirectToPage(arrowId) {
 
 // Code for saving the last user theme preference along with theme toggling logic
 
-const savedTheme = localStorage.getItem('theme')
-
-if (savedTheme) {
-  document.body.setAttribute('theme', savedTheme)
-}
-
-document.getElementById('theme-toggle').checked = savedTheme === 'dark'
+document.addEventListener('DOMContentLoaded', () => {
+  const savedTheme = localStorage.getItem('theme')
+  if (savedTheme) {
+    document.body.setAttribute('theme', savedTheme)
+    document.getElementById('theme-toggle').checked = savedTheme === 'dark'
+    const label = document.querySelector('#theme-toggle + label')
+    label.classList.toggle('dark-mode', savedTheme === 'dark')
+  }
+})
 
 document.getElementById('theme-toggle').addEventListener('click', (e) => {
   const checked = e.target.checked
