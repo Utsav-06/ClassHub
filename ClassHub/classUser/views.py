@@ -246,12 +246,30 @@ def Add_Task(request):
 
 @login_required(login_url="/Login")
 def List_Task(request):
+    task_info = Task()
+    task_info.user = request.user
     task_list = Task.objects.filter(user=request.user)
-    theme_mode = request.session.get("theme_mode", "light")
+
+    if request.method == "POST":
+        title = request.POST.get("title")
+        description = request.POST.get("description")
+        priority = request.POST.get("priority")
+
+        if title:
+            task_info.title = title
+
+        if description:
+            task_info.description = description
+
+        if priority:
+            task_info.priority = True
+
+        task_info.save()
+
     return render(
         request,
         "Task/Task_list.html",
-        context={"task_list": task_list, "theme_mode": theme_mode},
+        context={"task_list": task_list},
     )
 
 

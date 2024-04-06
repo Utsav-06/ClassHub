@@ -21,9 +21,14 @@ body[theme="dark"] {
 }
 
 .table-border{
+    padding-top: 7px;
     border: 1px solid black;
     border-radius: 10px;
     background-color: #fffffff4;
+}
+
+thead tr{
+    border-bottom: gray;
 }
 
 .heading {
