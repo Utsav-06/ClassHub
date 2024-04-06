@@ -1,12 +1,29 @@
 body {
     width: 100%;
-    margin: 10px 0px;
-    z-index: -1;
+    justify-content: center;
+    align-items: center;
     background: #e6e6e6;
+    padding: 0 20px;
     color: #000000;
     font-family: monospace;
-    transition: background 0.2s linear;
+    transition: all 0.2s linear;
+}
 
+body[theme="dark"] {
+    background-color: #171c1c;
+    color: white;
+}
+
+.rounded-table {
+    border-radius: 10px 10px 0px 0px;
+    overflow: hidden;
+    background-color: #fffffff4;
+}
+
+.table-border{
+    border: 1px solid black;
+    border-radius: 10px;
+    background-color: #fffffff4;
 }
 
 .heading {
@@ -62,9 +79,10 @@ body {
     margin-top: 15px;
 }
 
-.modal-footer button{
+.modal-footer button {
     margin: 0px 10px;
 }
+
 .overlay {
     position: fixed;
     top: 0;

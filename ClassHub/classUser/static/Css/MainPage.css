@@ -22,48 +22,6 @@ body {
   grid-row-gap: 20px;
 }
 
-/* Sun-Moon Toggle button */
-
-#hybrid {
-  visibility: hidden;
-}
-
-#theme-toggle {
-  visibility: hidden;
-}
-
-#theme-toggle+label {
-  content: "";
-  cursor: pointer;
-  height: 40px;
-  width: 40px;
-  position: absolute;
-  top: 27px;
-  right: 35px;
-  border-radius: 50%;
-  transition: all 0.3s ease-in-out;
-}
-
-#theme-toggle:not(:checked)+label {
-  background-color: rgb(255, 175, 56);
-}
-
-#theme-toggle:checked+label {
-  background-color: transparent;
-  box-shadow: inset -10px -8px 1px 1px #fff;
-}
-
-.intro-text {
-  top: 180px;
-  font-size: 1.6em;
-  font-family: monospace;
-}
-
-[class*="text-"] {
-  font-size: 1.2em;
-  font-weight: 600;
-}
-
 /* Light Mode */
 
 .navigation-bar {
@@ -343,6 +301,50 @@ body[theme="dark"] {
   .text-moon {
     color: #fff;
   }
+}
+
+/* --- */
+
+/* Sun-Moon Toggle button */
+
+#hybrid {
+  visibility: hidden;
+}
+
+#theme-toggle {
+  visibility: hidden;
+}
+
+#theme-toggle+label {
+  content: "";
+  cursor: pointer;
+  height: 40px;
+  width: 40px;
+  position: absolute;
+  top: 27px;
+  right: 35px;
+  border-radius: 50%;
+  transition: all 0.3s ease-in-out;
+}
+
+#theme-toggle:not(:checked)+label {
+  background-color: rgb(255, 175, 56);
+}
+
+#theme-toggle:checked+label {
+  background-color: transparent;
+  box-shadow: inset -10px -8px 1px 1px #fff;
+}
+
+.intro-text {
+  top: 180px;
+  font-size: 1.6em;
+  font-family: monospace;
+}
+
+[class*="text-"] {
+  font-size: 1.2em;
+  font-weight: 600;
 }
 
 /* --- */

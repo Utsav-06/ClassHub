@@ -61,6 +61,11 @@ document.getElementById('theme-toggle').addEventListener('click', (e) => {
 });
 
 function submitForm() {
-  console.log(document.getElementById('theme-toggle').checked);
-  document.getElementById('theme-form').submit();
+  const themeToggle = document.getElementById("theme-toggle");
+  if (themeToggle.checked) {
+    sessionStorage.setItem("theme", "dark");
+  } else {
+    sessionStorage.setItem("theme", "light");
+  }
 }
+
