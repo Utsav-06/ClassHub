@@ -1,7 +1,13 @@
-//  Modal 
+//  Modal
+let TaskModal = document.getElementById('TaskModal')
+let overlay = document.getElementById('overlay')
 
-let TaskModal = document.getElementById("TaskModal");
+function openAddTaskModal() {
+  TaskModal.classList.add('open-TaskModal')
+  overlay.classList.add('open-overlay')
+}
 
-function openAddTaskModal(){
-    TaskModal.classList.add("open-TaskModal");
+function closeAddTaskModal() {
+  TaskModal.classList.remove('open-TaskModal')
+  overlay.classList.remove('open-overlay')
 }
