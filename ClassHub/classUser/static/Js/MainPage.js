@@ -1,44 +1,22 @@
 // Redirect to page code
 
-function redirectToPage(arrowId) {
-  switch (arrowId) {
-    case 'task-arrow':
-      window.location.href = "{% url 'list_task' %}"
-      break
-    case 'assignment-arrow':
-      window.location.href = "{% url 'list_assignment' %}"
-      break
-    case 'material-arrow':
-      window.location.href = "{% url 'list_materials' %}"
-      break
-    case 'reminder-arrow':
-      window.location.href = "{% url 'list_reminder' %}"
-      break
-    case 'expense-arrow':
-      window.location.href = "{% url 'list_expense' %}"
-      break
-
-    case 'task-add':
-      window.location.href = "{% url 'add_task' %}"
-      break
-    case 'assignment-add':
-      window.location.href = "{% url 'add_assignment' %}"
-      break
-    case 'material-add':
-      window.location.href = "{% url 'add_material' %}"
-      break
-    case 'reminder-add':
-      window.location.href = "{% url 'set_reminder' %}"
-      break
-    case 'expense-add':
-      window.location.href = "{% url 'add_expense' %}"
-      break
-
-    case 'main-page':
-      window.location.href = "{% url 'main' %}"
-      break
-  }
+function redirectToPage(page) {
+  const urls = {
+    'main-page': '{% url "main" %}',
+    'task-arrow': '{% url "list_task" %}',
+    'assignment-arrow': '{% url "list_assignment" %}',
+    'material-arrow': '{% url "list_materials" %}',
+    'reminder-arrow': '{% url "list_reminder" %}',
+    'expense-arrow': '{% url "list_expense" %}',
+    'task-add': '{% url "add_task" %}',
+    'assignment-add': '{% url "add_assignment" %}',
+    'material-add': '{% url "add_material" %}',
+    'reminder-add': '{% url "set_reminder" %}',
+    'expense-add': '{% url "add_expense" %}'
+  };
+  window.location.href = urls[page];
 }
+
 
 // Code for saving the last user theme preference along with theme toggling logic
 
