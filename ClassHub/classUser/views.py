@@ -95,7 +95,7 @@ def main(request):
         "expenses": expenses,
     }
 
-    return render(request, "User-Login-Logout/Main.html", context)
+    return render(request, "User-Login-Logout/Main.html")
 
 
 # -----------------------------------------------------------------------------------------------------------#
@@ -105,8 +105,7 @@ def login(request):
         username = request.POST["username"]
         password = request.POST["password"]
 
-        # Authenticate user using either username or email
-        user = authenticate(request, username=username, password=password)
+        user = authenticate(username=username, password=password)
 
         if user is not None:
             auth_login(request, user)
@@ -115,7 +114,7 @@ def login(request):
             return render(
                 request,
                 "User-Login-Logout/Login.html",
-                {"error": "Invalid credentials"},
+                {"error": "Invalid login credentials"},
             )
 
     return render(request, "User-Login-Logout/Login.html")
@@ -131,7 +130,7 @@ def signup(request):
         user = User.objects.create_user(username=username, email=email)
         user.set_password(password)
         user_profile = UserProfile.objects.create(
-            user=user, username=username, Enrollment_No=enrollment_no
+            user=user, username=username, Enrollment_No=enrollment_no, email=email
         )
 
         user.save()

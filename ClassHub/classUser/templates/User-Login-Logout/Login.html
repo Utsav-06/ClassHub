@@ -14,8 +14,8 @@
       <h2>Welcome Back</h2>
       <form action="{% url 'login' %}" method="POST">
         {% csrf_token %}
-        <label for="username_email">Username / E-mail</label>
-        <input id="username_email" name="username_email" type="text" autocomplete="username_email" required />
+        <label for="username">Username</label>
+        <input id="username" name="username" type="text" autocomplete="username" required />
         <label for="password">Password</label>
         <div class="password-input">
           <input id="password" name="password" type="password" autocomplete="current-password" required />
