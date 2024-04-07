@@ -75,3 +75,27 @@ body {
 .container a:hover {
     text-decoration: underline;
 }
+
+.password-input {
+    position: relative;
+}
+
+.password-input input {
+    width: calc(100% - 30px);
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-sizing: border-box;
+}
+
+.password-input .toggle-password {
+    position: absolute;
+    top: 20%;
+    right: 10px;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.toggle-password:hover {
+    transform: scale(1.1);
+}

@@ -6,12 +6,13 @@
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
     <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="{% static 'Css/SignUpPage.css' %}" />
     <title>Signup</title>
   </head>
   <body class="h-full">
     <div class="container">
-      <h2>Sign Up</h2>
+      <h2>Create your Account</h2>
       <form action="{% url 'signup' %}" method="POST">
         {% csrf_token %}
         <label for="username">Username</label>
@@ -21,12 +22,16 @@
         <label for="enrollmentNo">Enrollment No</label>
         <input id="enrollmentNo" name="enrollmentNo" type="text" autocomplete="enrollmentNo" required />
         <label for="password">Password</label>
-        <input id="password" name="password" type="password" autocomplete="current-password" required />
+        <div class="password-input">
+          <input id="password" name="password" type="password" autocomplete="current-password" required />
+          <span class="toggle-password" onclick="togglePasswordVisibility()"><i class="bi bi-eye"></i></span>
+        </div>
         <button type="submit">Sign Up</button>
       </form>
       <p>
         Already have an account? <a href="{% url 'login' %}">Sign in here</a>
       </p>
     </div>
+    <script src="{% static 'Js/SignUpPage.js' %}"></script>
   </body>
 </html>
