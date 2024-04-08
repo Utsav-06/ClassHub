@@ -14,7 +14,10 @@ class UserProfile(models.Model):
     email = models.EmailField(max_length=254, blank=True)
     Enrollment_No = models.CharField(max_length=20, unique=True, default="")
     bio = models.TextField(blank=True)
-    profile_pic = models.ImageField(upload_to="profile_pics/", blank=True)
+    profile_pic = models.ImageField(
+        upload_to="User_Documents/User_Profiles/",
+        blank=True,
+    )
     birth_date = models.DateField(null=True, blank=True)
 
     def __str__(self):
@@ -41,7 +44,7 @@ class Assignment(models.Model):
     description = models.TextField(blank=True)
     due_date = models.DateField(blank=True)
     Assignment_files = models.FileField(
-        upload_to="Uploaded_files/Assignment_pdfs/", blank=True
+        upload_to="User_Documents/User_Uploaded_Files/Assignments/", blank=True
     )
     status = models.CharField(max_length=255)
 
@@ -57,7 +60,7 @@ class Material(models.Model):
     description = models.TextField(blank=True)
     date_added = models.DateField(default=date.today)
     Assignment_files = models.FileField(
-        upload_to="Uploaded_files/Materials/", blank=True
+        upload_to="User_Documents/User_Uploaded_Files/Materials/", blank=True
     )
 
     def __str__(self):

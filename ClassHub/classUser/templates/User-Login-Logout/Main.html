@@ -9,14 +9,435 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css" />
     <link rel="stylesheet" type="text/css" href="{% static 'Css/MainPage.css' %}" />
   </head>
+  <style>
+    * {
+      box-sizing: border-box;
+      transition: background 0.2s linear;
+    }
+    
+    body {
+      width: 100%;
+      height: 95vh;
+      background: #dddddd;
+      color: #000000;
+      font-family: monospace;
+    }
+    
+    .main-body {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      grid-template-rows: repeat(3, 1fr) repeat(2, 0.5fr) repeat(2, 1fr);
+      grid-column-gap: 3px;
+      grid-row-gap: 20px;
+    }
+    
+    /* Light Mode */
+    
+    .navigation-bar {
+      grid-area: 1 / 1 / 2 / 7;
+      position: relative;
+      border-bottom: 2px solid transparent;
+      border-image: linear-gradient(0.25turn, rgba(0, 0, 0, 0), rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
+      border-image-slice: 1;
+      width: 100%;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .navigation-bar h1 {
+      font-size: 32px;
+      cursor: pointer;
+    }
+    
+    .titles {
+      position: -webkit-sticky;
+      position: sticky;
+      top: 0;
+      color: #000;
+      background-color: #fffffff4;
+      font-size: 20px;
+      margin-top: 3px;
+      padding-top: 2px 0px;
+      text-decoration: black;
+      text-align: center;
+      height: 35px;
+      border-bottom: 2px solid transparent;
+      border-image: linear-gradient(0.25turn, rgba(255, 255, 255, 0), rgba(192, 192, 192), rgba(255, 255, 255, 0));
+      border-image-slice: 1;
+      cursor: pointer;
+    }
+    
+    .arrow-to-page {
+      position: absolute;
+      right: 15px;
+      top: -1.7px;
+      cursor: pointer;
+      font-size: 20px;
+    }
+    
+    .tasks {
+      grid-area: 2 / 1 / 8 / 3;
+      position: relative;
+      background-color: #fffffff4;
+      border-radius: 7px;
+      margin: 1px 10px 1px 40px;
+      height: 522px;
+      text-align: center;
+      overflow-y: auto;
+      box-shadow: 0px 0px 15px 0.5px rgba(255, 255, 255, 1);
+    }
+    
+    .pending-assignment {
+      grid-area: 2 / 3 / 5 / 5;
+      position: relative;
+      background-color: #fffffff4;
+      border-radius: 7px;
+      margin: 1px 10px;
+      height: 250px;
+      text-align: center;
+      overflow-y: auto;
+      box-shadow: 0px 0px 15px 0.5px rgba(255, 255, 255, 1);
+    }
+    
+    .upcoming-reminder {
+      grid-area: 5 / 3 / 8 / 5;
+      position: relative;
+      background-color: #fffffff4;
+      border-radius: 7px;
+      margin: 1px 10px;
+      height: 250px;
+      text-align: center;
+      overflow-y: auto;
+      box-shadow: 0px 0px 15px 0.5px rgba(255, 255, 255, 1);
+    }
+    
+    .recent-material {
+      grid-area: 2 / 5 / 5 / 7;
+      position: relative;
+      background-color: #fffffff4;
+      border-radius: 7px;
+      margin: 1px 40px 1px 10px;
+      height: 250px;
+      text-align: center;
+      overflow-y: auto;
+      box-shadow: 0px 0px 15px 0.5px rgba(255, 255, 255, 1);
+    }
+    
+    .expense-overview {
+      grid-area: 5 / 5 / 8 / 7;
+      position: relative;
+      background-color: #fffffff4;
+      border-radius: 7px;
+      margin: 1px 40px 1px 10px;
+      height: 250px;
+      text-align: center;
+      overflow-y: auto;
+      box-shadow: 0px 0px 15px 0.5px rgba(255, 255, 255, 1);
+    }
+    
+    nav {
+      width: 100%;
+      padding: 10px 10%;
+      margin-right: 35px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+    }
+    
+    nav h1 {
+      position: absolute;
+      top: 29px;
+      left: 60px;
+      font-style: normal;
+      font-size: 110%;
+    }
+    
+    nav ul {
+      width: 100%;
+      margin-top: 20px;
+      text-align: center;
+    }
+    
+    nav ul li {
+      display: inline-block;
+      list-style: none;
+      margin: 10px 20px;
+    }
+    
+    nav ul li a {
+      color: black;
+      font-size: 17px;
+      text-decoration: none;
+    }
+    
+    .file-link {
+      text-decoration: none;
+      color: black;
+    }
+    
+    .scrollable-list::-webkit-scrollbar {
+      width: 0px;
+    }
+    
+    .info {
+      margin-top: 10px;
+    }
+    
+    .item {
+      padding: 7px;
+      margin: 7px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      background-color: #e6e6e6;
+    }
+    
+    .dot {
+      width: 5.5px;
+      height: 5.5px;
+      background-color: #171c1c;
+      border-radius: 50%;
+      margin-left: 10px;
+      margin-right: 20px;
+    }
+    
+    .text {
+      font-size: 16px;
+      color: #495057;
+      cursor: pointer;
+    }
+    
+    .modal-header {
+      text-align: center;
+    }
+    
+    .modal-body {
+      text-align: start;
+    }
+    
+    body[theme='light'] {
+      .text-sun {
+        color: #000;
+      }
+    
+      .text-moon {
+        color: #ddd;
+      }
+    }
+    
+    /* --- */
+    
+    /* Dark Mode */
+    body[theme='dark'] {
+      background-color: #171c1c;
+      color: white;
+    }
+    
+    body[theme='dark'] .navigation-bar {
+      border-bottom: 2px solid transparent;
+      border-image: linear-gradient(0.25turn, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
+      border-image-slice: 1;
+    }
+    
+    body[theme='dark'] nav ul li a {
+      color: white;
+    }
+    
+    body[theme='dark'] .tasks,
+    body[theme='dark'] .pending-assignment,
+    body[theme='dark'] .upcoming-reminder,
+    body[theme='dark'] .recent-material,
+    body[theme='dark'] .expense-overview {
+      background-color: #232b2b;
+      color: white;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+    }
+    
+    body[theme='dark'] .titles {
+      background-color: #232b2b;
+      color: white;
+      border-bottom: 2px solid #ccc;
+    }
+    
+    body[theme='dark'] .item {
+      background-color: #444;
+      color: #444;
+    }
+    
+    body[theme='dark'] .text {
+      color: white;
+    }
+    
+    body[theme='dark'] .modal-content {
+      background-color: #232b2b;
+      color: white;
+    }
+    
+    body[theme='dark'] .modal-header {
+      border-bottom: 1px solid #666;
+    }
+    
+    body[theme='dark'] button {
+      color: white;
+    }
+    
+    body[theme='dark'] .modal-footer {
+      border-top: 1px solid #666;
+    }
+    
+    body[theme='dark'] .modal-body a {
+      color: white;
+    }
+    
+    body[theme='dark'] .file-link {
+      text-decoration: none;
+      color: white;
+    }
+    
+    body[theme='dark'] {
+      .text-sun {
+        color: #222;
+      }
+    
+      .text-moon {
+        color: #fff;
+      }
+    }
+    
+    /* --- */
+    
+    /* Sun-Moon Toggle button */
+    
+    #hybrid {
+      visibility: hidden;
+    }
+    
+    #theme-toggle {
+      visibility: hidden;
+    }
+    
+    #theme-toggle + label {
+      content: '';
+      cursor: pointer;
+      height: 40px;
+      width: 40px;
+      position: absolute;
+      top: 27px;
+      right: 65px;
+      border-radius: 50%;
+    }
+    
+    #theme-toggle:not(:checked) + label {
+      background-color: rgb(255, 175, 56);
+    }
+    
+    #theme-toggle:checked + label {
+      background-color: transparent;
+      box-shadow: inset -10px -8px 1px 1px #fff;
+    }
+    
+    .intro-text {
+      top: 180px;
+      font-size: 1.6em;
+      font-family: monospace;
+    }
+    
+    [class*='text-'] {
+      font-size: 1.2em;
+      font-weight: 600;
+    }
+    
+    /* --- */
+    
+    /* profile menu  */
+    
+    .profile {
+      position: absolute;
+      top: 23.5px;
+      right: 1px;
+    }
+    
+    .profile .img-box {
+      position: relative;
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      overflow: hidden;
+      cursor: pointer;
+    }
+    
+    .profile .img-box img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .menu {
+      position: absolute;
+      top: calc(100%);
+      right: -1px;
+      width: 150px;
+      min-height: 100px;
+      border-radius: 10px;
+      background: #fff;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+      opacity: 0;
+      transform: translateY(-10px);
+      visibility: hidden;
+      transition: 300ms;
+      z-index: 10;
+    }
+    
+    .menu.active {
+      opacity: 1;
+      transform: translateY(0);
+      visibility: visible;
+    }
+    
+    /* menu links */
+    
+    .menu ul {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      z-index: 10;
+      background: #fff;
+      padding: 0%;
+    }
+    
+    .menu ul li {
+      z-index: 10;
+      border-radius: 5px;
+    }
+    
+    .menu ul li:hover {
+      z-index: 10;
+      background: #eee;
+    }
+    
+    .menu ul li a {
+      text-decoration: none;
+      color: #000;
+      display: flex;
+      align-items: end;
+      padding: 1px 2px;
+      gap: 6px;
+      z-index: 10;
+    }
+  </style>
   <body>
     <div class="main-body">
       <div class="navigation-bar">
         <nav>
           <h1 id="main-page" onclick="redirectToPage(id)">ClassHub</h1>
-          <!-- Theme button -->
-          <input type="checkbox" id="theme-toggle" name="theme" onchange="sessionThemeManagement()" />
-          <label for="theme-toggle"></label>
           <ul>
             <li>
               <a href="{% url 'list_task' %}">Tasks</a>
@@ -34,6 +455,26 @@
               <a href="{% url 'list_expense' %}">Expenses</a>
             </li>
           </ul>
+
+          <!-- Theme button -->
+          <input type="checkbox" id="theme-toggle" name="theme" onchange="sessionThemeManagement()" />
+          <label for="theme-toggle"></label>
+
+          <div id="profile" class="profile" onclick="toggleMenu()">
+            <div class="img-box">
+              <img src="{{ user_info.profile_pic.url }}" alt="img" />
+            </div>
+          </div>
+          <div id="menu" class="menu">
+            <ul>
+              <li>
+                <a href="{% url 'userprofile' %}"><i class="ph-bold ph-user"></i>&nbsp;Profile</a>
+              </li>
+              <li>
+                <a href="{% url 'logout' %}"><i class="ph-bold ph-sign-out"></i>&nbsp;Sign Out</a>
+              </li>
+            </ul>
+          </div>
         </nav>
       </div>
 
@@ -43,6 +484,7 @@
             <i class="bi bi-plus-lg" id="task-add" onclick="redirectToPage(id)"></i>
             <i id="task-arrow" onclick="redirectToPage(id)" class="bi bi-arrow-right"></i>
           </div>
+          <div class="add-icon"></div>
         </div>
         <div class="info">
           {% if recent_tasks %}
@@ -321,6 +763,86 @@
       setReminder: "{% url 'set_reminder' %}",
       addExpense: "{% url 'add_expense' %}",
       mainPage: "{% url 'main' %}"
+    }
+    
+    // Redirect to page code
+    
+    function redirectToPage(arrowId) {
+      switch (arrowId) {
+        case 'task-arrow':
+          window.location.href = urls.listTask
+          break
+        case 'assignment-arrow':
+          window.location.href = urls.listAssignment
+          break
+        case 'material-arrow':
+          window.location.href = urls.listMaterials
+          break
+        case 'reminder-arrow':
+          window.location.href = urls.listReminder
+          break
+        case 'expense-arrow':
+          window.location.href = urls.listExpense
+          break
+    
+        case 'task-add':
+          window.location.href = urls.addTask
+          break
+        case 'assignment-add':
+          window.location.href = urls.addAssignment
+          break
+        case 'material-add':
+          window.location.href = urls.addMaterial
+          break
+        case 'reminder-add':
+          window.location.href = urls.setReminder
+          break
+        case 'expense-add':
+          window.location.href = urls.addExpense
+          break
+    
+        case 'main-page':
+          window.location.href = urls.mainPage
+          break
+      }
+    }
+    
+    // Code for saving the last user theme preference along with theme toggling logic
+    
+    document.addEventListener('DOMContentLoaded', () => {
+      const savedTheme = localStorage.getItem('theme')
+      if (savedTheme) {
+        document.body.setAttribute('theme', savedTheme)
+        document.getElementById('theme-toggle').checked = savedTheme === 'dark'
+        const label = document.querySelector('#theme-toggle + label')
+        label.classList.toggle('dark-mode', savedTheme === 'dark')
+      }
+    })
+    
+    document.getElementById('theme-toggle').addEventListener('click', (e) => {
+      const checked = e.target.checked
+      document.body.setAttribute('theme', checked ? 'dark' : 'light')
+      localStorage.setItem('theme', checked ? 'dark' : 'light')
+      const label = document.querySelector('#theme-toggle + label')
+      label.classList.toggle('dark-mode', checked)
+    })
+    
+    function sessionThemeManagement() {
+      const themeToggle = document.getElementById('theme-toggle')
+      if (themeToggle.checked) {
+        sessionStorage.setItem('theme', 'dark')
+      } else {
+        sessionStorage.setItem('theme', 'light')
+      }
+    }
+    
+    // Profile Menu
+    
+    let profile = document.querySelector('.profile')
+    let menu = document.querySelector('.menu')
+    
+    profile.onclick = function () {
+      menu.classList.toggle('active')
     }
   </script>
 </html>
