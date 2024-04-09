@@ -118,13 +118,22 @@ def signup(request):
     if request.method == "POST":
         username = request.POST["username"]
         email = request.POST["email"]
+        first_name = request.POST["first_name"]
+        last_name = request.POST["last_name"]
         enrollment_no = request.POST["enrollmentNo"]
         password = request.POST["password"]
 
-        user = User.objects.create_user(username=username, email=email)
+        user = User.objects.create_user(
+            username=username, email=email, first_name=first_name, last_name=last_name
+        )
         user.set_password(password)
         user_profile = UserProfile.objects.create(
-            user=user, username=username, Enrollment_No=enrollment_no, email=email
+            user=user,
+            username=username,
+            email=email,
+            first_name=first_name,
+            last_name=last_name,
+            Enrollment_No=enrollment_no,
         )
 
         user.save()

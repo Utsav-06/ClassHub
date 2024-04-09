@@ -15,8 +15,7 @@ class UserProfile(models.Model):
     Enrollment_No = models.CharField(max_length=20, unique=True, default="")
     bio = models.TextField(blank=True)
     profile_pic = models.ImageField(
-        upload_to="User_Documents/User_Profiles/",
-        blank=True,
+        upload_to="User_Documents/User_Profiles/", blank=True, default="False"
     )
     birth_date = models.DateField(null=True, blank=True)
 
