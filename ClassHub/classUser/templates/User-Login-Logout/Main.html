@@ -322,11 +322,11 @@
     #theme-toggle + label {
       content: '';
       cursor: pointer;
-      height: 40px;
-      width: 40px;
+      height: 30px;
+      width: 30px;
       position: absolute;
-      top: 27px;
-      right: 75px;
+      top: 26px;
+      right: 23px;
       border-radius: 50%;
     }
     
@@ -336,7 +336,7 @@
     
     #theme-toggle:checked + label {
       background-color: transparent;
-      box-shadow: inset -10px -8px 1px 1px #fff;
+      box-shadow: inset -8px -4px 1px 1px #fff;
     }
     
     .intro-text {
@@ -379,93 +379,6 @@
       object-fit: cover;
     }
     
-    /* Dark mode menu */
-    
-    body[theme='dark'] .profile-menu .menu {
-      position: absolute;
-      top: 70px;
-      right: -15px;
-      padding: 10px 0px;
-      background: #2d3132;
-      width: 260px;
-      box-sizing: 0 5px 25px rgba(255, 255, 255, 0);
-      border-radius: 15px;
-      transition: 0.2s;
-      visibility: hidden;
-      opacity: 0;
-      box-shadow: -15px 17px 22px -12px rgba(172, 170, 170, 0.116);
-    }
-    
-    body[theme='dark'] .profile-menu .menu.active {
-      visibility: visible;
-      opacity: 1;
-    }
-    
-    body[theme='dark'] .profile-menu .menu::before {
-      content: '';
-      position: absolute;
-      top: -5px;
-      right: 28px;
-      width: 20px;
-      height: 20px;
-      transition: 0.2s;
-      background: #2d3132;
-      transform: rotate(45deg);
-    }
-    
-    body[theme='dark'] .profile-menu .menu h3 {
-      width: 100%;
-      text-align: center;
-      font-size: 18px;
-      padding: 20px 0 0px;
-      font-weight: 500;
-      color: #ebebeb;
-      line-height: 1.2em;
-    }
-    
-    body[theme='dark'] .profile-menu .menu h3 span {
-      font-size: 14px;
-      color: #9f9f9f;
-      font-weight: 400;
-    }
-    
-    body[theme='dark'] .profile-menu .menu ul {
-      justify-content: center;
-      padding: 0px 0px 0px 0px;
-    }
-    
-    body[theme='dark'] .profile-menu .menu ul li {
-      list-style: none;
-      padding: 10px 0px 0px 30px;
-      border-top: 1px solid rgba(255, 255, 255, 0.05);
-      display: flex;
-      align-items: center;
-    }
-    
-    body[theme='dark'] .profile-menu .menu img {
-      max-width: 20px;
-      margin-right: 10px;
-      opacity: 0.5;
-      transition: 0.2s;
-    }
-    
-    body[theme='dark'] .profile-menu .menu ul li:hover img {
-      opacity: 1;
-    }
-    
-    body[theme='dark'] .profile-menu .menu ul li a {
-      display: inline-block;
-      text-decoration: none;
-      color: #e6e6e6;
-      font-weight: 500;
-      transform: 0.2s;
-    }
-    
-    body[theme='dark'] .profile-menu .menu ul li:hover a {
-      color: #ff5d94;
-    }
-    /*  */
-    
     .profile-menu .menu {
       position: absolute;
       top: 70px;
@@ -476,7 +389,7 @@
       box-sizing: 0 5px 25px rgba(0, 0, 0, 0.1);
       border-radius: 15px;
       transition: 0.2s;
-      visibility: hidden;
+      visibility: visible;
       opacity: 0;
       box-shadow: -15px 17px 22px -12px rgba(0, 0, 0, 0.4);
     }
@@ -498,9 +411,14 @@
       transform: rotate(45deg);
     }
     
+    .profile-menu .menu .menu-header {
+      display: flex;
+      text-align: start;
+      padding: 0px 0 0 30px;
+    }
+    
     .profile-menu .menu h3 {
       width: 100%;
-      text-align: center;
       font-size: 18px;
       padding: 20px 0 0px;
       font-weight: 500;
@@ -549,6 +467,99 @@
     .profile-menu .menu ul li:hover a {
       color: #ff5d94;
     }
+    
+    /* Dark mode menu */
+    
+    body[theme='dark'] .profile-menu .menu {
+      position: absolute;
+      top: 70px;
+      right: -15px;
+      padding: 10px 0px;
+      background: #2d3132;
+      width: 260px;
+      box-sizing: 0 5px 25px rgba(255, 255, 255, 0);
+      border-radius: 15px;
+      transition: 0.2s;
+      visibility: hidden;
+      opacity: 0;
+      box-shadow: -15px 17px 22px -12px rgba(172, 170, 170, 0.116);
+    }
+    
+    body[theme='dark'] .profile-menu .menu.active {
+      visibility: visible;
+      opacity: 1;
+    }
+    
+    body[theme='dark'] .profile-menu .menu::before {
+      content: '';
+      position: absolute;
+      top: -5px;
+      right: 28px;
+      width: 20px;
+      height: 20px;
+      transition: 0.2s;
+      background: #2d3132;
+      transform: rotate(45deg);
+    }
+    
+    body[theme='dark'] .profile-menu .menu .menu-header {
+      display: flex;
+      text-align: start;
+      padding: 0px 0 0 30px;
+    }
+    
+    body[theme='dark'] .profile-menu .menu h3 {
+      width: 100%;
+      font-size: 18px;
+      padding: 20px 0 0px;
+      font-weight: 500;
+      color: #ebebeb;
+      line-height: 1.2em;
+    }
+    
+    body[theme='dark'] .profile-menu .menu h3 span {
+      font-size: 14px;
+      color: #9f9f9f;
+      font-weight: 400;
+    }
+    
+    body[theme='dark'] .profile-menu .menu ul {
+      justify-content: center;
+      padding: 0px 0px 0px 0px;
+    }
+    
+    body[theme='dark'] .profile-menu .menu ul li {
+      list-style: none;
+      padding: 10px 0px 0px 30px;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      display: flex;
+      align-items: center;
+    }
+    
+    body[theme='dark'] .profile-menu .menu img {
+      max-width: 20px;
+      margin-right: 10px;
+      opacity: 0.5;
+      transition: 0.2s;
+    }
+    
+    body[theme='dark'] .profile-menu .menu ul li:hover img {
+      opacity: 1;
+    }
+    
+    body[theme='dark'] .profile-menu .menu ul li a {
+      display: inline-block;
+      text-decoration: none;
+      color: #e6e6e6;
+      font-weight: 500;
+      transform: 0.2s;
+    }
+    
+    body[theme='dark'] .profile-menu .menu ul li:hover a {
+      color: #ff5d94;
+    }
+    
+    /*  */
   </style>
   <body>
     <div class="main-body">
@@ -573,20 +584,20 @@
             </li>
           </ul>
 
-          <!-- Theme button -->
-          <input type="checkbox" id="theme-toggle" name="theme" onchange="sessionThemeManagement()" />
-          <label for="theme-toggle"></label>
-
           <div class="profile-menu">
             <div class="profile" onclick="menuToggle()">
-              {% if user_info.profile_pic == ""%}
+              {% if user_info.profile_pic == '' %}
                 <img src="{{ user_info.profile_pic.url }}" alt="img" />
               {% else %}
                 <img src="{% static 'Icons/Default.png' %}" alt="img" />
               {% endif %}
             </div>
             <div id="menu" class="menu">
-              <h3>{{ user_info.first_name }} {{ user_info.last_name }} <br /><span>@{{ user_info.username }}</span></h3>
+              <div class="menu-header">
+                <h3>{{ user_info.first_name}} {{user_info.last_name}}<br /><span>@{{user_info.username}}</span></h3>
+                <input type="checkbox" id="theme-toggle" name="theme" onchange="sessionThemeManagement()" />
+                <label for="theme-toggle"></label>
+              </div>
               <ul>
                 <li>
                   <img src="{% static 'Icons/user.png' %}" alt="" /><a href="#"><i class="ph-bold ph-user"></i>&nbsp;My Profile</a>
