@@ -326,7 +326,7 @@
       width: 40px;
       position: absolute;
       top: 27px;
-      right: 65px;
+      right: 75px;
       border-radius: 50%;
     }
     
@@ -354,13 +354,14 @@
     
     /* profile menu  */
     
-    .profile {
-      position: absolute;
-      top: 23.5px;
-      right: 1px;
+    .profile-menu {
+      position: fixed;
+      top: 13px;
+      right: 50px;
+      z-index: 1;
     }
     
-    .profile .img-box {
+    .profile-menu .profile {
       position: relative;
       width: 45px;
       height: 45px;
@@ -369,7 +370,7 @@
       cursor: pointer;
     }
     
-    .profile .img-box img {
+    .profile-menu .profile img {
       position: absolute;
       top: 0;
       left: 0;
@@ -378,59 +379,175 @@
       object-fit: cover;
     }
     
-    .menu {
+    /* Dark mode menu */
+    
+    body[theme='dark'] .profile-menu .menu {
       position: absolute;
-      top: calc(100%);
-      right: -1px;
-      width: 150px;
-      min-height: 100px;
-      border-radius: 10px;
-      background: #fff;
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-      opacity: 0;
-      transform: translateY(-10px);
+      top: 70px;
+      right: -15px;
+      padding: 10px 0px;
+      background: #2d3132;
+      width: 260px;
+      box-sizing: 0 5px 25px rgba(255, 255, 255, 0);
+      border-radius: 15px;
+      transition: 0.2s;
       visibility: hidden;
-      transition: 300ms;
-      z-index: 10;
+      opacity: 0;
+      box-shadow: -15px 17px 22px -12px rgba(172, 170, 170, 0.116);
     }
     
-    .menu.active {
-      opacity: 1;
-      transform: translateY(0);
+    body[theme='dark'] .profile-menu .menu.active {
       visibility: visible;
+      opacity: 1;
     }
     
-    /* menu links */
+    body[theme='dark'] .profile-menu .menu::before {
+      content: '';
+      position: absolute;
+      top: -5px;
+      right: 28px;
+      width: 20px;
+      height: 20px;
+      transition: 0.2s;
+      background: #2d3132;
+      transform: rotate(45deg);
+    }
     
-    .menu ul {
-      position: relative;
-      display: flex;
+    body[theme='dark'] .profile-menu .menu h3 {
+      width: 100%;
+      text-align: center;
+      font-size: 18px;
+      padding: 20px 0 0px;
+      font-weight: 500;
+      color: #ebebeb;
+      line-height: 1.2em;
+    }
+    
+    body[theme='dark'] .profile-menu .menu h3 span {
+      font-size: 14px;
+      color: #9f9f9f;
+      font-weight: 400;
+    }
+    
+    body[theme='dark'] .profile-menu .menu ul {
       justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      z-index: 10;
-      background: #fff;
-      padding: 0%;
+      padding: 0px 0px 0px 0px;
     }
     
-    .menu ul li {
-      z-index: 10;
-      border-radius: 5px;
-    }
-    
-    .menu ul li:hover {
-      z-index: 10;
-      background: #eee;
-    }
-    
-    .menu ul li a {
-      text-decoration: none;
-      color: #000;
+    body[theme='dark'] .profile-menu .menu ul li {
+      list-style: none;
+      padding: 10px 0px 0px 30px;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
       display: flex;
-      align-items: end;
-      padding: 1px 2px;
-      gap: 6px;
-      z-index: 10;
+      align-items: center;
+    }
+    
+    body[theme='dark'] .profile-menu .menu img {
+      max-width: 20px;
+      margin-right: 10px;
+      opacity: 0.5;
+      transition: 0.2s;
+    }
+    
+    body[theme='dark'] .profile-menu .menu ul li:hover img {
+      opacity: 1;
+    }
+    
+    body[theme='dark'] .profile-menu .menu ul li a {
+      display: inline-block;
+      text-decoration: none;
+      color: #e6e6e6;
+      font-weight: 500;
+      transform: 0.2s;
+    }
+    
+    body[theme='dark'] .profile-menu .menu ul li:hover a {
+      color: #ff5d94;
+    }
+    /*  */
+    
+    .profile-menu .menu {
+      position: absolute;
+      top: 70px;
+      right: -15px;
+      padding: 10px 0px;
+      background: #fff;
+      width: 260px;
+      box-sizing: 0 5px 25px rgba(0, 0, 0, 0.1);
+      border-radius: 15px;
+      transition: 0.2s;
+      visibility: hidden;
+      opacity: 0;
+      box-shadow: -15px 17px 22px -12px rgba(0, 0, 0, 0.4);
+    }
+    
+    .profile-menu .menu.active {
+      visibility: visible;
+      opacity: 1;
+    }
+    
+    .profile-menu .menu::before {
+      content: '';
+      position: absolute;
+      top: -5px;
+      right: 28px;
+      width: 20px;
+      height: 20px;
+      transition: 0.2s;
+      background: #fff;
+      transform: rotate(45deg);
+    }
+    
+    .profile-menu .menu h3 {
+      width: 100%;
+      text-align: center;
+      font-size: 18px;
+      padding: 20px 0 0px;
+      font-weight: 500;
+      color: #555;
+      line-height: 1.2em;
+    }
+    
+    .profile-menu .menu h3 span {
+      font-size: 14px;
+      color: #868686;
+      font-weight: 400;
+    }
+    
+    .profile-menu .menu ul {
+      justify-content: center;
+      padding: 0px 0px 0px 0px;
+    }
+    
+    .profile-menu .menu ul li {
+      list-style: none;
+      padding: 10px 0px 0px 30px;
+      border-top: 1px solid rgba(0, 0, 0, 0.05);
+      display: flex;
+      align-items: center;
+    }
+    
+    .profile-menu .menu img {
+      max-width: 20px;
+      margin-right: 10px;
+      opacity: 0.5;
+      transition: 0.2s;
+    }
+    
+    .profile-menu .menu ul li:hover img {
+      opacity: 1;
+    }
+    
+    .profile-menu .menu ul li a {
+      display: inline-block;
+      text-decoration: none;
+      color: #555;
+      font-weight: 500;
+      transform: 0.2s;
+    }
+    
+    .profile-menu .menu ul li:hover a {
+      color: #ff5d94;
     }
   </style>
   <body>
@@ -460,20 +577,24 @@
           <input type="checkbox" id="theme-toggle" name="theme" onchange="sessionThemeManagement()" />
           <label for="theme-toggle"></label>
 
-          <div id="profile" class="profile" onclick="toggleMenu()">
-            <div class="img-box">
+          <div class="profile-menu">
+            <div class="profile" onclick="menuToggle()">
               <img src="{{ user_info.profile_pic.url }}" alt="img" />
             </div>
-          </div>
-          <div id="menu" class="menu">
-            <ul>
-              <li>
-                <a href="{% url 'userprofile' %}"><i class="ph-bold ph-user"></i>&nbsp;Profile</a>
-              </li>
-              <li>
-                <a href="{% url 'logout' %}"><i class="ph-bold ph-sign-out"></i>&nbsp;Sign Out</a>
-              </li>
-            </ul>
+            <div id="menu" class="menu">
+              <h3>{{ user_info.first_name }} {{ user_info.last_name }} <br /><span>@{{ user_info.username }}</span></h3>
+              <ul>
+                <li>
+                  <img src="{% static 'Icons/user.png' %}" alt="" /><a href="#"><i class="ph-bold ph-user"></i>&nbsp;My Profile</a>
+                </li>
+                <li>
+                  <img src="{% static 'Icons/edit.png' %}" alt="" /><a href="#"><i class="ph-bold ph-user"></i>&nbsp;Edit Profile</a>
+                </li>
+                <li>
+                  <img src="{% static 'Icons/log-out.png' %}" alt="" /><a href="#"><i class="ph-bold ph-user"></i>&nbsp;Sign Out</a>
+                </li>
+              </ul>
+            </div>
           </div>
         </nav>
       </div>
@@ -838,11 +959,9 @@
     
     // Profile Menu
     
-    let profile = document.querySelector('.profile')
-    let menu = document.querySelector('.menu')
-    
-    profile.onclick = function () {
-      menu.classList.toggle('active')
+    function menuToggle() {
+      const toggleMenu = document.querySelector('.menu')
+      toggleMenu.classList.toggle('active')
     }
   </script>
 </html>
