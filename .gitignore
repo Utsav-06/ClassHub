@@ -2,7 +2,7 @@ proEnv
 ClassHub/ClassHub/__pycache__
 ClassHub/classUser/migrations
 ClassHub/ClassHub/db.sqlite3
-ClassHub/Uploaded_files
+ClassHub/User_Documents
 ClassHub/profile_pics
 ClassHub/classUser/__pycache__/
 package-lock.json
