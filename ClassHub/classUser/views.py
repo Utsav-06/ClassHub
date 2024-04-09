@@ -74,12 +74,6 @@ def main(request):
     total_reminders = Reminder.objects.filter(user=user).count()
     total_expenses = Expense.objects.filter(user=user).count()
 
-    if request.method == "POST":
-        theme = request.POST.get("theme")
-        isThemeLight = theme != "on"
-        user_info.IsThemeLight = isThemeLight
-        user_info.save()
-
     context = {
         "user": user,
         "user_info": user_info,
@@ -95,7 +89,7 @@ def main(request):
         "expenses": expenses,
     }
 
-    return render(request, "User-Login-Logout/Main.html")
+    return render(request, "User-Login-Logout/Main.html", context)
 
 
 # -----------------------------------------------------------------------------------------------------------#
