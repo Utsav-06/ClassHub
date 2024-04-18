@@ -2,6 +2,7 @@
 
 ClassHub is a comprehensive web application designed to streamline educational activities, mnaage tasks, assignments, and events in an organized manner. This project showcases my skills in web-app development, utilizing Django framework.
 
+
 ## Features
 
 - **Task Management**: Efficiently manage tasks with a dedicated section, categorizing them for easy tracking.
@@ -13,6 +14,7 @@ ClassHub is a comprehensive web application designed to streamline educational a
 - **Expense Management**: Keep track of your daily expenses in an organized way.
 
 - **Notes Managements**: Store all your notes and pdf's at one place.
+- 
 
 ## Languages and Technologies Used
 
@@ -21,6 +23,7 @@ ClassHub is a comprehensive web application designed to streamline educational a
 - **CSS**
 - **JS**
 - **BootStrap**
+- 
 
 ## Setup Instructions
 
@@ -31,6 +34,7 @@ ClassHub is a comprehensive web application designed to streamline educational a
     - `python manage.py makemigrations`
     - `python manage.py migrate`
 5. Start the development server: `python manage.py runserver`.
+6. 
 
 ## Want to Contribute 
 
