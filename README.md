@@ -16,11 +16,11 @@ ClassHub is a comprehensive web application designed to streamline educational a
 
 ## Languages and Technologies Used
 
+- **Django(Python)**
 - **HTML**
 - **CSS**
 - **JS**
 - **BootStrap**
-- **Django**
 
 ## Setup Instructions
 
