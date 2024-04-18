@@ -26,10 +26,11 @@ ClassHub is a comprehensive web application designed to streamline educational a
 
 1. Clone the repository: `git clone https://github.com/your-username/ClassHub.git`
 2. Install dependencies: `pip install -r requirements.txt`
-3. Run migrations: 
+3. Go to the ClassHub directory: `cd ClassHub`
+4. Run migrations: 
     - `python manage.py makemigrations`
     - `python manage.py migrate`
-4. Start the development server: `python manage.py runserver`.
+5. Start the development server: `python manage.py runserver`.
 
 ## Want to Contribute 
 
